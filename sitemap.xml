@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://brianjmpark.github.io/categories/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/post/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/r/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/categories/r/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/post/r-basics-piping-in-tidy-verse/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/tidyverse/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://brianjmpark.github.io/contact/</loc>
     <lastmod>2020-02-01T00:00:00+00:00</lastmod>
   </url>
@@ -13,27 +53,11 @@
   </url>
   
   <url>
-    <loc>https://brianjmpark.github.io/categories/</loc>
-  </url>
-  
-  <url>
     <loc>https://brianjmpark.github.io/tags/index/</loc>
   </url>
   
   <url>
-    <loc>https://brianjmpark.github.io/post/</loc>
-  </url>
-  
-  <url>
     <loc>https://brianjmpark.github.io/series/</loc>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/</loc>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/</loc>
   </url>
   
 </urlset>

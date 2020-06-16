@@ -1,0 +1,57 @@
+---
+title: 'R Basics: piping in tidy verse'
+author: Brian Jungmin Park
+date: '2020-06-16'
+slug: r-basics-piping-in-tidy-verse
+categories:
+  - r
+tags:
+  - r
+  - tidyverse
+description: ''
+---
+
+Working in R, oftentimes I find myself creating intermediate variables that serve no purpose other than to exist as a middle man. Consider this example:
+
+```{r}
+library(tidyverse)
+data(mtcars)
+str(mtcars)
+```
+
+I've loaded a toy data set called mtcars (for R Documentation on this data set, see: https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/mtcars.html). Essentially, the data contains 11 numeric variables of automobile performance (which comprises the columns) of 32 car models (which comprises the rows).
+
+Say I want to group the data frame by one of the columns, in this case "hp" which stands for horsepower. Doing this will re-organize the rows such that rows with common values for horsepower will be grouped consecutively together. I'm going to store the result of this transformation to a new variable called mtcars2. 
+
+```{r}
+mtcars2 <- group_by(mtcars, hp)
+head(mtcars2, n = 20)
+```
+
+As you can see, the group_by function as aggregated the rows by horsepower. 
+
+Now I want to see what the mean mileage (miles per gallon, or mpg) is for each group of car models. Would cars, on average, that has 110 hp have higher or lower mileage than cars with, say, 180? To do this I use summarise function and store the new information in yet another new variable.
+
+```{r}
+mpg_by_hp <- summarise(mtcars2, mean_mpg = mean(mpg, na.rm = TRUE))
+head(mpg_by_hp) 
+```
+
+Indeed, in the hp = 110 group, the mean mileage is higher than in hp = 180 group, as we expected. 
+
+The only data frame I need to show that the above statement is true is the last variable we get, which is mpg_by_hp. However I have reached this step from our original data in two steps, resulting in an intermediate variable mtcars2 that does not give us any meaningful information. In order to bypass this and go straight to my answer from my original starting point, I can use pipes.
+
+%>% notation is used to 'pipe' commands together. This leads R to take the result from the command preceding the pipe and immediately execute the rest of the command, without storing unnecessary information. Let's say I want to do the same thing as before with an added step of filtering out any horsepower-grouped cars with less than 20.0 mpg. I can do this in one command as such, beginning from the original data set mtcars:
+
+```{r}
+mpg_by_hp <- mtcars %>%
+    group_by(hp) %>%
+    summarise(mean_mpg = mean(mpg)) %>%
+    filter(mean_mpg > 20.0)
+
+mpg_by_hp
+```
+
+I can read the above command out loud by substituting %>% with "and" or "then." 
+
+Using pipes contextualizes the kinds of data transformation we are performing instead of what's being transformed. Not only this, it makes code much easier to maintain and read, which alone proves it to be a valuable tool in R basics. 

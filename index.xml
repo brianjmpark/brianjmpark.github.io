@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Soho Theme on Brian Jungmin Park</title>
-    <link>/</link>
+    <link>https://brianjmpark.github.io/</link>
     <description>Recent content in Soho Theme on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://brianjmpark.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hello World</title>
-      <link>/post/hello-world/</link>
+      <link>https://brianjmpark.github.io/post/hello-world/</link>
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/hello-world/</guid>
+      <guid>https://brianjmpark.github.io/post/hello-world/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Contact</title>
-      <link>/contact/</link>
+      <link>https://brianjmpark.github.io/contact/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/contact/</guid>
+      <guid>https://brianjmpark.github.io/contact/</guid>
       <description>Get in contact with us!</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>https://brianjmpark.github.io/about/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
+      <guid>https://brianjmpark.github.io/about/</guid>
       <description>Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.</description>
     </item>
     
     <item>
       <title>A Plain Markdown Post</title>
-      <link>/post/2016-12-30-hello-markdown/</link>
+      <link>https://brianjmpark.github.io/post/2016-12-30-hello-markdown/</link>
       <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
       
-      <guid>/post/2016-12-30-hello-markdown/</guid>
+      <guid>https://brianjmpark.github.io/post/2016-12-30-hello-markdown/</guid>
       <description>This is a post written in plain Markdown (*.md) instead of R Markdown (*.</description>
     </item>
     
     <item>
       <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
+      <link>https://brianjmpark.github.io/post/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
+      <guid>https://brianjmpark.github.io/post/2015-07-23-r-rmarkdown/</guid>
       <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.</description>
     </item>
     

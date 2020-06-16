@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://brianjmpark.github.io/tags/bash/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/categories/bash/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://brianjmpark.github.io/categories/</loc>
     <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
@@ -39,6 +49,21 @@
   
   <url>
     <loc>https://brianjmpark.github.io/tags/tidyverse/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/post/toolbox-for-frequently-used-unix-commands/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/unix/</loc>
+    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/categories/unix/</loc>
     <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   

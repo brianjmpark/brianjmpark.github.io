@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.72.0" />
+
+  <title>Toolbox for frequently used UNIX commands &middot; Brian Jungmin Park</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Toolbox for frequently used UNIX commands">
+<meta itemprop="description" content="Surfing through directories:  cd {directory_path} to set current directory, to journey through your file system, or cd ~ to go back home; cd .">
+<meta itemprop="datePublished" content="2020-06-16T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-06-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="501">
+<meta itemprop="image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+
+
+<meta itemprop="keywords" content="bash,unix," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+<meta name="twitter:title" content="Toolbox for frequently used UNIX commands"/>
+<meta name="twitter:description" content="Surfing through directories:  cd {directory_path} to set current directory, to journey through your file system, or cd ~ to go back home; cd ."/>
+
+
+<meta property="og:title" content="Toolbox for frequently used UNIX commands" />
+<meta property="og:description" content="Surfing through directories:  cd {directory_path} to set current directory, to journey through your file system, or cd ~ to go back home; cd ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://brianjmpark.github.io/post/toolbox-for-frequently-used-unix-commands/" />
+<meta property="og:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+<meta property="article:published_time" content="2020-06-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-16T00:00:00+00:00" /><meta property="og:site_name" content="Brian Jungmin Park" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #88b8e7;
+  }
+
+  .read-more-link a {
+    border-color: #88b8e7;
+  }
+
+  .pagination li a {
+    color: #88b8e7;
+    border: 1px solid #88b8e7;
+  }
+
+  .pagination li.active a {
+    background-color: #88b8e7;
+  }
+
+  .pagination li a:hover {
+    background-color: #88b8e7;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #88b8e7;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/picture.jpg" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Brian Jungmin Park</h1>
+
+      
+      <p class="lead">A GitHub Pages Blog</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://brianjmpark.github.io">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/contact/">Contact</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/categories/">Categories</a>
+        </li><li>
+          <a href="/tags/">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://linkedin.com/in/bjp" rel="me" title="LinkedIn" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/brianjmpark/" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/brianjmpark2" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>Toolbox for frequently used UNIX commands</h1>
+
+  <div class="post-date">
+    <time datetime="2020-06-16T00:00:00Z">Jun 16, 2020</time> &middot; 3 min read
+  </div>
+
+  
+
+
+<div id="surfing-through-directories" class="section level2">
+<h2>Surfing through directories:</h2>
+<ul>
+<li><p><strong>cd {directory_path}</strong> to set current directory, to journey through your file system, or cd ~ to go back home; cd .. to retrace your step and go back on directory level</p></li>
+<li><p><strong>mkdir</strong> to make a new folder in your current directory</p></li>
+<li><p><strong>df</strong> command to see disk free space; use <strong>df -ah</strong> for all human readable disk spaces and their usages</p></li>
+<li><p><strong>du</strong> command to see file system disk usage; use <strong>du -sh</strong> for a summary in readable format</p></li>
+<li><p><strong>rm</strong> to remove directories or files; use <strong>rm -i</strong> for a confirmation before execution as rm is irreversible</p></li>
+<li><p><strong>pwd</strong> to see your current path in case you're lost</p></li>
+<li><p><strong>ls</strong> to list all files and directories in your current directory; use <strong>ls -l</strong> for detailed list format</p></li>
+<li><p><strong>cp {file A} {file B}</strong> to copy files</p></li>
+<li><p><strong>mv {file} {newfile}</strong> to rename file to newfile; use <strong>mv {file} {directory_path}</strong> to move the file to a different directory</p></li>
+<li><p><strong>find</strong> to find files, self-explanatory</p></li>
+</ul>
+</div>
+<div id="some-administrative-stuff" class="section level2">
+<h2>Some administrative stuff:</h2>
+<ul>
+<li><p><strong>man {command}</strong> to see the help manual for a command</p></li>
+<li><p><strong>ifconfig</strong> to see kernel configuration; try <strong>inconfig -a</strong> to display all available interfaces</p></li>
+<li><p><strong>chmod {file}</strong> to change file permissions; <strong>chmod u+rw {file}</strong> to give yourself, the user (u) permission to read (r) and write (w); <strong>chmod a+rw {file}</strong> to give everyone (a for all) permission to read and write</p></li>
+<li><p><strong>printenv</strong> to show environmental variables</p></li>
+<li><p><strong>whatis {command}</strong> for a shorter explanation of a command</p></li>
+<li><p><strong>mount</strong> to mount an external file system (USB drive, for example); sometimes needed for Linux distros</p></li>
+<li><p><strong>uname</strong> to get kernel information, including OS version</p></li>
+<li><p><strong>history</strong> to give a past log of terminal sessions</p></li>
+<li><p><strong>uptime</strong> to give active run time of your system</p></li>
+<li><p><strong>kill -l</strong> to list all available signal names to kill process</p></li>
+</ul>
+</div>
+<div id="text-stuff-for-when-you-need-it" class="section level2">
+<h2>Text stuff for when you need it:</h2>
+<ul>
+<li><p><strong>less {file}</strong> to see contents of a text file; hit <strong>q</strong> to quit viewing</p></li>
+<li><p><strong>more {file}</strong> view the file</p></li>
+<li><p><strong>cat &gt; {file.txt}</strong> to create a new text file</p></li>
+<li><p><strong>grep 'pattern' {file}</strong> to search a text pattern (maybe a particular word?) in a text file</p></li>
+<li><p><strong>cut {file}</strong> to cut text files; use cut <strong>-c 1,2,3, {file.txt}</strong> to print first, second, and third characters from each line; use <strong>cut -f 1,2,3</strong> to print first, second, and third fields from the file</p></li>
+<li><p><strong>sort {file}</strong> to sort the contents of a text file; use <strong>sort -r {file}</strong> to sort in reverse order; <strong>sort -n {file}</strong> to sort numerically line by line</p></li>
+<li><p><strong>nano {file}</strong> to open a lightweight text-editor and edit, save new text files</p></li>
+<li><p><strong>diff {fileA} {fileB}</strong> to show differences between the two files</p></li>
+<li><p><strong>wc {file}</strong> to give a word count; <strong>wc -l {file}</strong> to count number of lines in your file</p></li>
+<li><p><strong>echo &quot;string&quot;</strong> to echo a statement; use <strong>echo $PATH</strong> to show your full working path</p></li>
+<li><p><strong>touch {file}</strong> to create a file, like <strong>cat</strong> but this time it's empty; you can create multiple files at once</p></li>
+<li><p><strong>head {file}</strong> to see the first ten lines of a file; use <strong>head -n N {file}</strong> to see the first N lines instead</p></li>
+</ul>
+</div>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy; Brian Jungmin Park 2020
+
+    &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+    &middot; Build with <a href="https://gohugo.io/" target="_blank">Hugo</a> & <a href="https://themes.gohugo.io/soho/" target="_blank">Soho</a> theme
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>

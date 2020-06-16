@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Toolbox for frequently used UNIX commands</title>
+      <link>https://brianjmpark.github.io/post/toolbox-for-frequently-used-unix-commands/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/toolbox-for-frequently-used-unix-commands/</guid>
+      <description>Surfing through directories:  cd {directory_path} to set current directory, to journey through your file system, or cd ~ to go back home; cd .</description>
+    </item>
+    
+    <item>
       <title>Contact</title>
       <link>https://brianjmpark.github.io/contact/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>

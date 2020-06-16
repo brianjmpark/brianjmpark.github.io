@@ -1,0 +1,85 @@
+---
+title: Toolbox for frequently used UNIX commands
+author: Brian Jungmin Park
+date: '2020-06-16'
+slug: toolbox-for-frequently-used-unix-commands
+categories:
+  - bash
+  - unix
+tags:
+  - bash
+  - unix
+description: ''
+---
+
+## Surfing through directories:
+
+- **cd {directory_path}** to set current directory, to journey through your file system, or cd ~ to go back home; cd .. to retrace your step and go back on directory level
+
+- **mkdir** to make a new folder in your current directory
+
+- **df** command to see disk free space; use **df -ah** for all human readable disk spaces and their usages
+
+- **du** command to see file system disk usage; use **du -sh**  for a summary in readable format
+
+- **rm** to remove directories or files; use **rm -i** for a confirmation before execution as rm is irreversible 
+
+- **pwd** to see your current path in case you're lost
+
+- **ls** to list all files and directories in your current directory; use **ls -l** for detailed list format
+
+- **cp {file A} {file B}** to copy files
+
+- **mv {file} {newfile}** to rename file to newfile; use **mv {file} {directory_path}** to move the file to a different directory
+
+- **find** to find files, self-explanatory
+
+
+## Some administrative stuff:
+
+- **man {command}** to see the help manual for a command
+
+- **ifconfig** to see kernel configuration; try **inconfig -a** to display all available interfaces 
+
+- **chmod {file}** to change file permissions; **chmod u+rw {file}** to give yourself, the user (u) permission to read (r) and write (w); **chmod a+rw {file}** to give everyone (a for all) permission to read and write
+
+- **printenv** to show environmental variables
+
+- **whatis {command}** for a shorter explanation of a command
+
+- **mount** to mount an external file system (USB drive, for example); sometimes needed for Linux distros
+
+- **uname** to get kernel information, including OS version
+
+- **history** to give a past log of terminal sessions
+
+- **uptime** to give active run time of your system
+
+- **kill -l** to list all available signal names to kill process
+
+
+## Text stuff for when you need it:
+
+- **less {file}** to see contents of a text file; hit **q** to quit viewing
+
+- **more {file}** view the file
+
+- **cat > {file.txt}** to create a new text file
+
+- **grep 'pattern' {file}** to search a text pattern (maybe a particular word?) in a text file
+
+- **cut {file}** to cut text files; use cut **-c 1,2,3, {file.txt}** to print first, second, and third characters from each line; use **cut -f 1,2,3** to print first, second, and third fields from the file
+
+- **sort {file}** to sort the contents of a text file; use **sort -r {file}** to sort in reverse order; **sort -n {file}** to sort numerically line by line
+
+- **nano {file}** to open a lightweight text-editor and edit, save new text files 
+
+- **diff {fileA} {fileB}** to show differences between the two files
+
+- **wc {file}** to give a word count; **wc -l {file}** to count number of lines in your file
+
+- **echo "string"** to echo a statement; use **echo $PATH** to show your full working path
+
+- **touch {file}** to create a file, like **cat** but this time it's empty; you can create multiple files at once
+
+- **head {file}** to see the first ten lines of a file; use **head -n N {file}** to see the first N lines instead

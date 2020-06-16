@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Brian Jungmin Park</title>
-    <link>https://brianjmpark.github.io/post/</link>
-    <description>Recent content in Posts on Brian Jungmin Park</description>
+    <title>unix on Brian Jungmin Park</title>
+    <link>https://brianjmpark.github.io/tags/unix/</link>
+    <description>Recent content in unix on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://brianjmpark.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://brianjmpark.github.io/tags/unix/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>R Basics: piping in tidy verse</title>
-      <link>https://brianjmpark.github.io/post/r-basics-piping-in-tidy-verse/</link>
-      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://brianjmpark.github.io/post/r-basics-piping-in-tidy-verse/</guid>
-      <description>Working in R, oftentimes I find myself creating intermediate variables that serve no purpose other than to exist as a middle man.</description>
-    </item>
     
     <item>
       <title>Toolbox for frequently used UNIX commands</title>

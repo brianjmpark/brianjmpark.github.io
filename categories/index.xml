@@ -12,11 +12,29 @@
     
     
     <item>
+      <title>bash</title>
+      <link>https://brianjmpark.github.io/categories/bash/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/categories/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>r</title>
       <link>https://brianjmpark.github.io/categories/r/</link>
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/categories/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unix</title>
+      <link>https://brianjmpark.github.io/categories/unix/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/categories/unix/</guid>
       <description></description>
     </item>
     

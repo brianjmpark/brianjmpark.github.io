@@ -97,7 +97,7 @@ A Spearman correlation coefficient of -0.43 (p = 4.6e-9) suggest moderately nega
 Of course, generalizing fixtures ranging from betting odds of 1.00 to 4.00 is probably not advisable. To see at which *increment* of the betting odds we begin to lose out on our money, we can divide the data further into quantiles. 
 
 
-```{r}
+```{r, , fig.width=10, fig.height=10}
 p <- ggplot(data2, aes(x = B365H, y = goal_diff)) + geom_jitter(aes(text = paste("Fixture: ", fixture)), stat = "identity") + stat_cor(method = "spearman", label.x = 3, label.y = 5, output.type = "text") + geom_smooth(method = "lm") + xlab("Bet365 home team odds") + ylab("goal difference for home team") + xlim(c(1,4.00))
 
 fig <- ggplotly(p)
@@ -112,11 +112,11 @@ At which point along the x-axis (i.e., worse and worse odds) do we start losing 
 
 ```{r}
 data2a <- data2 %>% filter(B365H <= 1.49)
-data2b <- data2 %>% filter(B365H %in% c(1.50,1.99))
-data2c <- data2 %>% filter(B365H %in% c(2.00,2.49))
-data2d <- data2 %>% filter(B365H %in% c(2.50,2.99))
-data2e <- data2 %>% filter(B365H %in% c(3.00,3.49))
-data2f <- data2 %>% filter(B365H %in% c(3.50,3.99))
+data2b <- data2 %>% filter(dplyr::between(B365H, 1.50, 1.99))
+data2c <- data2 %>% filter(dplyr::between(B365H, 2.00, 2.49))
+data2d <- data2 %>% filter(dplyr::between(B365H, 2.50, 2.99))
+data2e <- data2 %>% filter(dplyr::between(B365H, 3.00, 3.49))
+data2f <- data2 %>% filter(dplyr::between(B365H, 3.50, 3.99))
 ```
 
 Since we already calculated goal difference for each game, it is trivial to classify the fixture results into wins and losses. 

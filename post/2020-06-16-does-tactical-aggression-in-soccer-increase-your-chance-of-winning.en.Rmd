@@ -73,7 +73,7 @@ This result indicates with worse odds, the chance of the team losing the game in
 You can hover your cursor on each data point to identify each associated fixture. 
 
 
-```{r, fig.width=10, fig.height=10, message=FALSE}
+```{r, fig.width=10, fig.height=10, message=FALSE, warning=FALSE}
 p <- ggplot(data, aes(x = B365H, y = goal_diff)) + geom_jitter(aes(text = paste("Fixture: ", fixture)), stat = "identity") + stat_cor(method = "spearman", label.x = 12, label.y = 5, output.type = "text") + geom_smooth(method = "lm") + xlab("Bet365 home team odds") + ylab("goal difference for home team")
 
 fig <- ggplotly(p)
@@ -97,7 +97,7 @@ A Spearman correlation coefficient of -0.43 (p = 4.6e-9) suggest moderately nega
 Of course, generalizing fixtures ranging from betting odds of 1.00 to 4.00 is probably not advisable. To see at which *increment* of the betting odds we begin to lose out on our money, we can divide the data further into quantiles. 
 
 
-```{r, fig.width=10, fig.height=10, message=FALSE}
+```{r, fig.width=10, fig.height=10, message=FALSE, warning=FALSE}
 p <- ggplot(data2, aes(x = B365H, y = goal_diff)) + geom_jitter(aes(text = paste("Fixture: ", fixture)), stat = "identity") + stat_cor(method = "spearman", label.x = 3, label.y = 5, output.type = "text") + geom_smooth(method = "lm") + xlab("Bet365 home team odds") + ylab("goal difference for home team") + xlim(c(1,4.00))
 
 fig <- ggplotly(p)

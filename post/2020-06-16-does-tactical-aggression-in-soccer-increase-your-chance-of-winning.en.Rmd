@@ -1,0 +1,169 @@
+---
+title: Are there "safe bets" in soccer? 
+author: 'Brian Jungmin Park'
+date: '2020-06-16'
+slug: are-there-safe-bets-in-soccer
+categories:
+  - r
+  - soccer
+  - sports
+tags:
+  - r
+  - soccer
+  - sports
+description: ''
+---
+
+"There is no such thing as a sure thing in sports." As we have seen before in numerous occasions where the heavily favored powerhouse bows in defeat to an underdog, this phrase inevitably rings true. Putting aside our emotions however, we can think about whether this phenomenon is actually common - or is it simply confirmation bias? 
+
+This post will take a quick look at whether there was a significant correlation between fixture results in the Bundesliga (top German flight football) and betting odds. 
+
+## Preparing the data 
+
+For this simple analysis we will use packages within tidyverse in R. For a detailed tutorial on data transformation with dplyr in tidyverse, see here: https://r4ds.had.co.nz/transform.html. 
+
+ggpubr is a wrapper for ggplot2 within tidyverse that allows us to fine-tune our plots, as well as do some correlation analysis with stat_cor(). For a helpful article on ggpubr, see here: http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/. 
+
+Finally, plotly allows us to convert our ggplot2/ggpubr results into user-interactive plots. 
+
+```{r}
+library(tidyverse)
+library(ggpubr)
+library(scales)
+library(cowplot)
+library(plotly)
+```
+
+Our dataset for the current 2019-2020 Bundesliga season and betting odds were obtained from here: http://football-data.co.uk/data.php. The fixture results from the dataset is up to date as of June 14th, 2020. 
+
+After loading the data, I am creating a column for the fixture annotations.
+
+```{r}
+data <- read.csv(file = "~/Desktop/data/D1.csv")
+head(data)
+#create fixture annotation column
+data$fixture <- with(data, paste(HomeTeam, AwayTeam, sep = ".vs."))
+```
+
+For the sake of this analysis, I am excluding results that ended in a draw. 
+
+```{r}
+data <- data[data$FTR != "D",]
+```
+
+To visualize home and away team performance and result, I am calculating the goal difference of each fixture and creating a new column. 
+
+```{r}
+data <- mutate(data, goal_diff = FTHG - FTAG)
+```
+
+
+## Correlation between fixture results and betting odds
+
+With ggplot and plotly, I can make a scatterplot of the betting odds for the home team (courtesy of bet365) versus the goal difference of each fixture. Each data point represents a fixture result at full time. 
+
+For those unfamiliar with decimal betting odds, a high betting odd represents worse odds (this is because the decimal betting odd acts as a multiplier for our potential pay-out relative to the money we bet). 
+
+Positive goal difference, of course, indicates that the home team has won the game. 
+
+A linear line of best fit is shown with a Spearman rank correlation coefficient of -0.53, which suggests a moderately strong negative correlation between betting odds versus goal difference for the home team.
+
+This result indicates with worse odds, the chance of the team losing the game increased. This means that at least in the big picture, the favorites are likely to win the game. 
+
+You can hover your cursor on each data point to identify each associated fixture. 
+
+
+```{r, fig.width=10, fig.height=10}
+p <- ggplot(data, aes(x = B365H, y = goal_diff)) + geom_jitter(aes(text = paste("Fixture: ", fixture)), stat = "identity") + stat_cor(method = "spearman", label.x = 12, label.y = 5, output.type = "text") + geom_smooth(method = "lm") + xlab("Bet365 home team odds") + ylab("goal difference for home team")
+
+fig <- ggplotly(p)
+
+fig
+```
+
+Anything higher than betting odds of 4.00 traditionally suggests tough odds. Unless you're a risk taker, evidence from this season in the Bundesliga suggest you should stay away from those kinds of wagers. 
+
+How about the games where the odds are less one-sided? For this purpose I filtered the data for the fixtures where the home odds were below 4.00. 
+
+
+
+```{r}
+data2 <- data[which(data$B365H < 4.00),]
+```
+
+
+A Spearman correlation coefficient of -0.43 (p = 4.6e-9) suggest moderately negative correlation once again. Intuitively, filtering out the *tough odds* tilted the correlation coefficient to a slightly less negative value. 
+
+Of course, generalizing fixtures ranging from betting odds of 1.00 to 4.00 is probably not advisable. To see at which *increment* of the betting odds we begin to lose out on our money, we can divide the data further into quantiles. 
+
+
+```{r}
+p <- ggplot(data2, aes(x = B365H, y = goal_diff)) + geom_jitter(aes(text = paste("Fixture: ", fixture)), stat = "identity") + stat_cor(method = "spearman", label.x = 3, label.y = 5, output.type = "text") + geom_smooth(method = "lm") + xlab("Bet365 home team odds") + ylab("goal difference for home team") + xlim(c(1,4.00))
+
+fig <- ggplotly(p)
+
+fig
+```
+
+## Incrementing the odds 
+
+At which point along the x-axis (i.e., worse and worse odds) do we start losing out? To do this, I divided the data into six pieces by incremental ranges of the odds. 
+
+
+```{r}
+data2a <- data2 %>% filter(B365H <= 1.49)
+data2b <- data2 %>% filter(B365H %in% c(1.50,1.99))
+data2c <- data2 %>% filter(B365H %in% c(2.00,2.49))
+data2d <- data2 %>% filter(B365H %in% c(2.50,2.99))
+data2e <- data2 %>% filter(B365H %in% c(3.00,3.49))
+data2f <- data2 %>% filter(B365H %in% c(3.50,3.99))
+```
+
+Since we already calculated goal difference for each game, it is trivial to classify the fixture results into wins and losses. 
+
+
+```{r}
+diff <- function(data){
+  data = data
+  data$result <- ifelse(data$goal_diff > 0, "win", "loss")
+  return(data)
+}
+```
+
+```{r}
+data2a <- diff(data2a)
+data2b <- diff(data2b)
+data2c <- diff(data2c)
+data2d <- diff(data2d)
+data2e <- diff(data2e)
+data2f <- diff(data2f)
+```
+
+
+Below histogram shows the six ranges of betting odds ranging from 1.00 to 4.00 (increasing by 0.50) and the frequency of wins and losses for the home team. 
+
+As we can see, at odds 1.00 to 1.49, it is most likely a safe bet. Of course, betting on a team with such odds (most frequently Bayern Munich this season) offers lower pay-outs. How about as we increase the risk?
+
+At odds 1.50 to 1.99, as we begin to aim for doubling our initial wager, we see that this season exactly two-thirds of the time, the team with the better odds won the game. 
+
+After odds of 2.00, the tables turn on us and past results begin to point against us. 16 out of 42 fixtures resulted in the victory of the team with odds higher than 2.00 and below 2.50.
+
+Interestingly, in the 32 matches in the next odds bracket (2.50 to 2.99) more than half the results led to a payout (17 out of 32). 
+
+After odds higher than 3.00, we begin to lose out again but at a much lower sample size. 
+
+
+```{r, fig.width=12, fig.height=11 }
+p1 <- ggplot(data2a, aes(x = result)) + geom_bar() + xlab("Odds 1.00 ~ 1.49") + geom_text(stat='count', aes(label=..count..), vjust=-.5)
+p2 <- ggplot(data2b, aes(x = result)) + geom_bar() + xlab("Odds 1.50 ~ 1.99") + geom_text(stat='count', aes(label=..count..), vjust=-.5)
+p3 <- ggplot(data2c, aes(x = result)) + geom_bar() + xlab("Odds 2.00 ~ 2.49") + geom_text(stat='count', aes(label=..count..), vjust=-.5)
+p4 <- ggplot(data2d, aes(x = result)) + geom_bar() + xlab("Odds 2.50 ~ 2.99") + geom_text(stat='count', aes(label=..count..), vjust=-.5)
+p5 <- ggplot(data2e, aes(x = result)) + geom_bar() + xlab("Odds 3.00 ~ 3.49") + geom_text(stat='count', aes(label=..count..), vjust=-.5)
+p6 <- ggplot(data2f, aes(x = result)) + geom_bar() + xlab("Odds 3.50 ~ 3.99") + geom_text(stat='count', aes(label=..count..), vjust=-.5)
+
+
+plot_grid(p1, p2, p3, p4, p5, p6, ncol = 3, labels = "AUTO")
+```
+
+So, are there safe bets in soccer? Results from the current season from Bundesliga suggest yes. However the answer isn't as exciting as we'd hoped - the safe bets *are* safe bets (odds below 1.5), but as we begin to seek for higher risk, the historic results are not in our favor. The current season's results indicate, however, that there is a precedence of relatively good pay outs at 2.50 ~ 2.99 betting odds. Of course, there is so much variance and dependencies in a game of soccer and much more research is needed before we go out there and start betting. 
+

@@ -26,7 +26,7 @@ ggpubr is a wrapper for ggplot2 within tidyverse that allows us to fine-tune our
 
 Finally, plotly allows us to convert our ggplot2/ggpubr results into user-interactive plots. 
 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)
 library(ggpubr)
 library(scales)
@@ -40,7 +40,7 @@ After loading the data, I am creating a column for the fixture annotations.
 
 ```{r}
 data <- read.csv(file = "~/Desktop/data/D1.csv")
-head(data)
+
 #create fixture annotation column
 data$fixture <- with(data, paste(HomeTeam, AwayTeam, sep = ".vs."))
 ```
@@ -73,7 +73,7 @@ This result indicates with worse odds, the chance of the team losing the game in
 You can hover your cursor on each data point to identify each associated fixture. 
 
 
-```{r, fig.width=10, fig.height=10}
+```{r, fig.width=10, fig.height=10, message=FALSE}
 p <- ggplot(data, aes(x = B365H, y = goal_diff)) + geom_jitter(aes(text = paste("Fixture: ", fixture)), stat = "identity") + stat_cor(method = "spearman", label.x = 12, label.y = 5, output.type = "text") + geom_smooth(method = "lm") + xlab("Bet365 home team odds") + ylab("goal difference for home team")
 
 fig <- ggplotly(p)
@@ -97,7 +97,7 @@ A Spearman correlation coefficient of -0.43 (p = 4.6e-9) suggest moderately nega
 Of course, generalizing fixtures ranging from betting odds of 1.00 to 4.00 is probably not advisable. To see at which *increment* of the betting odds we begin to lose out on our money, we can divide the data further into quantiles. 
 
 
-```{r, , fig.width=10, fig.height=10}
+```{r, fig.width=10, fig.height=10, message=FALSE}
 p <- ggplot(data2, aes(x = B365H, y = goal_diff)) + geom_jitter(aes(text = paste("Fixture: ", fixture)), stat = "identity") + stat_cor(method = "spearman", label.x = 3, label.y = 5, output.type = "text") + geom_smooth(method = "lm") + xlab("Bet365 home team odds") + ylab("goal difference for home team") + xlim(c(1,4.00))
 
 fig <- ggplotly(p)
@@ -153,7 +153,7 @@ Interestingly, in the 32 matches in the next odds bracket (2.50 to 2.99) more th
 After odds higher than 3.00, we begin to lose out again but at a much lower sample size. 
 
 
-```{r, fig.width=12, fig.height=11 }
+```{r, fig.width=10, fig.height=10 }
 p1 <- ggplot(data2a, aes(x = result)) + geom_bar() + xlab("Odds 1.00 ~ 1.49") + geom_text(stat='count', aes(label=..count..), vjust=-.5)
 p2 <- ggplot(data2b, aes(x = result)) + geom_bar() + xlab("Odds 1.50 ~ 1.99") + geom_text(stat='count', aes(label=..count..), vjust=-.5)
 p3 <- ggplot(data2c, aes(x = result)) + geom_bar() + xlab("Odds 2.00 ~ 2.49") + geom_text(stat='count', aes(label=..count..), vjust=-.5)

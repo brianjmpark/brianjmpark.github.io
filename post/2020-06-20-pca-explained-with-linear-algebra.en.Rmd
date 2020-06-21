@@ -19,6 +19,8 @@ Pricinpal component analysis (PCA) is often used as a means of exploratory analy
 I use PCA as a quality-control type of an analysis in gene expression data. An unsupervised clustering type of an analysis is useful in identifying differences within a data set. For example, I would expect data points to cluster by their origin (i.e., gene expression data from kidney cells should cluster together, while separating from data from brain cells). What exactly is being plotted in a PCA plot though? The answer actually is founded on some concepts in linear algebra and statistics. I've been reading a lot of resources on the derivation of PCA so I thought I would share some key points here to make it more digestible. 
 
 
+
+
 ##Some statistics
 
 
@@ -39,7 +41,10 @@ $Var(A) = \frac{1}{n - 1} ((a_1 - \mu_A)^2 + \cdots + (a_n - \mu_A)^2)$
 The key concept in PCA is the **covariance** between two variables. The covariance of two variables *A* and *B* is described by:
 
 
-$Cov(A,B) = \frac{1}{n - 1} ((a_1 - \mu_A)(b_1 - \mu_B) + \cdots + (a_n - \mu_A)(b_n - \mu_B)) $
+$Cov(A,B) = \frac{1}{n - 1} ((a_1 - \mu_A)(b_1 - \mu_B) + \dots + (a_n - \mu_A)(b_n - \mu_B)) $
+
+
+
 
 
 ##Some linear algebra
@@ -60,7 +65,7 @@ $$
 This vector describes a student who (apparently) studies 82 hours, does homework for 77 hours, and has 41 hours allocated to extracurriculars. Therefore if we were to look at our entire data set, we would have an *m x n* matrix where m = 3 (for each of 3 pieces of data per student) and n = 20 (for 20 students in our pool). This is a matrix with 3 rows and 20 columns.
 
 
-Before carrying on it's useful to define some definitions from linear algebra. If *A* is a *m x n* matrix, assuming *A* is symmetric (i.e., A = $A^T$ where $A^T$ denotes the transpose) the following relationship holds true:
+Before carrying on it's useful to define some definitions from linear algebra. If *A* is a *m x n* matrix, assuming *A* is symmetric (i.e., $A$ = $A^T$ where $A^T$ denotes the transpose) the following relationship holds true:
 
 
 $A\overrightarrow{v_i} = \lambda_i\overrightarrow{v_i}$ 
@@ -207,6 +212,9 @@ In $\overrightarrow{v_1}$, all values in the vector have the same sign, with the
 
 
 In $\overrightarrow{v_2}$, our third variable has a negative sign. This indicates that in the second factor influencing our data, our data is negatively related to the hours spent in extracurriculars.
+
+
+
 
 
 ##Concluding remarks

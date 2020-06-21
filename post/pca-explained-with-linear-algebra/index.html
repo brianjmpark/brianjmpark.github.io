@@ -217,7 +217,7 @@
 \end{array}\right]
 \]</span></p>
 <p>This vector describes a student who (apparently) studies 82 hours, does homework for 77 hours, and has 41 hours allocated to extracurriculars. Therefore if we were to look at our entire data set, we would have an <em>m x n</em> matrix where m = 3 (for each of 3 pieces of data per student) and n = 20 (for 20 students in our pool). This is a matrix with 3 rows and 20 columns.</p>
-<p>Before carrying on it's useful to define some definitions from linear algebra. If <em>A</em> is a <em>m x n</em> matrix, assuming <em>A</em> is symmetric (i.e., A = <span class="math inline">\(A^T\)</span> where <span class="math inline">\(A^T\)</span> denotes the transpose) the following relationship holds true:</p>
+<p>Before carrying on it's useful to define some definitions from linear algebra. If <em>A</em> is a <em>m x n</em> matrix, assuming <em>A</em> is symmetric (i.e., <span class="math inline">\(A\)</span> = <span class="math inline">\(A^T\)</span> where <span class="math inline">\(A^T\)</span> denotes the transpose) the following relationship holds true:</p>
 <p><span class="math inline">\(A\overrightarrow{v_i} = \lambda_i\overrightarrow{v_i}\)</span></p>
 <p>where <span class="math inline">\(\lambda_i\)</span> denotes real numbers and <span class="math inline">\(v_i\)</span> are orthogonal vectors. <span class="math inline">\(\lambda_i\)</span> are called <strong>eigenvalues</strong> and <span class="math inline">\(v_i\)</span> the corresponding <strong>eigenvectors</strong>. Now we define a matrix called the <strong>covariance matrix.</strong> Let's pull 3 vectors from our data set:</p>
 <p><span class="math display">\[\mathbf{\overrightarrow{x_1}} = \left[\begin{array}

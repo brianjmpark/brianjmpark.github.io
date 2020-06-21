@@ -15,7 +15,7 @@
 <meta itemprop="description" content="Pricinpal component analysis (PCA) is often used as a means of exploratory analysis to uncover relatedness in a data set.">
 <meta itemprop="datePublished" content="2020-06-20T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-06-20T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1266">
+<meta itemprop="wordCount" content="1314">
 <meta itemprop="image" content="https://brianjmpark.github.io/images/picture.jpg"/>
 
 
@@ -188,7 +188,7 @@
   <h1>Understanding PCA</h1>
 
   <div class="post-date">
-    <time datetime="2020-06-20T00:00:00Z">Jun 20, 2020</time> &middot; 6 min read
+    <time datetime="2020-06-20T00:00:00Z">Jun 20, 2020</time> &middot; 7 min read
   </div>
 
   
@@ -220,15 +220,45 @@
 <p>Before carrying on it's useful to define some definitions from linear algebra. If <em>A</em> is a <em>m x n</em> matrix, assuming <em>A</em> is symmetric (i.e., A = <span class="math inline">\(A^T\)</span> where <span class="math inline">\(A^T\)</span> denotes the transpose) the following relationship holds true:</p>
 <p><span class="math inline">\(A\overrightarrow{v_i} = \lambda_i\overrightarrow{v_i}\)</span></p>
 <p>where <span class="math inline">\(\lambda_i\)</span> denotes real numbers and <span class="math inline">\(v_i\)</span> are orthogonal vectors. <span class="math inline">\(\lambda_i\)</span> are called <strong>eigenvalues</strong> and <span class="math inline">\(v_i\)</span> the corresponding <strong>eigenvectors</strong>. Now we define a matrix called the <strong>covariance matrix.</strong> Let's pull 3 vectors from our data set:</p>
-<p>$$ = </p>
-<p>= </p>
-<p>$$</p>
-<p>$$ = </p>
-<p>= </p>
-<p>$$</p>
-<p>$$ = </p>
-<p>= </p>
-<p>$$</p>
+<p><span class="math display">\[\mathbf{\overrightarrow{x_1}} = \left[\begin{array}
+{rrr}
+a_1  \\
+a_2  \\
+a_3 
+\end{array}\right]
+= \left[\begin{array}
+{rrr}
+82  \\
+77  \\
+41 
+\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[\mathbf{\overrightarrow{x_2}} = \left[\begin{array}
+{rrr}
+b_1  \\
+b_2  \\
+b_3 
+\end{array}\right]
+= \left[\begin{array}
+{rrr}
+81  \\
+89  \\
+42 
+\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[\mathbf{\overrightarrow{x_3}} = \left[\begin{array}
+{rrr}
+c_1  \\
+c_2  \\
+c_3
+\end{array}\right]
+= \left[\begin{array}
+{rrr}
+89  \\
+94  \\
+32 
+\end{array}\right]
+\]</span></p>
 <p>The sample mean vector is described as:</p>
 <p><span class="math display">\[\mathbf{\overrightarrow{\mu}} = \left[\begin{array}
 {rrr}
@@ -272,9 +302,9 @@
 -0.21 
 \end{array}\right]
 \]</span></p>
-<p>Out of these, we saw that only <span class="math inline">\({\overrightarrow{v_1}\)</span> and <span class="math inline">\({\overrightarrow{v_2}\)</span> were of significant interest. This indicates that in our survey of academic performance, two factors were of importance. How do we interpret these results?</p>
-<p>In <span class="math inline">\({\overrightarrow{v_1}\)</span>, all values in the vector have the same sign, with the first two having the larger relative magnitude. This suggest that the first factor in influencing our data is related to all 3 variables with more weight on hours spent studying and hours spent doing homework. This factor is thus more affected by a change in these two variables.</p>
-<p>In <span class="math inline">\({\overrightarrow{v_2}\)</span>, our third variable has a negative sign. This indicates that in the second factor influencing our data, our data is negatively related to the hours spent in extracurriculars.</p>
+<p>Out of these, we saw that only <span class="math inline">\(\overrightarrow{v_1}\)</span> and <span class="math inline">\(\overrightarrow{v_2}\)</span> were of significant interest. This indicates that in our survey of academic performance, two factors were of importance. How do we interpret these results?</p>
+<p>In <span class="math inline">\(\overrightarrow{v_1}\)</span>, all values in the vector have the same sign, with the first two having the larger relative magnitude. This suggest that the first factor in influencing our data is related to all 3 variables with more weight on hours spent studying and hours spent doing homework. This factor is thus more affected by a change in these two variables.</p>
+<p>In <span class="math inline">\(\overrightarrow{v_2}\)</span>, our third variable has a negative sign. This indicates that in the second factor influencing our data, our data is negatively related to the hours spent in extracurriculars.</p>
 </div>
 <div id="concluding-remarks" class="section level2">
 <h2>Concluding remarks</h2>

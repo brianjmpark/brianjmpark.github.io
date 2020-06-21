@@ -69,21 +69,19 @@ $A\overrightarrow{v_i} = \lambda_i\overrightarrow{v_i}$
 where $\lambda_i$ denotes real numbers and $v_i$ are orthogonal vectors. $\lambda_i$ are called **eigenvalues** and $v_i$ the corresponding **eigenvectors**. Now we define a matrix called the **covariance matrix.** Let's pull 3 vectors from our data set:
 
 
+
 $$\mathbf{\overrightarrow{x_1}} = \left[\begin{array}
 {rrr}
 a_1  \\
 a_2  \\
 a_3 
 \end{array}\right]
-
 = \left[\begin{array}
 {rrr}
 82  \\
 77  \\
 41 
 \end{array}\right]
-
-
 $$
 
 $$\mathbf{\overrightarrow{x_2}} = \left[\begin{array}
@@ -92,16 +90,13 @@ b_1  \\
 b_2  \\
 b_3 
 \end{array}\right]
-
 = \left[\begin{array}
 {rrr}
 81  \\
 89  \\
 42 
 \end{array}\right]
-
 $$
-
 
 $$\mathbf{\overrightarrow{x_3}} = \left[\begin{array}
 {rrr}
@@ -109,14 +104,12 @@ c_1  \\
 c_2  \\
 c_3
 \end{array}\right]
-
 = \left[\begin{array}
 {rrr}
 89  \\
 94  \\
 32 
 \end{array}\right]
-
 $$
 
 
@@ -207,13 +200,13 @@ $$\mathbf{\overrightarrow{v_3}} = \left[\begin{array}
 $$
 
 
-Out of these, we saw that only ${\overrightarrow{v_1}$ and ${\overrightarrow{v_2}$ were of significant interest. This indicates that in our survey of academic performance, two factors were of importance. How do we interpret these results? 
+Out of these, we saw that only $\overrightarrow{v_1}$ and $\overrightarrow{v_2}$ were of significant interest. This indicates that in our survey of academic performance, two factors were of importance. How do we interpret these results? 
 
 
-In ${\overrightarrow{v_1}$, all values in the vector have the same sign, with the first two having the larger relative magnitude. This suggest that the first factor in influencing our data is related to all 3 variables with more weight on hours spent studying and hours spent doing homework. This factor is thus more affected by a change in these two variables. 
+In $\overrightarrow{v_1}$, all values in the vector have the same sign, with the first two having the larger relative magnitude. This suggest that the first factor in influencing our data is related to all 3 variables with more weight on hours spent studying and hours spent doing homework. This factor is thus more affected by a change in these two variables. 
 
 
-In ${\overrightarrow{v_2}$, our third variable has a negative sign. This indicates that in the second factor influencing our data, our data is negatively related to the hours spent in extracurriculars.
+In $\overrightarrow{v_2}$, our third variable has a negative sign. This indicates that in the second factor influencing our data, our data is negatively related to the hours spent in extracurriculars.
 
 
 ##Concluding remarks

@@ -41,7 +41,7 @@ $Var(A) = \frac{1}{n - 1} ((a_1 - \mu_A)^2 + \cdots + (a_n - \mu_A)^2)$
 The key concept in PCA is the **covariance** between two variables. The covariance of two variables *A* and *B* is described by:
 
 
-$Cov(A,B) = \frac{1}{n - 1} ((a_1 - \mu_A)(b_1 - \mu_B) +  \cdots  + (a_n - \mu_A)(b_n - \mu_B)) $
+$Cov(A,B) = \frac{1}{n - 1} ((a_1 - \mu_A)(b_1 - \mu_B) + ... + (a_n - \mu_A)(b_n - \mu_B))$
 
 
 

@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://brianjmpark.github.io/post/introduction-to-neural-network-with-tensorflow/</loc>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/post/</loc>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/</loc>
+    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://brianjmpark.github.io/categories/</loc>
     <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
@@ -14,16 +29,6 @@
   
   <url>
     <loc>https://brianjmpark.github.io/categories/math/</loc>
-    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/post/</loc>
-    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/</loc>
     <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   

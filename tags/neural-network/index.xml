@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>Building a neural network with TensorFlow: tasting wine</title>
-      <link>https://brianjmpark.github.io/post/2020-12-27-building-a-neural-network-with-tensorflow-tasting-wine/</link>
+      <title>Building a neural network with TensorFlow and Keras </title>
+      <link>https://brianjmpark.github.io/post/2020-12-27-building-a-neural-network-with-tensorflow-and-keras/</link>
       <pubDate>Sun, 27 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://brianjmpark.github.io/post/2020-12-27-building-a-neural-network-with-tensorflow-tasting-wine/</guid>
-      <description></description>
+      <guid>https://brianjmpark.github.io/post/2020-12-27-building-a-neural-network-with-tensorflow-and-keras/</guid>
+      <description>A neural network in a classification problem aims to learn underlying patterns in a feature-set to make predictions based on provided training data.</description>
     </item>
     
   </channel>

@@ -42,7 +42,8 @@ Here, a multi-label classification problem is shown, with the dataset provided b
 First we load the appropriate modules. 
 
 
-> import pandas as pd
+```{python, eval=FALSE}
+import pandas as pd
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
@@ -51,64 +52,72 @@ from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
-
+```
 
 
 We load our red wine dataset and split the dataframe into its feature-set (i.e., the dependent variables) and our target labels. 
 
 
-> df = pd.read_csv('winequality-red.csv', sep=';')
+
+```{python, eval=FALSE}
+df = pd.read_csv('winequality-red.csv', sep=';')
 y = df.select_dtypes('int').values
 X = df.select_dtypes(exclude='int').values
+```
+
 
 
 
 It is important to preprocess our features. This is especially important in cases where the values across different columns are hetereogenous in their value ranges (e.g., one feature ranges from 0-1 whereas another ranges from 300-500). It's also recommended not to feed into a neural network data that can take large values. The min-max scaler from sklearn normalizes the data such that every value is between 0 and 1.
 
 
-> min_max_scaler = preprocessing.MinMaxScaler()
+
+```{python, eval=FALSE}
+min_max_scaler = preprocessing.MinMaxScaler()
 X_scale = min_max_scaler.fit_transform(X)
+```
 
 
 
 We now split our data into training and testing data. The testing data **will not** be seen by our model during the training phase and will only be used to evaluate our model accuracy after the training phase. It is vital that the model is tested using never-before-seen data.
 
-
-> X_train, X_test, y_train, y_test = train_test_split(X_scale, y, test_size = 0.2, random_state = 4)
-
+```{python, eval=FALSE}
+X_train, X_test, y_train, y_test = train_test_split(X_scale, y, test_size = 0.2, random_state = 4)
+```
 
 
 The target labels are encoded. Usually, one-hot encoding is done on labels that are non-numeric values (e.g., strings) in order to associate a unique integer index with each unique label. This will return a vector whose size equals to the size of the number of unique labels.
 
-
-> y_train_sequential = tf.keras.utils.to_categorical(y_train)
-
+```{python, eval=FALSE}
+y_train_sequential = tf.keras.utils.to_categorical(y_train)
+```
 
 
 We now build the network of three layers. The input and the middle layer will have 64 neurons with the rectified linear unit activation function. The first layer takes the input of shape (11,) since the feature axis in our input tensor (i.e., number of features) equals to 11. The output layer will use the softmax activation function to produce a probability distribution over the number of different output labels, where output[n] equals to the probability that the sample belongs to class n. 
 
-
-> model = Sequential([
+```{python, eval=FALSE}
+model = Sequential([
   Dense(64, activation='relu', input_shape(11,)),
   Dense(64, activation='relu'),
   Dense(y_train_categorical.shape[1], activation='softmax')
 ])
-
+```
 
 
 The model is now compiled using the parameters we've mentioned earlier - a measurement of how well our model is doing (i.e., accuracy), a function the model will use to measure its performance on training data (i.e., loss), and an optimizer used for backpropagation. 
 
 
-
-> model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
-
+```{python, eval=FALSE}
+model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+```
 
 
 We now train our model and store the results. Each iteration over the entire training data is called an epoch. This process will therefore iterate a thousand times.
 
 
-> history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
-
+```{python, eval=FALSE}
+history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
+```
 
 
 
@@ -117,7 +126,8 @@ We now train our model and store the results. Each iteration over the entire tra
 We plot the model loss and accuracy on the training and validation data with respect to the iterations.
 
 
-> plt.style.use('fivethirtyeight)
+```{python, eval=FALSE}
+plt.style.use('fivethirtyeight)
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.title('Model loss')
@@ -125,22 +135,22 @@ plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.legend(['Train', 'Val'], loc='upper right')
 plt.show()
-
+```
 
 
 
 ![](/post/2020-12-27-building-a-neural-network-with-tensorflow-and-keras.en_files/Screen Shot 2020-12-27 at 7.52.16 PM.png)
 
 
-
-> plt.plot(history.history['accuracy'])
+```{python, eval=FALSE}
+plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
 plt.title('Model accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.legend(['Train', 'Val'], loc='upper right')
 plt.show()
-
+```
 
 ![](/post/2020-12-27-building-a-neural-network-with-tensorflow-and-keras.en_files/Screen Shot 2020-12-27 at 7.52.24 PM.png)
 
@@ -152,7 +162,8 @@ As you can see, the accuracy on validation data plateaus after a couple hundred 
 Adding regularization factors:
 
 
-> from tensorflow.keras import regularizers
+```{python, eval=FALSE}
+from tensorflow.keras import regularizers
 
 
 
@@ -176,22 +187,22 @@ plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.legend(['Train', 'Val'], loc='upper right')
 plt.show()
-
+```
 
 ![](/post/2020-12-27-building-a-neural-network-with-tensorflow-and-keras.en_files/Screen Shot 2020-12-27 at 8.04.02 PM.png)
 
 
 
 
-
-> plt.plot(history.history['accuracy'])
+```{python, eval=FALSE}
+plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
 plt.title('Model accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.legend(['Train', 'Val'], loc='upper right')
 plt.show()
-
+```
 
 ![](/post/2020-12-27-building-a-neural-network-with-tensorflow-and-keras.en_files/Screen Shot 2020-12-27 at 8.04.07 PM.png)
 
@@ -200,7 +211,9 @@ plt.show()
 
 Adding dropout:
 
-> from tensorflow.keras.layers import Dropout
+
+```{python, eval=FALSE}
+from tensorflow.keras.layers import Dropout
 
 > model = Sequential([
   Dense(64, activation='relu', input_shape(11,)),
@@ -224,20 +237,21 @@ plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.legend(['Train', 'Val'], loc='upper right')
 plt.show()
-
+```
 
 ![](/post/2020-12-27-building-a-neural-network-with-tensorflow-and-keras.en_files/Screen Shot 2020-12-27 at 8.04.15 PM.png)
 
 
 
-
-> plt.plot(history.history['accuracy'])
+```{python, eval=FALSE}
+plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
 plt.title('Model accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.legend(['Train', 'Val'], loc='upper right')
 plt.show()
+```
 
 
 ![](/post/2020-12-27-building-a-neural-network-with-tensorflow-and-keras.en_files/Screen Shot 2020-12-27 at 8.04.20 PM.png)
@@ -246,8 +260,9 @@ plt.show()
 
 Finally, to evaluate the model accuracy on our testing data:
 
-> results = model.evaluate(X_test, y_test_categorical)
-
+```{python, eval=FALSE}
+results = model.evaluate(X_test, y_test_categorical)
+```
 
 ![](/post/2020-12-27-building-a-neural-network-with-tensorflow-and-keras.en_files/Screen Shot 2020-12-27 at 8.04.46 PM.png)
 

@@ -1,0 +1,63 @@
+---
+title: Toolbox for frequently used UNIX commands
+author: Brian Jungmin Park
+date: '2020-06-16'
+slug: toolbox-for-frequently-used-unix-commands
+categories:
+  - bash
+  - unix
+tags:
+  - bash
+  - unix
+description: ''
+---
+
+
+
+<div id="surfing-through-directories" class="section level2">
+<h2>Surfing through directories:</h2>
+<ul>
+<li><p><strong>cd {directory_path}</strong> to set current directory, to journey through your file system, or cd ~ to go back home; cd .. to retrace your step and go back on directory level</p></li>
+<li><p><strong>mkdir</strong> to make a new folder in your current directory</p></li>
+<li><p><strong>df</strong> command to see disk free space; use <strong>df -ah</strong> for all human readable disk spaces and their usages</p></li>
+<li><p><strong>du</strong> command to see file system disk usage; use <strong>du -sh</strong> for a summary in readable format</p></li>
+<li><p><strong>rm</strong> to remove directories or files; use <strong>rm -i</strong> for a confirmation before execution as rm is irreversible</p></li>
+<li><p><strong>pwd</strong> to see your current path in case you're lost</p></li>
+<li><p><strong>ls</strong> to list all files and directories in your current directory; use <strong>ls -l</strong> for detailed list format</p></li>
+<li><p><strong>cp {file A} {file B}</strong> to copy files</p></li>
+<li><p><strong>mv {file} {newfile}</strong> to rename file to newfile; use <strong>mv {file} {directory_path}</strong> to move the file to a different directory</p></li>
+<li><p><strong>find</strong> to find files, self-explanatory</p></li>
+</ul>
+</div>
+<div id="some-administrative-stuff" class="section level2">
+<h2>Some administrative stuff:</h2>
+<ul>
+<li><p><strong>man {command}</strong> to see the help manual for a command</p></li>
+<li><p><strong>ifconfig</strong> to see kernel configuration; try <strong>inconfig -a</strong> to display all available interfaces</p></li>
+<li><p><strong>chmod {file}</strong> to change file permissions; <strong>chmod u+rw {file}</strong> to give yourself, the user (u) permission to read (r) and write (w); <strong>chmod a+rw {file}</strong> to give everyone (a for all) permission to read and write</p></li>
+<li><p><strong>printenv</strong> to show environmental variables</p></li>
+<li><p><strong>whatis {command}</strong> for a shorter explanation of a command</p></li>
+<li><p><strong>mount</strong> to mount an external file system (USB drive, for example); sometimes needed for Linux distros</p></li>
+<li><p><strong>uname</strong> to get kernel information, including OS version</p></li>
+<li><p><strong>history</strong> to give a past log of terminal sessions</p></li>
+<li><p><strong>uptime</strong> to give active run time of your system</p></li>
+<li><p><strong>kill -l</strong> to list all available signal names to kill process</p></li>
+</ul>
+</div>
+<div id="text-stuff-for-when-you-need-it" class="section level2">
+<h2>Text stuff for when you need it:</h2>
+<ul>
+<li><p><strong>less {file}</strong> to see contents of a text file; hit <strong>q</strong> to quit viewing</p></li>
+<li><p><strong>more {file}</strong> view the file</p></li>
+<li><p><strong>cat &gt; {file.txt}</strong> to create a new text file</p></li>
+<li><p><strong>grep 'pattern' {file}</strong> to search a text pattern (maybe a particular word?) in a text file</p></li>
+<li><p><strong>cut {file}</strong> to cut text files; use cut <strong>-c 1,2,3, {file.txt}</strong> to print first, second, and third characters from each line; use <strong>cut -f 1,2,3</strong> to print first, second, and third fields from the file</p></li>
+<li><p><strong>sort {file}</strong> to sort the contents of a text file; use <strong>sort -r {file}</strong> to sort in reverse order; <strong>sort -n {file}</strong> to sort numerically line by line</p></li>
+<li><p><strong>nano {file}</strong> to open a lightweight text-editor and edit, save new text files</p></li>
+<li><p><strong>diff {fileA} {fileB}</strong> to show differences between the two files</p></li>
+<li><p><strong>wc {file}</strong> to give a word count; <strong>wc -l {file}</strong> to count number of lines in your file</p></li>
+<li><p><strong>echo &quot;string&quot;</strong> to echo a statement; use <strong>echo $PATH</strong> to show your full working path</p></li>
+<li><p><strong>touch {file}</strong> to create a file, like <strong>cat</strong> but this time it's empty; you can create multiple files at once</p></li>
+<li><p><strong>head {file}</strong> to see the first ten lines of a file; use <strong>head -n N {file}</strong> to see the first N lines instead</p></li>
+</ul>
+</div>

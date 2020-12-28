@@ -48,24 +48,6 @@
     </item>
     
     <item>
-      <title>soccer</title>
-      <link>https://brianjmpark.github.io/tags/soccer/</link>
-      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://brianjmpark.github.io/tags/soccer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sports</title>
-      <link>https://brianjmpark.github.io/tags/sports/</link>
-      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://brianjmpark.github.io/tags/sports/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>tidyverse</title>
       <link>https://brianjmpark.github.io/tags/tidyverse/</link>
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
@@ -89,6 +71,15 @@
       <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/tags/hockey/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sports</title>
+      <link>https://brianjmpark.github.io/tags/sports/</link>
+      <pubDate>Thu, 20 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/tags/sports/</guid>
       <description></description>
     </item>
     

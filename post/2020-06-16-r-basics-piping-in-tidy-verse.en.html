@@ -1,0 +1,106 @@
+---
+title: 'R Basics: piping in tidyverse'
+author: Brian Jungmin Park
+date: '2020-06-16'
+slug: r-basics-piping-in-tidy-verse
+categories:
+  - r
+tags:
+  - r
+  - tidyverse
+description: ''
+---
+
+
+
+<p>Working in R, oftentimes I find myself creating intermediate variables that serve no purpose other than to exist as a middle man. Consider this example:</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>data(mtcars)
+str(mtcars)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    32 obs. of  11 variables:
+##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+##  $ disp: num  160 160 108 258 360 ...
+##  $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+##  $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##  $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+##  $ qsec: num  16.5 17 18.6 19.4 17 ...
+##  $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
+<p>I've loaded a toy data set called mtcars (for R Documentation on this data set, see: <a href="https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/mtcars.html" class="uri">https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/mtcars.html</a>). Essentially, the data contains 11 numeric variables of automobile performance (which comprises the columns) of 32 car models (which comprises the rows).</p>
+<p>Say I want to group the data frame by one of the columns, in this case &quot;hp&quot; which stands for horsepower. Doing this will re-organize the rows such that rows with common values for horsepower will be grouped consecutively together. I'm going to store the result of this transformation to a new variable called mtcars2.</p>
+<pre class="r"><code>mtcars2 &lt;- group_by(mtcars, hp)
+head(mtcars2, n = 20)</code></pre>
+<pre><code>## # A tibble: 20 x 11
+## # Groups:   hp [15]
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6 160     110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6 160     110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4 108      93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6 258     110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8 360     175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6 225     105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8 360     245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4 147.     62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4 141.     95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6 168.    123  3.92  3.44  18.3     1     0     4     4
+## 11  17.8     6 168.    123  3.92  3.44  18.9     1     0     4     4
+## 12  16.4     8 276.    180  3.07  4.07  17.4     0     0     3     3
+## 13  17.3     8 276.    180  3.07  3.73  17.6     0     0     3     3
+## 14  15.2     8 276.    180  3.07  3.78  18       0     0     3     3
+## 15  10.4     8 472     205  2.93  5.25  18.0     0     0     3     4
+## 16  10.4     8 460     215  3     5.42  17.8     0     0     3     4
+## 17  14.7     8 440     230  3.23  5.34  17.4     0     0     3     4
+## 18  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
+## 19  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
+## 20  33.9     4  71.1    65  4.22  1.84  19.9     1     1     4     1</code></pre>
+<p>As you can see, the group_by function as aggregated the rows by horsepower.</p>
+<p>Now I want to see what the mean mileage (miles per gallon, or mpg) is for each group of car models. Would cars, on average, that has 110 hp have higher or lower mileage than cars with, say, 180? To do this I use summarise function and store the new information in yet another new variable.</p>
+<pre class="r"><code>mpg_by_hp &lt;- summarise(mtcars2, mean_mpg = mean(mpg, na.rm = TRUE))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>head(mpg_by_hp) </code></pre>
+<pre><code>## # A tibble: 6 x 2
+##      hp mean_mpg
+##   &lt;dbl&gt;    &lt;dbl&gt;
+## 1    52     30.4
+## 2    62     24.4
+## 3    65     33.9
+## 4    66     29.8
+## 5    91     26  
+## 6    93     22.8</code></pre>
+<p>Indeed, in the hp = 110 group, the mean mileage is higher than in hp = 180 group, as we expected.</p>
+<p>The only data frame I need to show that the above statement is true is the last variable we get, which is mpg_by_hp. However I have reached this step from our original data in two steps, resulting in an intermediate variable mtcars2 that does not give us any meaningful information. In order to bypass this and go straight to my answer from my original starting point, I can use pipes.</p>
+<p>%&gt;% notation is used to 'pipe' commands together. This leads R to take the result from the command preceding the pipe and immediately execute the rest of the command, without storing unnecessary information. Let's say I want to do the same thing as before with an added step of filtering out any horsepower-grouped cars with less than 20.0 mpg. I can do this in one command as such, beginning from the original data set mtcars:</p>
+<pre class="r"><code>mpg_by_hp &lt;- mtcars %&gt;%
+    group_by(hp) %&gt;%
+    summarise(mean_mpg = mean(mpg)) %&gt;%
+    filter(mean_mpg &gt; 20.0)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>mpg_by_hp</code></pre>
+<pre><code>## # A tibble: 11 x 2
+##       hp mean_mpg
+##    &lt;dbl&gt;    &lt;dbl&gt;
+##  1    52     30.4
+##  2    62     24.4
+##  3    65     33.9
+##  4    66     29.8
+##  5    91     26  
+##  6    93     22.8
+##  7    95     22.8
+##  8    97     21.5
+##  9   109     21.4
+## 10   110     21.1
+## 11   113     30.4</code></pre>
+<p>I can read the above command out loud by substituting %&gt;% with &quot;and&quot; or &quot;then.&quot;</p>
+<p>Using pipes contextualizes the kinds of data transformation we are performing instead of what's being transformed. Not only this, it makes code much easier to maintain and read, which alone proves it to be a valuable tool in R basics.</p>

@@ -1,0 +1,133 @@
+---
+title: Understanding PCA 
+author: Brian Jungmin Park
+date: '2020-06-20'
+slug: pca-explained-with-linear-algebra
+categories:
+  - math
+  - stats
+tags:
+  - math
+  - stats
+description: ''
+---
+
+
+
+<p>Pricinpal component analysis (PCA) is often used as a means of exploratory analysis to uncover relatedness in a data set. Generating PCA plots is as straightforward as running <strong>prcomp()</strong> on a data set in R. Interpreting PCA results, however, is not as trivial as suggesting clustered data points are similar - what does it exactly mean when we say two data points are similar?</p>
+<p>I use PCA as a quality-control type of an analysis in gene expression data. An unsupervised clustering type of an analysis is useful in identifying differences within a data set. For example, I would expect data points to cluster by their origin (i.e., gene expression data from kidney cells should cluster together, while separating from data from brain cells). What exactly is being plotted in a PCA plot though? The answer actually is founded on some concepts in linear algebra and statistics. I've been reading a lot of resources on the derivation of PCA so I thought I would share some key points here to make it more digestible.</p>
+<div id="some-statistics" class="section level2">
+<h2>Some statistics</h2>
+<p>Firstly we need to define some basics in stats. The <strong>sample mean</strong> of a variable <em>A</em> can be described by the following equation:</p>
+<p><span class="math inline">\(\mu_A = \frac{1}{n} (a_1 + \cdots + a_n)\)</span></p>
+<p>for <em>n</em> measurements.</p>
+<p>The sample mean describes the centrality of the obtained measurements. The spread of the measurements is described by the <strong>sample variance</strong>.</p>
+<p><span class="math inline">\(Var(A) = \frac{1}{n - 1} ((a_1 - \mu_A)^2 + \cdots + (a_n - \mu_A)^2)\)</span></p>
+<p>The key concept in PCA is the <strong>covariance</strong> between two variables. The covariance of two variables <em>A</em> and <em>B</em> is described by:</p>
+<p><span class="math inline">\(Cov(A,B) = \frac{1}{n - 1} ((a_1 - \mu_A)(b_1 - \mu_B) + ... + (a_n - \mu_A)(b_n - \mu_B))\)</span></p>
+</div>
+<div id="some-linear-algebra" class="section level2">
+<h2>Some linear algebra</h2>
+<p>Now we have to start talking about our data. Let's say we have ran a survey in university students of their academic performance. Our sample pool is 20 students and we collect 3 pieces of information from each student: 1) number of hours spent studying, 2) number of hours spent doing homework, and 3) number of extracurricular hours. This way we have 20 samples of 3 dimensional data. For the <em>i</em>th individual, their measurement can be described by a vector:</p>
+<p><span class="math display">\[\mathbf{\overrightarrow{x_i}} = \left[\begin{array}
+{rrr}
+82  \\
+77  \\
+41 
+\end{array}\right]
+\]</span></p>
+<p>This vector describes a student who (apparently) studies 82 hours, does homework for 77 hours, and has 41 hours allocated to extracurriculars. Therefore if we were to look at our entire data set, we would have an <em>m x n</em> matrix where m = 3 (for each of 3 pieces of data per student) and n = 20 (for 20 students in our pool). This is a matrix with 3 rows and 20 columns.</p>
+<p>Before carrying on it's useful to define some definitions from linear algebra. If <em>A</em> is a <em>m x n</em> matrix, assuming <em>A</em> is symmetric (i.e., <span class="math inline">\(A\)</span> = <span class="math inline">\(A^T\)</span> where <span class="math inline">\(A^T\)</span> denotes the transpose) the following relationship holds true:</p>
+<p><span class="math inline">\(A\overrightarrow{v_i} = \lambda_i\overrightarrow{v_i}\)</span></p>
+<p>where <span class="math inline">\(\lambda_i\)</span> denotes real numbers and <span class="math inline">\(v_i\)</span> are orthogonal vectors. <span class="math inline">\(\lambda_i\)</span> are called <strong>eigenvalues</strong> and <span class="math inline">\(v_i\)</span> the corresponding <strong>eigenvectors</strong>. Now we define a matrix called the <strong>covariance matrix.</strong> Let's pull 3 vectors from our data set:</p>
+<p><span class="math display">\[\mathbf{\overrightarrow{x_1}} = \left[\begin{array}
+{rrr}
+a_1  \\
+a_2  \\
+a_3 
+\end{array}\right]
+= \left[\begin{array}
+{rrr}
+82  \\
+77  \\
+41 
+\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[\mathbf{\overrightarrow{x_2}} = \left[\begin{array}
+{rrr}
+b_1  \\
+b_2  \\
+b_3 
+\end{array}\right]
+= \left[\begin{array}
+{rrr}
+81  \\
+89  \\
+42 
+\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[\mathbf{\overrightarrow{x_3}} = \left[\begin{array}
+{rrr}
+c_1  \\
+c_2  \\
+c_3
+\end{array}\right]
+= \left[\begin{array}
+{rrr}
+89  \\
+94  \\
+32 
+\end{array}\right]
+\]</span></p>
+<p>The sample mean vector is described as:</p>
+<p><span class="math display">\[\mathbf{\overrightarrow{\mu}} = \left[\begin{array}
+{rrr}
+\mu_1  \\
+\mu_2  \\
+\mu_3 
+\end{array}\right]
+\]</span></p>
+<p>Then the covariance matrix <em>S</em> is defined as where <em><span class="math inline">\(S_{ij}\)</span></em> - the <em>i, j</em>th element of the matrix - describes the covariance between the <em>i</em>th and the <em>j</em>th variables. If <em>i = j</em> - that is, the diagonal entries of the matrix - the entry describes the variance of the <em>i</em>th variance alone. In our example,</p>
+<p><span class="math inline">\(S_{11} = \frac{1}{3-1}((a_1 - \mu_1)^2 + (b_1 - \mu_1)^2 + (c_1 - \mu_1)^2)\)</span></p>
+<p>Notice that this equation corresponds to the equation for sample variance. Indeed, the <em>1,1</em> entry in <em>S</em> defines variance of the first variable alone - which in our example, is the number of hours spent studying by the student.</p>
+<p>How about entries where <em>i</em> does not equal to <em>j</em>?</p>
+<p><span class="math inline">\(S_{21} = \frac{1}{3-1}((a_1 - \mu_1)(a_2 - \mu_2) + (b_1 - \mu_1)(b_2 - \mu_2) + (c_1 - \mu_1)(c_2 - \mu_2))\)</span></p>
+<p>See that this equation corresponds to the equation for covariance. Indeed, this describes the covariance between the first and second variable in our data - number of hours studying and average grade per student.</p>
+<p>An exercise in linear algebra will show that <em>S</em> is a symmetric matrix. Therefore, according to our theorem from before, there exists a set of eigenvalues such that</p>
+<p><span class="math inline">\(S\overrightarrow{v_i} = \lambda_i\overrightarrow{v_i}\)</span></p>
+<p>The fundamentals of PCA is built on the interpretation that for a given covariance matrix <em>S</em>, you can find the corresponding eigenvalues <span class="math inline">\(\lambda_1, ..., \lambda_i\)</span> whose sum accounts for the variance of all variables and the corresponding eigenvectors <span class="math inline">\(\overrightarrow{v_1}, ..., \overrightarrow{v_i}\)</span> which represent our <em>principal components</em>. If <span class="math inline">\(\lambda_1\)</span> &gt;&gt;&gt; <span class="math inline">\(\lambda_2\)</span> &gt; <span class="math inline">\(\lambda_3\)</span> this would indicate that the first variable accounts for a significant portion of the variance in the data set and this would be reflected in the dispersion of data in the first principal component <span class="math inline">\(\overrightarrow{v_1}\)</span>. The sum of all eigenvalues, then, will describe the variance due to the sum of all variables.</p>
+<p><span class="math inline">\(\frac{\lambda_1}{\lambda_1 + \lambda_2 + \lambda_3}\)</span> ~ variance in data due to <span class="math inline">\(a_1\)</span></p>
+<p>A reduction in dimensionality is possible if say the first two eigenvalues <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> account for a significant portion of the variance. In this case we can plot the first two principal components wherein our data occupy the <em>x,y</em> plane.</p>
+<p>The eigenvectors themselves can tell us information on the behaviour of our data. Let's say for our data set, the calculated eigenvalues and eigenvectors were as follows:</p>
+<p><span class="math inline">\(\lambda_1 = 2145.42, \lambda_2 = 621.32, \lambda_3 = 7.20\)</span></p>
+<p>The results suggest the first principal component <span class="math inline">\(\overrightarrow{v_1}\)</span> accounts for <span class="math inline">\(\frac{2145.42}{2145.42 + 621.32 + 7.20} = 0.77\)</span> - 77% of variance in the data. <span class="math inline">\(\overrightarrow{v_2}\)</span> meanwhile accounts for 22% and <span class="math inline">\(\overrightarrow{v_3}\)</span> accounts for just 0.2%. Now let's say our calculated corresponding eigenvectors are:</p>
+<p><span class="math display">\[\mathbf{\overrightarrow{v_1}} = \left[\begin{array}
+{rrr}
+0.72  \\
+0.75  \\
+0.23 
+\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[\mathbf{\overrightarrow{v_2}} = \left[\begin{array}
+{rrr}
+0.32  \\
+0.45  \\
+-0.32 
+\end{array}\right]
+\]</span></p>
+<p><span class="math display">\[\mathbf{\overrightarrow{v_3}} = \left[\begin{array}
+{rrr}
+0.32  \\
+-0.42  \\
+-0.21 
+\end{array}\right]
+\]</span></p>
+<p>Out of these, we saw that only <span class="math inline">\(\overrightarrow{v_1}\)</span> and <span class="math inline">\(\overrightarrow{v_2}\)</span> were of significant interest. This indicates that in our survey of academic performance, two factors were of importance. How do we interpret these results?</p>
+<p>In <span class="math inline">\(\overrightarrow{v_1}\)</span>, all values in the vector have the same sign, with the first two having the larger relative magnitude. This suggest that the first factor in influencing our data is related to all 3 variables with more weight on hours spent studying and hours spent doing homework. This factor is thus more affected by a change in these two variables.</p>
+<p>In <span class="math inline">\(\overrightarrow{v_2}\)</span>, our third variable has a negative sign. This indicates that in the second factor influencing our data, our data is negatively related to the hours spent in extracurriculars.</p>
+</div>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding remarks</h2>
+<p>Even though PCA plots are ubiquitous in data analysis and scientific literature, understanding the fundamentals behind PCA is a strenuous exercise. Despite the long-winded definitions in statistics and linear algebra, however, I think the pay-off in gaining a deeper appreciation in PCA - or any type of a visual representation of large data - is important. A misinterpretation or a shallow glance at a data visualization often leads to dire consequences - something we can all agree that we'd rather avoid!</p>
+<p>For extra resources I'd highly recommend this explanation, which was used in writing of this post: <a href="http://www.math.union.edu/~jaureguj/PCA.pdf" class="uri">http://www.math.union.edu/~jaureguj/PCA.pdf</a>, as well as the following DataCamp tutorial on PCA: <a href="https://www.datacamp.com/community/tutorials/pca-analysis-r" class="uri">https://www.datacamp.com/community/tutorials/pca-analysis-r</a> and this article: <a href="https://towardsdatascience.com/principal-component-analysis-pca-101-using-r-361f4c53a9ff?gi=3da3a1eb4111" class="uri">https://towardsdatascience.com/principal-component-analysis-pca-101-using-r-361f4c53a9ff?gi=3da3a1eb4111</a>.</p>
+</div>

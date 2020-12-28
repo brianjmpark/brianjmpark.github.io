@@ -167,19 +167,19 @@ from tensorflow.keras import regularizers
 
 
 
-> model = Sequential([
+model = Sequential([
   Dense(64, activation='relu', input_shape(11,), kernel_regularizer=regularizers.l2(0.001)),
   Dense(64, activation='relu', kernel_regularizer=regularizers.l2(0.001)),
   Dense(y_train_categorical.shape[1], activation='softmax')
 ])
 
-> model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 
-> history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
+history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
 
 
 
-> plt.style.use('fivethirtyeight)
+plt.style.use('fivethirtyeight)
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.title('Model loss')
@@ -215,7 +215,7 @@ Adding dropout:
 ```{python, eval=FALSE}
 from tensorflow.keras.layers import Dropout
 
-> model = Sequential([
+model = Sequential([
   Dense(64, activation='relu', input_shape(11,)),
   Dropout(0.5),
   Dense(64, activation='relu'),
@@ -223,13 +223,13 @@ from tensorflow.keras.layers import Dropout
   Dense(y_train_categorical.shape[1], activation='softmax')
 ])
 
-> model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 
-> history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
+history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
 
 
 
-> plt.style.use('fivethirtyeight)
+plt.style.use('fivethirtyeight)
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.title('Model loss')

@@ -95,19 +95,19 @@ plt.show()</code></pre>
 
 
 
-&gt; model = Sequential([
+model = Sequential([
   Dense(64, activation=&#39;relu&#39;, input_shape(11,), kernel_regularizer=regularizers.l2(0.001)),
   Dense(64, activation=&#39;relu&#39;, kernel_regularizer=regularizers.l2(0.001)),
   Dense(y_train_categorical.shape[1], activation=&#39;softmax&#39;)
 ])
 
-&gt; model.compile(optimizer=&#39;rmsprop&#39;, loss=&#39;categorical_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
+model.compile(optimizer=&#39;rmsprop&#39;, loss=&#39;categorical_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
 
-&gt; history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
+history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
 
 
 
-&gt; plt.style.use(&#39;fivethirtyeight)
+plt.style.use(&#39;fivethirtyeight)
 plt.plot(history.history[&#39;loss&#39;])
 plt.plot(history.history[&#39;val_loss&#39;])
 plt.title(&#39;Model loss&#39;)
@@ -133,7 +133,7 @@ plt.show()</code></pre>
 <p>Adding dropout:</p>
 <pre class="python"><code>from tensorflow.keras.layers import Dropout
 
-&gt; model = Sequential([
+model = Sequential([
   Dense(64, activation=&#39;relu&#39;, input_shape(11,)),
   Dropout(0.5),
   Dense(64, activation=&#39;relu&#39;),
@@ -141,13 +141,13 @@ plt.show()</code></pre>
   Dense(y_train_categorical.shape[1], activation=&#39;softmax&#39;)
 ])
 
-&gt; model.compile(optimizer=&#39;rmsprop&#39;, loss=&#39;categorical_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
+model.compile(optimizer=&#39;rmsprop&#39;, loss=&#39;categorical_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
 
-&gt; history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
+history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, validation_split=0.2)
 
 
 
-&gt; plt.style.use(&#39;fivethirtyeight)
+plt.style.use(&#39;fivethirtyeight)
 plt.plot(history.history[&#39;loss&#39;])
 plt.plot(history.history[&#39;val_loss&#39;])
 plt.title(&#39;Model loss&#39;)

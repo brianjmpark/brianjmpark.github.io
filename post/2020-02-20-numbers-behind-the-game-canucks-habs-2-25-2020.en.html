@@ -1,0 +1,105 @@
+---
+title: 'Numbers Behind the Game: Canucks @ Habs (2/25/2020)'
+author: Brian Jungmin Park
+date: '2020-02-20'
+slug: numbers-behind-the-game-canucks-habs-2-25-2020
+categories:
+  - r
+  - sports
+  - hockey
+tags:
+  - r
+  - sports
+  - hockey
+description: ''
+---
+
+
+
+<p>The Vancouver Canucks completed a comeback victory in Montreal with the final score of 4-3 in overtime. A strong performance from the Canucks’ top forward line and a particularly dazzling performance from Jake Virtanen helped the cause, while the Habs’ noted struggle in 5v4 situations continued.</p>
+<p><em>all stats courtesy of naturalhattrick.com</em></p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<div id="generating-shots-at-even-strength" class="section level2">
+<h2>Generating Shots at Even-Strength:</h2>
+<pre class="r"><code>van_ind &lt;- read.table(file = &quot;~/Desktop/blog/van_data.csv&quot;, header = T)
+mtl_ind &lt;- read.table(file = &quot;~/Desktop/blog/mtl_data.csv&quot;, header = T)</code></pre>
+<pre class="r"><code>van_ind &lt;- mutate(van_ind, shots_per_TOI = Shots / TOI)
+mtl_ind &lt;- mutate(mtl_ind, shots_per_TOI = Shots / TOI)</code></pre>
+<pre class="r"><code>ggplot(mtl_ind, aes(x = reorder(Player, Shots / TOI), y = Shots / TOI)) + geom_bar(stat = &quot;identity&quot;) + coord_flip() + labs(title = &quot;MTL Shots per Time on Ice&quot;, subtitle = &quot;5v5&quot;) + xlab(&quot;Player&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(van_ind, aes(x = reorder(Player, Shots / TOI), y = Shots / TOI)) + geom_bar(stat = &quot;identity&quot;) + coord_flip() + labs(title = &quot;VAN Shots per Time on Ice&quot;, subtitle = &quot;5v5&quot;) + xlab(&quot;Player&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p>The forward line of Domi-Weal-Byron did well despite the loss in generating shots at even strength. The trio of Tatar-Evans-Weise failed to generate a single shot at 5v5.</p>
+<p>Jake Virtanen continues his hot streak by generating the most number of shots per time spent on the ice at even strength. Elias Petterson seems to defer shot-taking duties to his trigger-happy linemates in J.T. Miller and Tyler Toffoli.</p>
+<pre class="r"><code>mtl_ice &lt;- read.table(file = &quot;~/Desktop/blog/mtl_ice.csv&quot;, header = T)
+van_ice &lt;- read.table(file = &quot;~/Desktop/blog/van_ice.csv&quot;, header = T)</code></pre>
+<pre class="r"><code>ggplot(mtl_ice, aes(x = Player, y = CF..Rel)) + geom_bar(aes(fill = TOI), stat = &quot;identity&quot;) + coord_flip() + labs(title = &quot;MTL Relative CF% and ice time&quot;, subtitle = &quot;5v5&quot;) </code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(van_ice, aes(x = Player, y = CF..Rel)) + geom_bar(aes(fill = TOI), stat = &quot;identity&quot;) + coord_flip() + labs(title = &quot;VAN Relative CF% and ice time&quot;, subtitle = &quot;5v5&quot;) </code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p>The forward line of Byron-Domi-Weal seemed to have had a standout performance despite the loss. Defensive pairing of Jeff Petry and Brett Kulak did well to prevent chances against while leading in ice time. On the other end of the spectrum, it was a night to forget for the trio of Dale Weise, Jake Evans, and Arthuri Lehkonen.</p>
+<p>The top Canucks line of Petterson-Miller-Toffoli caused havoc at the Habs expense, generating most combined corsi-for events at even strength. Jake Virtanen once again did well in creating chances.</p>
+<pre class="r"><code>ggplot(mtl_ice, aes(x = Player, y = SF..Rel)) + geom_bar(aes(fill = TOI), stat = &quot;identity&quot;) + coord_flip() + labs(title = &quot;MTL Relative Shots-for % and ice time&quot;, subtitle = &quot;5v5&quot;) </code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(van_ice, aes(x = Player, y = SF..Rel)) + geom_bar(aes(fill = TOI), stat = &quot;identity&quot;) + coord_flip() + labs(title = &quot;VAN Relative Shots-for % and ice time&quot;, subtitle = &quot;5v5&quot;) </code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<p>The Domi line shared the bulk of Habs’ shots at even strength. Meanwhile their fourth line were not only buried in CF%, but SF% as well.</p>
+<p>Tyler Motte in particular, partnered with veterans Brandon Sutter and Jay Beagle did not fare well in preventing shots against.</p>
+<pre class="r"><code>mtl_ice &lt;- mutate(mtl_ice, total_faceoffs = Off..Zone.Faceoffs + Neu..Zone.Faceoffs + Def..Zone.Faceoffs)
+van_ice &lt;- mutate(van_ice, total_faceoffs = Off..Zone.Faceoffs + Neu..Zone.Faceoffs + Def..Zone.Faceoffs)</code></pre>
+</div>
+<div id="zone-deployment" class="section level2">
+<h2>Zone Deployment</h2>
+<pre class="r"><code>library(ggrepel)</code></pre>
+<pre class="r"><code>ggplot(van_ice, aes(x = Def..Zone.Faceoffs, y = Off..Zone.Faceoffs)) + geom_jitter(stat = &quot;identity&quot;, aes(color = reorder(Player, Def..Zone.Faceoffs)))  + geom_label_repel(aes(label = Player)) + theme(legend.position = &quot;none&quot;) + labs(title = &quot;VAN Zone Deployment&quot;, subtitle = &quot;5v5&quot;) + geom_abline(slope = 1, intercept = 0, linetype = &quot;dashed&quot;, color = &quot;red&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(mtl_ice, aes(x = Def..Zone.Faceoffs, y = Off..Zone.Faceoffs)) + geom_jitter(stat = &quot;identity&quot;, aes(color = reorder(Player, Def..Zone.Faceoffs)))  + geom_label_repel(aes(label = Player)) + theme(legend.position = &quot;none&quot;) + labs(title = &quot;MTL Zone Deployment&quot;, subtitle = &quot;5v5&quot;) + geom_abline(slope = 1, intercept = 0, linetype = &quot;dashed&quot;, color = &quot;red&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p>Canucks’ top offensive line of Petterson-Miller-Toffoli were, as expected, heavily favoured to start in the offensive zone. They were often complemented with the defensive pairing of Chris Tanev and Quinn Hughes. Edler-Stetcher pairing meanwhile shared the burden of heavy defensive deployment, as well with the shutdown forward line of Beagle-Motte-Sutter – explaining the negatively skewed Corsi-For numbers.</p>
+<p>The performance of the Max Domi line is even more impressive by the fact that their deployment was fairly even across the offensive-defensive zones. The trio of Drouin-Suzuki-Armia, meanwhile, enjoyed a more favorable deployment despite their lack of production. As usual, captain Shea Weber was on the ice for the highest number of defensive zone starts.</p>
+</div>
+<div id="forward-lines-performance" class="section level2">
+<h2>Forward Lines Performance</h2>
+<p>Results grouped by line combinations reflect analysis above.</p>
+<pre class="r"><code>mtl_fwds &lt;- read.table(file = &quot;~/Desktop/blog/mtl_fwds.csv&quot;, header = T)
+van_fwds &lt;- read.table(file = &quot;~/Desktop/blog/van_fwds.csv&quot;, header = T)</code></pre>
+<pre class="r"><code>mtl_fwds &lt;- transform(mtl_fwds, lines = paste(Player.1, Player.2, Player.3, sep = &quot; &quot;)) 
+van_fwds &lt;- transform(van_fwds, lines = paste(Player.1, Player.2, Player.3, sep = &quot; &quot;))</code></pre>
+<pre class="r"><code>ggplot(mtl_fwds, aes(x = lines, y = CF..Rel)) + geom_bar(stat = &quot;identity&quot;, aes(fill = TOI)) + coord_flip() + labs(title = &quot;MTL Forward Line Combinations and CF% Rel&quot;, subtitle = &quot;5v5&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(van_fwds, aes(x = lines, y = CF..Rel)) + geom_bar(stat = &quot;identity&quot;, aes(fill = TOI)) + coord_flip() + labs(title = &quot;VAN Forward Line Combinations and CF% Rel&quot;, subtitle = &quot;5v5&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<pre class="r"><code>ggplot(mtl_fwds, aes(x = lines, y = SF..Rel)) + geom_bar(stat = &quot;identity&quot;, aes(fill = TOI)) + coord_flip() + labs(title = &quot;MTL Forward Line Combinations and Rel. Shots-for %&quot;, subtitle = &quot;5v5&quot;) + theme(plot.title = element_text(size = 10))</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(van_fwds, aes(x = lines, y = SF..Rel)) + geom_bar(stat = &quot;identity&quot;, aes(fill = TOI)) + coord_flip() + labs(title = &quot;VAN Forward Line Combinations and Rel. Shots-for %&quot;, subtitle = &quot;5v5&quot;)  + theme(plot.title = element_text(size = 10))</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+<p>The Petterson line did well in driving play with ample amount of ice time and offensive zone starts, while the Virtanen line did well in generating shots in limited ice time.</p>
+<p>Habs’ fourth line were buried in scoring chances and in generating shots. The Domi line were the only forward trio to have relative SF% in the positives.</p>
+</div>
+<div id="special-teams" class="section level2">
+<h2>Special Teams</h2>
+<pre class="r"><code>van_pp &lt;- read.table(file = &quot;~/Desktop/blog/van_pp.csv&quot;, header = T)
+mtl_pp &lt;- read.table(file = &quot;~/Desktop/blog/mtl_pp.csv&quot;, header = T)</code></pre>
+<pre class="r"><code>van_pp2 &lt;- van_pp[which(van_pp$TOI != 0),] 
+mtl_pp2 &lt;- mtl_pp[which(mtl_pp$TOI != 0),] </code></pre>
+<pre class="r"><code>ggplot(mtl_pp2, aes(x = reorder(Player, TOI), y = CF)) + geom_point(stat = &quot;identity&quot;, aes(color = TOI)) + coord_flip() + labs(title = &quot;MTL Powerplay Corsi-For Events&quot;, subtitle = &quot;Decreasing TOI down y-axis, 5v4 only&quot;) + xlab(&quot;Player&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(van_pp2, aes(x = reorder(Player, TOI), y = CF)) + geom_point(stat = &quot;identity&quot;, aes(color = TOI)) + coord_flip() + labs(title = &quot;VAN Powerplay Corsi-For Events&quot;, subtitle = &quot;Decreasing TOI down y-axis, 5v4 only&quot;) + xlab(&quot;Player&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
+<p>There was just a single corsi-for event for the Habs on the power-play.</p>
+<p>The top power-play unit for the Canucks received significant majority of ice time at 5v4, but the second unit did well in creating chances in their sole opportunity.</p>
+<pre class="r"><code>van_pk &lt;- read.table(file = &quot;~/Desktop/blog/van_pk.csv&quot;, header = T)
+mtl_pk &lt;- read.table(file = &quot;~/Desktop/blog/mtl_pk.csv&quot;, header = T)</code></pre>
+<pre class="r"><code>van_pk2 &lt;- van_pk[which(van_pk$TOI != 0),] 
+mtl_pk2 &lt;- mtl_pk[which(mtl_pk$TOI != 0),] </code></pre>
+<pre class="r"><code>ggplot(mtl_pk2, aes(x = reorder(Player, TOI), y = CA)) + geom_point(stat = &quot;identity&quot;, aes(color = TOI)) + coord_flip() + labs(title = &quot;MTL Penalty Kill Corsi-Against Events&quot;, subtitle = &quot;Decreasing TOI down y-axis, 4v5 only&quot;) + xlab(&quot;Player&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(van_pk2, aes(x = reorder(Player, TOI), y = CA)) + geom_point(stat = &quot;identity&quot;, aes(color = TOI)) + coord_flip() + labs(title = &quot;VAN Penalty Kill Corsi-Against Events&quot;, subtitle = &quot;Decreasing TOI down y-axis, 4v5 only&quot;) + xlab(&quot;Player&quot;)</code></pre>
+<p><img src="public/post/2020-02-20-numbers-behind-the-game-canucks-habs-2-25-2020.en_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
+<p>It was a rough night for the pairing of Weber-Chiarot on the penalty kill.</p>
+<p>The Canucks did well in suppressing scoring chances on the penalty kill.</p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>The Canucks keep on rolling, chasing the top seed in the Pacific Division. Jake Virtanen is having a stand-out year and did well to capitalize on his chances this game. Meanwhile in Montreal, it seems that after the trade-deadline-subtractions in the lineup there is a need for tightening in the defensive zone.</p>
+</div>

@@ -1,0 +1,13 @@
+---
+title: 'Building a neural network with TensorFlow and Keras '
+author: Brian Jungmin Park
+date: '2020-12-27'
+slug: []
+categories: []
+tags:
+  - python
+  - ml
+  - neural network
+  - tensorflow
+description: ''
+---

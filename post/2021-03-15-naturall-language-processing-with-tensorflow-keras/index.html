@@ -344,6 +344,10 @@ plot_measures(hist=hist)</code></pre>
 <img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%206.47.00%20PM.png" />
 
 </div>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%207.22.44%20PM.png" />
+
+</div>
 <p>We seem to do a bit better in terms of our validation accuracy.</p>
 <p>Instead of using a simple network as above, we can instead use a recurrent neural network (RNN). The central idea of RNN is the concept of memory. RNNs are built from past information and constantly updated as new information comes on. This is because RNNs essentially have an internal loop. It iterates through the data and maintains a <strong>state</strong> containing information relative to the past information. As you can image, this must be useful for sequential data where order matters - such as in the human language.</p>
 <p>RNN algorithms such as LSTM (long short-termmemory) allows a way to carry information across many time-steps. It essentially saves information for later, while keeping state memory. We can implement a bi-directionality to LSTM, which allows us to essentially use two LSTM layers, which process sequence both chronologically and anti-chronologically. This is useful in NLP, as the importance of a word in a sentence isn't usually dependent on its relative position.</p>

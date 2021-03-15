@@ -222,6 +222,8 @@ plot_measures(hist=hist)
 
 ![](/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen Shot 2021-03-15 at 6.47.00 PM.png)
 
+![](/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen Shot 2021-03-15 at 7.22.44 PM.png)
+
 
 We seem to do a bit better in terms of our validation accuracy. 
 

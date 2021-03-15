@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Keras on Brian Jungmin Park</title>
+    <link>https://brianjmpark.github.io/categories/keras/</link>
+    <description>Recent content in Keras on Brian Jungmin Park</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 15 Mar 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://brianjmpark.github.io/categories/keras/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Natural Language Processing with Tensorflow, Keras</title>
+      <link>https://brianjmpark.github.io/post/2021-03-15-naturall-language-processing-with-tensorflow-keras/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2021-03-15-naturall-language-processing-with-tensorflow-keras/</guid>
+      <description>Jupyter notebook of following code and figures are available from my GitHub: https://github.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,19 @@
     <description>Recent content in ml on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 27 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/tags/ml/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Natural Language Processing with Tensorflow, Keras</title>
+      <link>https://brianjmpark.github.io/post/2021-03-15-naturall-language-processing-with-tensorflow-keras/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2021-03-15-naturall-language-processing-with-tensorflow-keras/</guid>
+      <description>Jupyter notebook of following code and figures are available from my GitHub: https://github.</description>
+    </item>
     
     <item>
       <title>Building a neural network with TensorFlow and Keras </title>

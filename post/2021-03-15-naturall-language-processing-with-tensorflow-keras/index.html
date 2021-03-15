@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.72.0" />
+
+  <title>Natural Language Processing with Tensorflow, Keras &middot; Brian Jungmin Park</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Natural Language Processing with Tensorflow, Keras">
+<meta itemprop="description" content="Jupyter notebook of following code and figures are available from my GitHub: https://github.">
+<meta itemprop="datePublished" content="2021-03-15T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2021-03-15T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1545">
+<meta itemprop="image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+
+
+<meta itemprop="keywords" content="Python,NLP,ML," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+<meta name="twitter:title" content="Natural Language Processing with Tensorflow, Keras"/>
+<meta name="twitter:description" content="Jupyter notebook of following code and figures are available from my GitHub: https://github."/>
+
+
+<meta property="og:title" content="Natural Language Processing with Tensorflow, Keras" />
+<meta property="og:description" content="Jupyter notebook of following code and figures are available from my GitHub: https://github." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://brianjmpark.github.io/post/2021-03-15-naturall-language-processing-with-tensorflow-keras/" />
+<meta property="og:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+<meta property="article:published_time" content="2021-03-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-03-15T00:00:00+00:00" /><meta property="og:site_name" content="Brian Jungmin Park" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #dbc8ae;
+  }
+
+  .read-more-link a {
+    border-color: #dbc8ae;
+  }
+
+  .pagination li a {
+    color: #dbc8ae;
+    border: 1px solid #dbc8ae;
+  }
+
+  .pagination li.active a {
+    background-color: #dbc8ae;
+  }
+
+  .pagination li a:hover {
+    background-color: #dbc8ae;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #dbc8ae;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/picture.jpg" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Brian Jungmin Park</h1>
+
+      
+      <p class="lead">A Computer Science &amp; Sports Blog</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://brianjmpark.github.io">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/contact/">Contact</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/categories/">Categories</a>
+        </li><li>
+          <a href="/tags/">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://linkedin.com/in/bjp" rel="me" title="LinkedIn" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/brianjmpark/" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/brianjmpark2" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>Natural Language Processing with Tensorflow, Keras</h1>
+
+  <div class="post-date">
+    <time datetime="2021-03-15T00:00:00Z">Mar 15, 2021</time> &middot; 8 min read
+  </div>
+
+  
+
+
+<p>Jupyter notebook of following code and figures are available from my GitHub: <a href="https://github.com/snowoflondon" class="uri">https://github.com/snowoflondon</a>.</p>
+<p>Multi-layer neural networks such as MLPs typically involve data classification or regression problems. This could be useful when we are working with a dataset of typically numeric column values (i.e., called features or predictor variables) with a corresponding vector of target labels (i.e., called the target or response variables). A typical example of MLPs in say, regression, is prediction of housing prices using data such as location, number of bedrooms, etc.</p>
+<p>However, a stacked network of 'dense layers', as shown in the previous post, may not be suitable for higher-order data. This is typically the case when the data we are working with are encoded in high-dimensional NumPy arrays (or 'tensors') as in the case of video data, image data, and sequence data. In 2D image processing, users typically use the concept of convolutional networks (convnets) to 'scan' a (n x n) window of pixels and identify patterns.</p>
+<p>Natural language processing (NLP) handles sequence data - or more specifically, a sequence of words. This type of data is unique in a sense that the order of individual word (or character) is of importance - hence introducing a temporal aspect of our data dimension. How do we handle this?</p>
+<p>Here, we will use a data set of Yelp reviews in order to build a predictive model wherein our target labels will reflect customer sentiment (i.e., positive or negative). This data set is publicly available here: <a href="https://www.kaggle.com/marklvl/sentiment-labelled-sentences-data-set" class="uri">https://www.kaggle.com/marklvl/sentiment-labelled-sentences-data-set</a>. The goal will be to train a model using a small set of Yelp reviews and predict whether a new review is positive or negative.</p>
+<p>First, load primary packages and the downloaded data set for preprocessing.</p>
+<pre class="python"><code>import pandas as pd
+import tensorflow as tf
+from tensorflow.keras.datasets import imdb
+from tensorflow.keras import preprocessing
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Flatten, Dense, Embedding</code></pre>
+<pre class="python"><code>df = pd.read_csv(&#39;yelp_labelled.txt&#39;, names=[&#39;review&#39;, &#39;sentiment&#39;], sep=&#39;\t&#39;)
+df.head()</code></pre>
+<p>Data looks like this:</p>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/dfhead.png" />
+
+</div>
+<p>Before vectorizing the 'review' column (i.e., turning it into NumPy array so Keras can understand the data), it's a good idea to remove punctuations from the text.</p>
+<pre class="python"><code>import string
+trans = str.maketrans(&#39;&#39;, &#39;&#39;, string.punctuation)
+processed = [a.translate(trans) for a in df[&#39;review&#39;]]
+df2 = pd.concat([df, pd.Series(processed, name=&#39;review_processed&#39;)],axis=1)
+df2 = df2.drop(&#39;review&#39;,axis=1)
+df2.head()</code></pre>
+<p>New data looks like this:</p>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%206.28.13%20PM.png" />
+
+</div>
+<p>Separate the reviews from the labels:</p>
+<pre class="python"><code>y = df2[&#39;sentiment&#39;].values
+X = df2[&#39;review_processed&#39;].values
+X[1]</code></pre>
+<p>An example excerpt review will look like this:</p>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%206.29.42%20PM.png" />
+
+</div>
+<p>As usual, we split the predictor variables into training and testing sets.</p>
+<pre class="python"><code>from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)</code></pre>
+<p>Now we need to do two things with the text data: first we must 'tokenize' it, then we need to pad them appropriately. A 'token' is essentially a unit in which text is broken down into (i.e, words or characters in most cases). In order to vectorize text data, we must first apply some sort of a tokenizer to break down our text data - likely in sentence or paragraph form - and then assign numeric vectors to the generated tokens.</p>
+<pre class="python"><code>from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+max_words = 2000
+max_len = 100
+
+tokenizer = Tokenizer(num_words=max_words)
+tokenizer.fit_on_texts(X_train)
+
+X_train = tokenizer.texts_to_sequences(X_train)
+X_test = tokenizer.texts_to_sequences(X_test)
+
+X_train = pad_sequences(X_train, padding=&#39;post&#39;, maxlen=max_len)
+X_test = pad_sequences(X_test, padding=&#39;post&#39;, maxlen=max_len)</code></pre>
+<p>The <em>fit_on_texts</em> method creates a vocabulary index based on the word frequency of input data. The <em>text_to_sequences</em> then transforms each text in texts to a sequence of integers. Padding sequences is necessary to make all sequences in a batch a standard length.</p>
+<p>Another concept to introduce here, unique to NLPs, is the idea of embedding layers. Word embeddings are essentially low-dimensional, floating-point vectors that is learned from input text data. Word embeddings attempt to learn semantic relationships between words and essentially map the language input into a geometric space.</p>
+<p>Embedding layers precede dense layers in a typical set-up, and can either be computed with the data at hand, or we can use a pre-computed embedding layer built from text databases. These pre-trained embedding layers are meant to capture the generic aspects of the language structure, which makes them applicable to more specific problems.</p>
+<p>Here, we will use embedding data from GloVe (<a href="https://nlp.stanford.edu/projects/glove/" class="uri">https://nlp.stanford.edu/projects/glove/</a>). The pre-trained data we will use is based on data from Wikipedia.</p>
+<p>For the sake of completion, we will first build an embedding layer from our data and use that for our model.</p>
+<pre class="python"><code>model = Sequential()
+model.add(Embedding(10000, 8, input_length=max_len))
+model.add(Flatten())
+model.add(Dense(1, activation=&#39;sigmoid&#39;))
+
+model.compile(optimizer=&#39;rmsprop&#39;, loss=&#39;binary_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
+
+model.summary()
+
+hist = model.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.2)</code></pre>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%206.41.50%20PM.png" />
+
+</div>
+<p>Making a quick function to plot our validation loss and accuracy across epochs:</p>
+<pre class="python"><code>import matplotlib.pyplot as plt
+plt.style.use(&#39;fivethirtyeight&#39;)
+
+def plot_measures(hist):
+    
+    plt.plot(hist.history[&#39;loss&#39;])
+    plt.plot(hist.history[&#39;val_loss&#39;])
+    plt.title(&#39;Model loss&#39;)
+    plt.xlabel(&#39;Epoch&#39;)
+    plt.ylabel(&#39;Loss&#39;)
+    plt.legend([&#39;Train&#39;, &#39;Val&#39;], loc=&#39;upper right&#39;)
+    plt.show()
+    plt.clf()
+    
+    plt.plot(hist.history[&#39;accuracy&#39;])
+    plt.plot(hist.history[&#39;val_accuracy&#39;])
+    plt.title(&#39;Model accuracy&#39;)
+    plt.xlabel(&#39;Epoch&#39;)
+    plt.ylabel(&#39;Accuracy&#39;)
+    plt.legend([&#39;Train&#39;, &#39;Val&#39;], loc=&#39;upper right&#39;)
+    plt.show()
+    plt.clf()</code></pre>
+<pre class="python"><code>plot_measures(hist=hist)</code></pre>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%206.44.06%20PM.png" />
+
+</div>
+<p>Validation acuracy is at around 60% after 10 iterations. Now we can use the downloaded GloVe embedding and see if performance improves:</p>
+<pre class="python"><code>import os
+import numpy as np
+
+gdir = &#39;/Users/brianjmpark/Desktop/workspace/nlp/glove.6B/&#39;
+
+embeddings_index = {}
+file = open(os.path.join(gdir, &#39;glove.6B.100d.txt&#39;))
+
+for line in file:
+    values = line.split()
+    word = values[0]
+    coefs = np.asarray(values[1:], dtype=&#39;float32&#39;)
+    embeddings_index[word] = coefs
+    
+file.close()
+
+embedding_dim = 100
+word_index = tokenizer.word_index
+
+embedding_matrix = np.zeros((max_words, embedding_dim))
+for word, i in word_index.items():
+    if i &lt; max_words:
+        embedding_vector = embeddings_index.get(word)
+        if embedding_vector is not None:
+            embedding_matrix[i] = embedding_vector
+            
+model = Sequential()
+embedding_layer = Embedding(max_words, embedding_dim, weights=[embedding_matrix], input_length=max_len , trainable=False)
+model.add(embedding_layer)
+model.add(Flatten())
+model.add(Dense(32, activation=&#39;relu&#39;))
+model.add(Dense(1, activation=&#39;sigmoid&#39;))
+
+model.compile(optimizer=&#39;rmsprop&#39;, loss=&#39;binary_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
+
+model.summary()
+
+hist = model.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
+
+plot_measures(hist=hist)</code></pre>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%206.47.00%20PM.png" />
+
+</div>
+<p>We seem to do a bit better in terms of our validation accuracy.</p>
+<p>Instead of using a simple network as above, we can instead use a recurrent neural network (RNN). The central idea of RNN is the concept of memory. RNNs are built from past information and constantly updated as new information comes on. This is because RNNs essentially have an internal loop. It iterates through the data and maintains a <strong>state</strong> containing information relative to the past information. As you can image, this must be useful for sequential data where order matters - such as in the human language.</p>
+<p>RNN algorithms such as LSTM (long short-termmemory) allows a way to carry information across many time-steps. It essentially saves information for later, while keeping state memory. We can implement a bi-directionality to LSTM, which allows us to essentially use two LSTM layers, which process sequence both chronologically and anti-chronologically. This is useful in NLP, as the importance of a word in a sentence isn't usually dependent on its relative position.</p>
+<pre class="python"><code>from tensorflow.keras.layers import LSTM, Bidirectional
+
+model = Sequential()
+embedding_layer = Embedding(max_words, embedding_dim, weights=[embedding_matrix], input_length=max_len , trainable=False)
+model.add(embedding_layer)
+model.add(Bidirectional(LSTM(64)))
+model.add(Dense(1, activation=&#39;sigmoid&#39;))
+
+model.compile(optimizer=&#39;rmsprop&#39;, loss=&#39;binary_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
+
+model.summary()
+
+hist = model.fit(X_train, y_train, epochs=20, batch_size=32, validation_split=0.2)
+
+plot_measures(hist=hist)</code></pre>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%206.59.13%20PM.png" />
+
+</div>
+<p>We've doubled the number of epochs to account for the bi-directionality of LSTM layer.</p>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%207.00.50%20PM.png" />
+
+</div>
+<p>We can also add dropout layers and tune other hyper-parameters of the model in order to combat over-fitting. Here, we'll add dropout and lower the learning rate of our optimizer.</p>
+<pre class="python"><code>from tensorflow.keras.optimizers import RMSprop
+
+model = Sequential()
+embedding_layer = Embedding(max_words, embedding_dim, weights=[embedding_matrix], input_length=max_len , trainable=False)
+model.add(embedding_layer)
+model.add(Bidirectional(LSTM(64, dropout=0.2, recurrent_dropout=0.2)))
+model.add(Dense(1, activation=&#39;sigmoid&#39;))
+
+model.compile(optimizer=RMSprop(learning_rate=0.0005), loss=&#39;binary_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
+
+hist = model.fit(X_train, y_train, epochs=20, batch_size=64, validation_split=0.2)
+
+plot_measures(hist=hist)</code></pre>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%207.03.00%20PM.png" />
+
+</div>
+<p>Don't forget to evaluate the model using testing data set to avoid validation data leak.</p>
+<pre class="python"><code>model.evaluate(X_test, y_test)[1]</code></pre>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%207.03.55%20PM.png" />
+
+</div>
+<p>We've achieved 79% accuracy despite using a relatively small training data set and just one layer of recurrent layer. Adding the number of neurons or stacking more layers may improve performance, but at the cost of computational load.</p>
+<p>Here's how to feed new data into the predictive model, using a real review pulled from a local Olive Garden's yelp page.</p>
+<pre class="python"><code>example = &quot;I got the chef&#39;s special and it got to my table cold. The soup was bland, meat was tough, and the waiter took half an hour to get our bill. I would not come here again.&quot;
+
+example = [example.translate(trans)]
+
+tokenizer.fit_on_texts(example)
+example = tokenizer.texts_to_sequences(example)
+example = pad_sequences(example, padding=&#39;post&#39;, maxlen=max_len)
+model.predict(example)</code></pre>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%207.06.01%20PM.png" />
+
+</div>
+<p>Recall our activation function in the final layer is a sigmoid function, which outputs a probability value between 0 and 1. Our value is less than 0.5, hence we assign it the '0' label from our original label data - which corresponds to a negative review.</p>
+<p>Finally, similar to how image data can harness 2D convnets to build a model, sequence data such as text can use convnets as well. In this case, time can be treated as a spatial dimension, similar to height and width of an image.</p>
+<p>1D convnets can offer similar performance to RNNs, but at a smaller computational load. Similar to image processing in computer vision, convnets typically involve downsampling of data using a pooling layer.</p>
+<pre class="python"><code>from tensorflow.keras.layers import Conv1D, MaxPooling1D, GlobalMaxPooling1D
+
+model = Sequential()
+embedding_layer = Embedding(max_words, embedding_dim, weights=[embedding_matrix], input_length=max_len , trainable=False)
+model.add(embedding_layer)
+model.add(Conv1D(64, 7, activation=&#39;relu&#39;))
+model.add(MaxPooling1D(5))
+model.add(Conv1D(64, 7, activation=&#39;relu&#39;))
+model.add(GlobalMaxPooling1D())
+model.add(Dense(1, activation=&#39;sigmoid&#39;))
+
+model.summary()
+
+model.compile(optimizer=&#39;rmsprop&#39;, loss=&#39;binary_crossentropy&#39;, metrics=[&#39;accuracy&#39;])
+
+hist = model.fit(X_train, y_train, epochs=10, batch_size=64, validation_split=0.2)
+
+plot_measures(hist=hist)</code></pre>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%207.10.41%20PM.png" />
+
+</div>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%207.11.17%20PM.png" />
+
+</div>
+<p>Here, our testing accuracy isn't as great as the one from RNN</p>
+<pre class="python"><code>model.evaluate(X_test, y_test)[1]</code></pre>
+<div class="figure">
+<img src="/post/2021-03-15-naturall-language-processing-with-tensorflow-keras.en_files/Screen%20Shot%202021-03-15%20at%207.12.25%20PM.png" />
+
+</div>
+<p>In summary:</p>
+<ol style="list-style-type: decimal">
+<li><p>Text data must undergo preprocessing prior to use in a neural network: this includes removing any HTML tags or punctuations, as well as tokenization and vectorization</p></li>
+<li><p>Embedding layers give geometric representation in text data to give semantic meaning</p></li>
+<li><p>RNNs use internal loops to maintain state representations of seen data</p></li>
+<li><p>1D convnets are a cheaper alternative to RNNs, but performance may vary</p></li>
+</ol>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy; Brian Jungmin Park 2021
+
+    &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+    &middot; Build with <a href="https://gohugo.io/" target="_blank">Hugo</a> & <a href="https://themes.gohugo.io/soho/" target="_blank">Soho</a> theme
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>

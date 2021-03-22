@@ -6,10 +6,19 @@
     <description>Recent content in Python on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 15 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>We made an app using WxPython! </title>
+      <link>https://brianjmpark.github.io/post/2021-03-22-we-made-an-app-using-wxpython/</link>
+      <pubDate>Mon, 22 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2021-03-22-we-made-an-app-using-wxpython/</guid>
+      <description>Source code for the program and downloadable link is available in this repo: https://github.</description>
+    </item>
     
     <item>
       <title>Natural Language Processing with Tensorflow, Keras</title>

@@ -179,7 +179,7 @@ history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, v
 
 
 
-plt.style.use('fivethirtyeight)
+
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.title('Model loss')
@@ -229,7 +229,7 @@ history = model.fit(X_train, y_train_categorical, batch_size=512, epochs=1000, v
 
 
 
-plt.style.use('fivethirtyeight)
+
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.title('Model loss')

@@ -1,0 +1,30 @@
+---
+title: 'We made an app using WxPython! '
+author: ''
+date: '2021-03-22'
+description: ''
+slug: []
+tags:
+- python
+- GUI
+- Development
+- Dev
+categories:
+- Python
+- GUI
+- Development
+---
+
+Source code for the program and downloadable link is available in this repo: https://github.com/shoma444/Project_Rei. 
+
+My collaborator (https://github.com/shoma444 / https://sites.google.com/view/shoma-yamanouchi) and I recently released a simple app that allows students to record, calculate, and organize their final exam goals and dates. The packaged app is compatible with MacOS and is available to download on GitHub. The source code was written in Python and tested on Mac, Windows, and Linux operating systems. 
+
+Our future goal with this project is to add QOL refinements and advanced features that allows users to add customizations. 
+
+The front-end GUI uses WxPython, which is a great open source package for development. Here is a screencap of the app in use!
+
+
+![](/post/2021-03-22-we-made-an-app-using-wxpython.en_files/Screen Shot 2021-03-22 at 6.17.19 PM.png)
+
+
+Happy exam season. 

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.72.0" />
+
+  <title>Random Forests in R: bootstrapping and aggregating  &middot; Brian Jungmin Park</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Random Forests in R: bootstrapping and aggregating ">
+<meta itemprop="description" content="In predictive models, decision trees produce a set of rules to classify or predict a given outcome.">
+<meta itemprop="datePublished" content="2021-04-24T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2021-04-24T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="693">
+<meta itemprop="image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+
+
+<meta itemprop="keywords" content="r,ML," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+<meta name="twitter:title" content="Random Forests in R: bootstrapping and aggregating "/>
+<meta name="twitter:description" content="In predictive models, decision trees produce a set of rules to classify or predict a given outcome."/>
+
+
+<meta property="og:title" content="Random Forests in R: bootstrapping and aggregating " />
+<meta property="og:description" content="In predictive models, decision trees produce a set of rules to classify or predict a given outcome." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://brianjmpark.github.io/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating/" />
+<meta property="og:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+<meta property="article:published_time" content="2021-04-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-24T00:00:00+00:00" /><meta property="og:site_name" content="Brian Jungmin Park" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #dbc8ae;
+  }
+
+  .read-more-link a {
+    border-color: #dbc8ae;
+  }
+
+  .pagination li a {
+    color: #dbc8ae;
+    border: 1px solid #dbc8ae;
+  }
+
+  .pagination li.active a {
+    background-color: #dbc8ae;
+  }
+
+  .pagination li a:hover {
+    background-color: #dbc8ae;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #dbc8ae;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/picture1.jpg" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Brian Jungmin Park</h1>
+
+      
+      <p class="lead">A Computer Science &amp; Sports Blog</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://brianjmpark.github.io">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/contact/">Contact</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/categories/">Categories</a>
+        </li><li>
+          <a href="/tags/">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://linkedin.com/in/bjp" rel="me" title="LinkedIn" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/snowoflondon/" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/brianjmpark2" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>Random Forests in R: bootstrapping and aggregating </h1>
+
+  <div class="post-date">
+    <time datetime="2021-04-24T00:00:00Z">Apr 24, 2021</time> &middot; 4 min read
+  </div>
+
+  
+
+
+<p>In predictive models, decision trees produce a set of rules to classify or predict a given outcome. As their names suggest, decision trees employ a series of branches to successively partition data. In brief, this method is called 'recursive partitioning' wherein each split references a specific value of a variable and divide the data whether the record is above or below that value. At each branching point of the tree, the model picks the split value that minimizes the outcome impurity within each sub-parition.</p>
+<p>An 'ensemble' method forms predictions by using a collection of models. Ensemble of tree models make up the random forest (RF) algorithm, which use two techniques:</p>
+<ul>
+<li><p>bootstrapping of records to form a bootstrap sample (i.e., sampling with replacement)</p></li>
+<li><p>random sampling of predictor variables to create sub-paritions</p></li>
+</ul>
+<p>Essentially, RF models use the predictive power of an ensemble of many decision trees, where each tree use a random subset of predictor variables and a bootstrap sample.</p>
+<p>In R, RF model can be implemented using the randomForest package. Here, a dataset of iris flowers from Kaggle (<a href="https://www.kaggle.com/souravbhattacharya10/irisdataset" class="uri">https://www.kaggle.com/souravbhattacharya10/irisdataset</a>) is used to predict iris species. The features include petal length, petal width, sepal length, and sepal width.</p>
+<pre class="r"><code>install.packages(&#39;randomForest&#39;)
+library(randomForest)
+library(tidyverse)
+
+df &lt;- read_csv(&#39;Iris.csv&#39;)</code></pre>
+<pre class="r"><code>head(df)</code></pre>
+<div class="figure">
+<img src="/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating.en_files/Screen%20Shot%202021-04-24%20at%205.33.02%20PM.png" />
+
+</div>
+<pre class="r"><code>summary(df)</code></pre>
+<div class="figure">
+<img src="/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating.en_files/Screen%20Shot%202021-04-24%20at%205.33.34%20PM.png" />
+
+</div>
+<p>Splitting the dataset into training and validation split can be done with base R. Here I use a 80/20 split using sample function to randomly divide the data.</p>
+<pre class="r"><code>set.seed(42)
+df$label &lt;- factor(df$label)
+train_subset &lt;- sample(nrow(df), 0.8*nrow(df), replace=FALSE)
+df_train &lt;- df[train_subset,]
+df_val &lt;- df[-train_subset,]</code></pre>
+<p>There are a number of parameters to consider when fitting an RF model.</p>
+<ul>
+<li><p>Number of trees. In randomForest function in R, this is <em>ntree</em>. Default is 500. This parameter denotes the total number of trees to be fit in the ensemble.</p></li>
+<li><p>Number of picked variables during the bootstrap-aggregation process. In randomForest function, this is <em>mtry</em>. Default is 2.</p></li>
+</ul>
+<p>Additionally, I set the boolean option <em>importance</em> as TRUE, which will help identify important variables later.</p>
+<p>Using default parameters, the training data is fit to an RF model:</p>
+<pre class="r"><code>model &lt;- randomForest(label ~ ., data = df_train, importance =T)
+model</code></pre>
+<div class="figure">
+<img src="/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating.en_files/Screen%20Shot%202021-04-24%20at%205.34.15%20PM.png" />
+
+</div>
+<p>Confusion matrix shows a total of 6 mis-classifiations in the training data with out-of-bag error of 5%. The OOB error is estimated by calculating model accuracy using the data left out of the training set for a particular tree (since bootstrapping of samples is a characteristic of RF models).</p>
+<pre class="r"><code>df_e &lt;- data.frame(err_rate = model$err.rate[,&#39;OOB&#39;], 
+                      n_trees=1:model$ntree)
+ggplot(df_e, aes(x=n_trees, y=err_rate)) + 
+  geom_line() + 
+  labs(title=&#39;OOB error rate with respect to tree growth&#39;)</code></pre>
+<div class="figure">
+<img src="/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating.en_files/Screen%20Shot%202021-04-24%20at%205.35.03%20PM.png" />
+
+</div>
+<p>Next, fit the model to the validation set to see how the trained model generalize. Note that metrics such as confusion matrices can be made with the R package caret instead, which have dedicated functions.</p>
+<pre class="r"><code>df_pred_val &lt;- predict(model, df_val, type=&#39;class&#39;)
+table(df_pred_val, df_val$label)</code></pre>
+<div class="figure">
+<img src="/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating.en_files/Screen%20Shot%202021-04-24%20at%205.35.32%20PM.png" />
+
+</div>
+<p>Here, we achieve a classification accuracy of 93% on the validation data.</p>
+<pre class="r"><code>mean(df_pred_val == df_val$label)</code></pre>
+<div class="figure">
+<img src="/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating.en_files/Screen%20Shot%202021-04-24%20at%205.35.56%20PM.png" />
+
+</div>
+<p>The usefulness of the RF algorithm includes the ability to deduce which feature variables are important in predicting the target variable. There are two ways to assess variable importance:</p>
+<ul>
+<li><p>Mean decrease in accuracy: the decrease in model accuracy if the variable values are randomly permuted.</p></li>
+<li><p>Mean decrease in Gini impurity score: this measures how much including the given variable improves the purity of the nodes in the trees. Recall that in recursive partitioning, the split is chosen such that the impurity is minimized in the sub-partitions.</p></li>
+</ul>
+<p>Since we set importance=TRUE in building the RF model, we can obtain the above measures easily.</p>
+<pre class="r"><code>importance(model)</code></pre>
+<div class="figure">
+<img src="/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating.en_files/Screen%20Shot%202021-04-24%20at%205.36.21%20PM.png" />
+
+</div>
+<pre class="r"><code>varImpPlot(model, type=1, main=NULL)</code></pre>
+<div class="figure">
+<img src="/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating.en_files/Screen%20Shot%202021-04-24%20at%205.36.48%20PM.png" />
+
+</div>
+<pre class="r"><code>varImpPlot(model, type=2, main=NULL)</code></pre>
+<div class="figure">
+<img src="/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating.en_files/Screen%20Shot%202021-04-24%20at%205.37.38%20PM.png" />
+
+</div>
+<p>This result suggests that the characteristics of the iris sepal contribute more to the predictive ability of the model relative to the iris petals.</p>
+<p>In summary:</p>
+<ul>
+<li><p>RF models can be implemented in R using the randomForests package</p></li>
+<li><p>Predictive models can be assessed using confusion matrices and validation set accuracy. Other measures such as ROC curves (sensitivity vs. specifcity curves) and their area-under-the-curve can also be used</p></li>
+<li><p>OOB error indicates errors associated with bootstrapping of samples</p></li>
+<li><p>Parameters of RF models include the growth of trees as well as number of aggregated variables during recursive partitioning</p></li>
+<li><p>Variable importance can be assessed using mean decrease in accuracy per variable as well as decrease in Gini impurity scores</p></li>
+</ul>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy; Brian Jungmin Park 2021
+
+    &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+    &middot; Build with <a href="https://gohugo.io/" target="_blank">Hugo</a> & <a href="https://themes.gohugo.io/soho/" target="_blank">Soho</a> theme
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>

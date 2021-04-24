@@ -6,10 +6,19 @@
     <description>Recent content in r on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 24 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Random Forests in R: bootstrapping and aggregating </title>
+      <link>https://brianjmpark.github.io/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating/</link>
+      <pubDate>Sat, 24 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating/</guid>
+      <description>In predictive models, decision trees produce a set of rules to classify or predict a given outcome.</description>
+    </item>
     
     <item>
       <title>R Basics: piping in tidyverse</title>

@@ -4,7 +4,47 @@
   
   <url>
     <loc>https://brianjmpark.github.io/categories/</loc>
-    <lastmod>2021-03-22T00:00:00+00:00</lastmod>
+    <lastmod>2021-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/categories/ml/</loc>
+    <lastmod>2021-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/ml/</loc>
+    <lastmod>2021-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/post/</loc>
+    <lastmod>2021-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/r/</loc>
+    <lastmod>2021-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/categories/r/</loc>
+    <lastmod>2021-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/post/2021-04-24-random-forests-in-r-bootstrapping-and-aggregating/</loc>
+    <lastmod>2021-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/</loc>
+    <lastmod>2021-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/</loc>
+    <lastmod>2021-04-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -33,11 +73,6 @@
   </url>
   
   <url>
-    <loc>https://brianjmpark.github.io/post/</loc>
-    <lastmod>2021-03-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://brianjmpark.github.io/categories/python/</loc>
     <lastmod>2021-03-22T00:00:00+00:00</lastmod>
   </url>
@@ -48,32 +83,12 @@
   </url>
   
   <url>
-    <loc>https://brianjmpark.github.io/</loc>
-    <lastmod>2021-03-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/</loc>
-    <lastmod>2021-03-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://brianjmpark.github.io/post/2021-03-22-we-made-an-app-using-wxpython/</loc>
     <lastmod>2021-03-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://brianjmpark.github.io/categories/keras/</loc>
-    <lastmod>2021-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/categories/ml/</loc>
-    <lastmod>2021-03-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/ml/</loc>
     <lastmod>2021-03-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -139,16 +154,6 @@
   
   <url>
     <loc>https://brianjmpark.github.io/categories/bash/</loc>
-    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/r/</loc>
-    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/categories/r/</loc>
     <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   

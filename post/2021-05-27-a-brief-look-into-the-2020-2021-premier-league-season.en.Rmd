@@ -32,7 +32,7 @@ Brighton under up-and-coming manager Graham Potter indeed played rather 'attract
 
 Teams in the bottom half of the standings often get labeled as 'park the bus and pray' teams. Is this true? Below graph shows ball touches in their own penalty box vs. the opposition's.
 
-![](/post/2021-05-27-a-brief-look-into-the-2020-2021-premier-league-season.en_files/3.png)
+![](/post/2021-05-27-a-brief-look-into-the-2020-2021-premier-league-season.en_files/777.png)
 
 'Chaotic' is definitely one of the words to describe Leeds this season. Brighton also fall into this category, as well as Arsenal, Chelsea, and Villa. Could this reflect their willingness to attack despite their deficiencies at the back? Man City and Liverpool lead the way in touches in their opponent's box while seemingly spending little time in their own. Newcastle and West Brom - do they park the bus? They are definitely not the company you'd hope to be neighbored with, if you're Tottenham Hotspur. Meanwhile, Burnley somehow managed to have less touches in their own box relative to the league median. Perhaps old stereotypes are just not true.
 

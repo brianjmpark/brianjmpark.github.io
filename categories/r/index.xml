@@ -6,10 +6,19 @@
     <description>Recent content in r on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 24 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A brief look into the 2020-2021 Premier League Season</title>
+      <link>https://brianjmpark.github.io/post/2021-05-27-a-brief-look-into-the-2020-2021-premier-league-season/</link>
+      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2021-05-27-a-brief-look-into-the-2020-2021-premier-league-season/</guid>
+      <description>Author&#39;s note: data used for this post (and much more) can be found at fbref.</description>
+    </item>
     
     <item>
       <title>Random Forests in R: bootstrapping and aggregating </title>

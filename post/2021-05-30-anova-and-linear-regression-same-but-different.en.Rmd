@@ -148,6 +148,7 @@ Y_n
 $$
 
 
+
 $$
 \begin{pmatrix}
 1 & 0 & 0\\
@@ -167,7 +168,6 @@ $$
 \tau_2\\
 \tau_3\\
 \end{array}\right] +
-
 \left[\begin{array}
 {rrr}
 \epsilon_1\\
@@ -178,6 +178,7 @@ $$
 \epsilon_n\\
 \end{array}\right]
 $$
+
 
 
 Above describes a one-way ANOVA model matrix with three groups, again, summarised as $Y_{ij} = \mu + \tau_{i} + \epsilon_{ij}$ where $\tau$ is the mean at each group. The model matrix for linear regression is straightforward and is shown below:

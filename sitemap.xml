@@ -3,12 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://brianjmpark.github.io/post/2021-05-27-a-brief-look-into-the-2020-2021-premier-league-season/</loc>
-    <lastmod>2021-05-27T00:00:00+00:00</lastmod>
+    <loc>https://brianjmpark.github.io/post/2021-05-30-anova-and-linear-regression-same-but-different/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://brianjmpark.github.io/categories/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/math/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/categories/math/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/post/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/stats/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/categories/stats/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/post/2021-05-27-a-brief-look-into-the-2020-2021-premier-league-season/</loc>
     <lastmod>2021-05-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -23,11 +63,6 @@
   </url>
   
   <url>
-    <loc>https://brianjmpark.github.io/post/</loc>
-    <lastmod>2021-05-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://brianjmpark.github.io/tags/r/</loc>
     <lastmod>2021-05-27T00:00:00+00:00</lastmod>
   </url>
@@ -38,22 +73,12 @@
   </url>
   
   <url>
-    <loc>https://brianjmpark.github.io/</loc>
-    <lastmod>2021-05-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://brianjmpark.github.io/tags/sports/</loc>
     <lastmod>2021-05-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://brianjmpark.github.io/categories/sports/</loc>
-    <lastmod>2021-05-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/</loc>
     <lastmod>2021-05-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -145,26 +170,6 @@
   <url>
     <loc>https://brianjmpark.github.io/tags/tensorflow/</loc>
     <lastmod>2020-12-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/math/</loc>
-    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/categories/math/</loc>
-    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/stats/</loc>
-    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/categories/stats/</loc>
-    <lastmod>2020-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>

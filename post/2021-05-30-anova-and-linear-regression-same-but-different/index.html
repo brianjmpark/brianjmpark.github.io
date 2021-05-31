@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.72.0" />
+
+  <title>ANOVA and linear regression: same but different &middot; Brian Jungmin Park</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="ANOVA and linear regression: same but different">
+<meta itemprop="description" content="I preface this post with a bit of a digression.">
+<meta itemprop="datePublished" content="2021-05-30T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2021-05-30T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1232">
+<meta itemprop="image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+
+
+<meta itemprop="keywords" content="stats,math," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+<meta name="twitter:title" content="ANOVA and linear regression: same but different"/>
+<meta name="twitter:description" content="I preface this post with a bit of a digression."/>
+
+
+<meta property="og:title" content="ANOVA and linear regression: same but different" />
+<meta property="og:description" content="I preface this post with a bit of a digression." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://brianjmpark.github.io/post/2021-05-30-anova-and-linear-regression-same-but-different/" />
+<meta property="og:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+<meta property="article:published_time" content="2021-05-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-30T00:00:00+00:00" /><meta property="og:site_name" content="Brian Jungmin Park" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #dbc8ae;
+  }
+
+  .read-more-link a {
+    border-color: #dbc8ae;
+  }
+
+  .pagination li a {
+    color: #dbc8ae;
+    border: 1px solid #dbc8ae;
+  }
+
+  .pagination li.active a {
+    background-color: #dbc8ae;
+  }
+
+  .pagination li a:hover {
+    background-color: #dbc8ae;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #dbc8ae;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/picture1.jpg" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Brian Jungmin Park</h1>
+
+      
+      <p class="lead">A Computer Science &amp; Sports Blog</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://brianjmpark.github.io">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/contact/">Contact</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/categories/">Categories</a>
+        </li><li>
+          <a href="/tags/">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://linkedin.com/in/bjp" rel="me" title="LinkedIn" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/snowoflondon/" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/brianjmpark2" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>ANOVA and linear regression: same but different</h1>
+
+  <div class="post-date">
+    <time datetime="2021-05-30T00:00:00Z">May 30, 2021</time> &middot; 6 min read
+  </div>
+
+  
+
+
+<p>I preface this post with a bit of a digression. The other day I was looking at ways to perform feature selection prior to running a classifier model and the R package <em>caret</em> offered me two ways to do it: generalized additive models (i.e., GAMs) and ANOVA. As you may be aware, GAMs are a strategy to perform non-linear predictor vs. response modeling using splines. ANOVA, on the other hand, may be the very first thing we learn in an introductory stats course. It's analysis of variance and tests whether there is an underlying effect causing variance among groups of means. In other words, it's an extended T-test across multiple groups.</p>
+<p>However, the more we read about ANOVAs, the more we see parallels between them and simple linear regression. In fact, many stats packages in R and Python use the terms ANOVA and OLS (ordinary least squares) to essentially say the same thing. Why did we learn about them in separate contexts in our stats courses then? Are they the same?</p>
+<p>The short answer is yes - almost. The long answers can be found by digging through Stats Exchange forums and scientific publications. Here is my best explanation, presented in a more digestible way.</p>
+<p><strong>Linear regression</strong></p>
+<p>Linear regression estimates how much a response variable <em>Y</em> changes when predictor variable <em>X</em> changes by a certain amount. This relationship is predicted by using a linear relationship:</p>
+<p><span class="math inline">\(Y = \beta_0 + X\beta_1 + \epsilon\)</span></p>
+<p>Here, <em>X</em> is assumed to be a numeric vector of constant variables. <span class="math inline">\(\beta_0\)</span> denotes the intercept of the regression line - predicted value for <em>Y</em> when <em>X</em> = 0. <span class="math inline">\(\beta_1\)</span> is the <em>coefficient</em> for <em>X</em>, also called the parameter estimate or the weight for predictor <em>X</em>. <span class="math inline">\(\epsilon\)</span> is the error term and is assumed to be normally distributed, i.e., <span class="math inline">\(\epsilon \in N \sim (0, \sigma^2)\)</span>.</p>
+<p>In multiple linear regression (i.e., more than one predictor variable), we can simply add more <em><span class="math inline">\(X_i\)</span></em> terms with their own coefficients <em><span class="math inline">\(\beta_i\)</span></em> for <span class="math inline">\(i \in R\)</span>.</p>
+<p>In R, we can fit a linear model as such: using my favorite toy dataset <em>mtcars</em>.</p>
+<pre class="r"><code>require(tidyverse)
+df &lt;- mtcars %&gt;% select(c(mpg, disp, hp, drat, wt, qseq))
+lm_model &lt;- lm(mpg ~., data = df)</code></pre>
+<p>In Python, we can use the <em>scikit-learn</em> package (<em>statsmodel</em> package works too):</p>
+<pre class="python"><code>from sklearn.linear_model import LinearRegression
+
+predictors = [&#39;disp&#39;, &#39;hp&#39;, &#39;drat&#39;, &#39;wt&#39;, &#39;qseq&#39;]
+outcome = &#39;mpg&#39;
+
+model = LinearRegression()
+model.fit(mtcars[predictors], mtcars[outcome])</code></pre>
+<p>We can view the individual coefficients for each of the predictor variables and the associated standard errors and p-values by calling:</p>
+<pre class="r"><code>summary(lm_model)</code></pre>
+<div class="figure">
+<img src="/post/2021-05-30-anova-and-linear-regression-same-but-different.en_files/a.png" />
+
+</div>
+<p><strong>ANOVA</strong></p>
+<p>As mentioned earlier, ANOVA is testing the effect of a given treatment across many groups. We can think of this as a comparison between the variance due to treatment versus a random variance due to chance. In other words, the <strong>total</strong> variability across many groups can be decomposed into:</p>
+<p><span class="math inline">\(Y_{ij} - \overline{Y}.. = \overline{Y}_i. - \overline{Y}.. + Y_{ij} - \overline{Y}_i.\)</span></p>
+<p>The left-hand side denotes the total deviation. The first term on the right-hand side denotes the deviation of estimated group mean around overall mean. The second term denotes the deviation around group mean, AKA simmply the error <span class="math inline">\(\epsilon_{ij}\)</span>.</p>
+<p>The parametization of ANOVA leads to the effects model equation:</p>
+<p><span class="math inline">\(Y_{ij} = \mu + \tau_{i} + \epsilon_{ij}\)</span></p>
+<p><span class="math inline">\(\mu\)</span> denotes the grand population mean, <span class="math inline">\(\tau_{i}\)</span> denotes the deviations from the grand mean due to group effects, and <span class="math inline">\(\epsilon_{ij}\)</span> denote the error terms. In ANOVA, the null hypothesis states group effects are all zero and the above equation is reduced down to:</p>
+<p><span class="math inline">\(Y_{ij} = \mu + \epsilon_{ij}\)</span></p>
+<p>Where the null hypothesis can be stated as:</p>
+<p><span class="math inline">\(H_{0} = \tau_{1} = ... = \tau_{n} = 0\)</span></p>
+<p>Of course, then it must be that the alternate hypothesis states group effects are nonzero. In practical terms, the ANOVA employs an F-statistic, which is defined as the ratio between the mean squares (MS) of between-groups and mean squares of the error term. Note mean squares are just the sum of squares standardized by the degrees of freedom.</p>
+<p>The ANOVA implementation is also simple on R:</p>
+<pre class="r"><code>anova_model &lt;- aov(mpg ~., data = df)
+
+summary(anova_model)</code></pre>
+<div class="figure">
+<img src="/post/2021-05-30-anova-and-linear-regression-same-but-different.en_files/c.png" />
+
+</div>
+<p>The equivalent test in Python is done with <em>statsmodels</em>:</p>
+<pre class="python"><code>import statsmodels.formula.api as sm
+anova_model = sm.ols(formula = &#39;mpg ~ disp + hp + drat + wt + qseq&#39;, data = df)
+print(anova_model.summary())</code></pre>
+<p><strong>Putting them together</strong></p>
+<p>Above Python code should already key you in the similarities between linear regression and ANOVA, as well as the effects model equation. Indeede, the effects model equation is analogous to the linear regression model equation. For an example with two predictor variables:</p>
+<p><em>ANOVA</em>:</p>
+<p><span class="math inline">\(Y_{ij} = \mu + \tau_{1}\beta_{1} + \tau_{2}\beta_{2} + \epsilon_{ij}\)</span></p>
+<p><em>OLS</em></p>
+<p><span class="math inline">\(Y_{ij} = \beta_{0} + X{1}\beta_{1} + X{2}\beta_{2} + \epsilon_{ij}\)</span></p>
+<p>The first term in each equation's right hand side equates to the grand mean with no contribution from individual group means (ANOVA) and the y-intercept of the regression line (OLS) - which, in fact, is not affected by the individual predictor terms. In other words, in both analogous cases, this term is a constant.</p>
+<p><span class="math inline">\(\tau_{1}\beta_{1}\)</span> and <span class="math inline">\(\tau_{2}\beta_{2}\)</span> terms in ANOVA represent the deviations from <span class="math inline">\(\mu\)</span> due to predictors <span class="math inline">\(X_{1}\)</span> and <span class="math inline">\(X_{2}\)</span> respectively, with the <span class="math inline">\(\beta\)</span> terms denoting the slopes of the covariates for each group.</p>
+<p><span class="math inline">\(X{1}\beta_{1}\)</span> and <span class="math inline">\(X{2}\beta_{2}\)</span> terms in linear regression represent the deviations from the intercept weighted by <span class="math inline">\(\beta\)</span>, due to each continuous variable <span class="math inline">\(X_{1}\)</span> and <span class="math inline">\(X_{2}\)</span>. Then it must be, that ANOVA and OLS do indeed represent the same concept, except in ANOVA we are dealing with <em>groups</em> rather than continuous variables. These <em>groups</em> - whether they are treatment groups in a drug study or a age bracket group in a consumer analysis - must then be represented by dummy variables in a typical regression analysis. For example, groups belonging to treatment group A can be zeroes, and the other group can be 1s.</p>
+<p>The take-home message at this point should be that ANOVA essentially boils down to a linear regression of dummy encoded variables.</p>
+<p>Driving home this point, going back to the actual code and the <em>mtcars</em> dataset - if we extract the coefficients of each model, we see that they are actually equal:</p>
+<pre class="r"><code>lm_model$coefficients
+anova_model$coeffcients</code></pre>
+<div class="figure">
+<img src="/post/2021-05-30-anova-and-linear-regression-same-but-different.en_files/b.png" />
+
+</div>
+<p><strong>Alternative look: matrix operations</strong></p>
+<p>Another way to visualize the parallels between ANOVA and OLS is by inspecting the model matrices. In the case of the ANOVA, the matrix projection can be shown as:</p>
+<p>$$=</p>
+<span class="math display">\[\begin{pmatrix}
+1 &amp; 0 &amp; 0\\
+1 &amp; 0 &amp; 0\\
+\dots &amp; \dots &amp; \dots\\
+\dots &amp; \dots &amp; \dots\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+\dots &amp; \dots &amp; \dots\\
+\dots &amp; \dots &amp; \dots\\
+0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1\\
+\end{pmatrix}\]</span>
+<p>+</p>
+<p>$$</p>
+<p>Above describes a one-way ANOVA model matrix with three groups, again, summarised as <span class="math inline">\(Y_{ij} = \mu + \tau_{i} + \epsilon_{ij}\)</span> where <span class="math inline">\(\tau\)</span> is the mean at each group. The model matrix for linear regression is straightforward and is shown below:</p>
+<p>$$=</p>
+<span class="math display">\[\begin{pmatrix}
+1 &amp; x_{12} &amp; x_{13}\\
+1 &amp; x_{22} &amp; x_{23}\\
+1 &amp; x_{32} &amp; x_{33}\\
+\dots &amp; \dots &amp; \dots\\
+\dots &amp; \dots &amp; \dots\\
+1 &amp; x_{n2} &amp; x_{n3}
+\end{pmatrix}\]</span>
+<p>+ </p>
+<p>$$</p>
+<p>Above can be represented as <span class="math inline">\(Y = \beta_0 + X_{i1}\beta_1 + X_{i2}\beta_2 + \epsilon_{i}\)</span> with the y-intercept <span class="math inline">\(\beta_{0}\)</span> and two slopes for each contiuous variable.</p>
+<p>Here, again it is clear that ANOVA is analogous to OLS in such a way that variables are dummy encoded and each predictor term represents a group mean rather than a continuous variable.</p>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy; Brian Jungmin Park 2021
+
+    &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+    &middot; Build with <a href="https://gohugo.io/" target="_blank">Hugo</a> & <a href="https://themes.gohugo.io/soho/" target="_blank">Soho</a> theme
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>

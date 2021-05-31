@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 27 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>math</title>
+      <link>https://brianjmpark.github.io/categories/math/</link>
+      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/categories/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>stats</title>
+      <link>https://brianjmpark.github.io/categories/stats/</link>
+      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/categories/stats/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>football</title>
@@ -89,24 +107,6 @@
       <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/categories/nlp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>math</title>
-      <link>https://brianjmpark.github.io/categories/math/</link>
-      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://brianjmpark.github.io/categories/math/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>stats</title>
-      <link>https://brianjmpark.github.io/categories/stats/</link>
-      <pubDate>Sat, 20 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://brianjmpark.github.io/categories/stats/</guid>
       <description></description>
     </item>
     

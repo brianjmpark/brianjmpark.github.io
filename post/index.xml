@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 27 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ANOVA and linear regression: same but different</title>
+      <link>https://brianjmpark.github.io/post/2021-05-30-anova-and-linear-regression-same-but-different/</link>
+      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2021-05-30-anova-and-linear-regression-same-but-different/</guid>
+      <description>I preface this post with a bit of a digression.</description>
+    </item>
     
     <item>
       <title>A brief look into the 2020-2021 Premier League Season</title>

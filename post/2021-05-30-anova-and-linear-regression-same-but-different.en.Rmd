@@ -108,7 +108,7 @@ Above Python code should already key you in the similarities between linear regr
 
 $Y_{ij} = \mu + \tau_{1}\beta_{1} + \tau_{2}\beta_{2} + \epsilon_{ij}$
 
-*OLS*
+*OLS*:
 
 $Y_{ij} = \beta_{0} + X{1}\beta_{1} + X{2}\beta_{2} + \epsilon_{ij}$
 
@@ -145,7 +145,10 @@ Y_3 \\
 \dots \\
 Y_n
 \end{array}\right] = 
+$$
 
+
+$$
 \begin{pmatrix}
 1 & 0 & 0\\
 1 & 0 & 0\\
@@ -189,7 +192,10 @@ Y_3 \\
 \dots \\
 Y_n
 \end{array}\right] = 
+$$
 
+
+$$
 \begin{pmatrix}
 1 & x_{12} & x_{13}\\
 1 & x_{22} & x_{23}\\
@@ -213,7 +219,6 @@ Y_n
 \dots\\
 \epsilon_n\\
 \end{array}\right]
-
 $$
 
 Above can be represented as $Y = \beta_0 + X_{i1}\beta_1 + X_{i2}\beta_2 + \epsilon_{i}$ with the y-intercept $\beta_{0}$ and two slopes for each contiuous variable. 

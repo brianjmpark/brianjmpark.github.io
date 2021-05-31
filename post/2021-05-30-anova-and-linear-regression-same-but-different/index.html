@@ -15,7 +15,7 @@
 <meta itemprop="description" content="I preface this post with a bit of a digression.">
 <meta itemprop="datePublished" content="2021-05-30T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2021-05-30T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1232">
+<meta itemprop="wordCount" content="1279">
 <meta itemprop="image" content="https://brianjmpark.github.io/images/picture.jpg"/>
 
 
@@ -188,7 +188,7 @@
   <h1>ANOVA and linear regression: same but different</h1>
 
   <div class="post-date">
-    <time datetime="2021-05-30T00:00:00Z">May 30, 2021</time> &middot; 6 min read
+    <time datetime="2021-05-30T00:00:00Z">May 30, 2021</time> &middot; 7 min read
   </div>
 
   
@@ -247,7 +247,7 @@ print(anova_model.summary())</code></pre>
 <p>Above Python code should already key you in the similarities between linear regression and ANOVA, as well as the effects model equation. Indeede, the effects model equation is analogous to the linear regression model equation. For an example with two predictor variables:</p>
 <p><em>ANOVA</em>:</p>
 <p><span class="math inline">\(Y_{ij} = \mu + \tau_{1}\beta_{1} + \tau_{2}\beta_{2} + \epsilon_{ij}\)</span></p>
-<p><em>OLS</em></p>
+<p><em>OLS</em>:</p>
 <p><span class="math inline">\(Y_{ij} = \beta_{0} + X{1}\beta_{1} + X{2}\beta_{2} + \epsilon_{ij}\)</span></p>
 <p>The first term in each equation's right hand side equates to the grand mean with no contribution from individual group means (ANOVA) and the y-intercept of the regression line (OLS) - which, in fact, is not affected by the individual predictor terms. In other words, in both analogous cases, this term is a constant.</p>
 <p><span class="math inline">\(\tau_{1}\beta_{1}\)</span> and <span class="math inline">\(\tau_{2}\beta_{2}\)</span> terms in ANOVA represent the deviations from <span class="math inline">\(\mu\)</span> due to predictors <span class="math inline">\(X_{1}\)</span> and <span class="math inline">\(X_{2}\)</span> respectively, with the <span class="math inline">\(\beta\)</span> terms denoting the slopes of the covariates for each group.</p>
@@ -262,7 +262,17 @@ anova_model$coeffcients</code></pre>
 </div>
 <p><strong>Alternative look: matrix operations</strong></p>
 <p>Another way to visualize the parallels between ANOVA and OLS is by inspecting the model matrices. In the case of the ANOVA, the matrix projection can be shown as:</p>
-<p>$$=</p>
+<p><span class="math display">\[\left[\begin{array}
+{rrr}
+Y_1  \\
+Y_2  \\
+Y_3 \\
+\dots \\
+\dots \\
+Y_n
+\end{array}\right] = 
+\]</span></p>
+$$
 <span class="math display">\[\begin{pmatrix}
 1 &amp; 0 &amp; 0\\
 1 &amp; 0 &amp; 0\\
@@ -278,17 +288,41 @@ anova_model$coeffcients</code></pre>
 <p>+</p>
 <p>$$</p>
 <p>Above describes a one-way ANOVA model matrix with three groups, again, summarised as <span class="math inline">\(Y_{ij} = \mu + \tau_{i} + \epsilon_{ij}\)</span> where <span class="math inline">\(\tau\)</span> is the mean at each group. The model matrix for linear regression is straightforward and is shown below:</p>
-<p>$$=</p>
-<span class="math display">\[\begin{pmatrix}
+<p><span class="math display">\[\left[\begin{array}
+{rrr}
+Y_1  \\
+Y_2  \\
+Y_3 \\
+\dots \\
+\dots \\
+Y_n
+\end{array}\right] = 
+\]</span></p>
+<p><span class="math display">\[
+\begin{pmatrix}
 1 &amp; x_{12} &amp; x_{13}\\
 1 &amp; x_{22} &amp; x_{23}\\
 1 &amp; x_{32} &amp; x_{33}\\
 \dots &amp; \dots &amp; \dots\\
 \dots &amp; \dots &amp; \dots\\
 1 &amp; x_{n2} &amp; x_{n3}
-\end{pmatrix}\]</span>
-<p>+ </p>
-<p>$$</p>
+\end{pmatrix} 
+\left[\begin{array}
+{rrr}
+\beta_1 \\
+\beta_2\\
+\beta_3\\
+\end{array}\right]+
+\left[\begin{array}
+{rrr}
+\epsilon_1\\
+\epsilon_2\\
+\epsilon_3\\
+\dots\\
+\dots\\
+\epsilon_n\\
+\end{array}\right]
+\]</span></p>
 <p>Above can be represented as <span class="math inline">\(Y = \beta_0 + X_{i1}\beta_1 + X_{i2}\beta_2 + \epsilon_{i}\)</span> with the y-intercept <span class="math inline">\(\beta_{0}\)</span> and two slopes for each contiuous variable.</p>
 <p>Here, again it is clear that ANOVA is analogous to OLS in such a way that variables are dummy encoded and each predictor term represents a group mean rather than a continuous variable.</p>
 

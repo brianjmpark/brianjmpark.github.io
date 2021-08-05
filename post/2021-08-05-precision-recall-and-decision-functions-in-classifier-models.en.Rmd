@@ -233,3 +233,5 @@ In summary:
 * Models such as support vector machines are optimized using a loss function, which in turn is used by the decision function
 
 * ROC curves reflect the change in true- and false-positive rates across a range of decision thresholds
+
+Code + Jupyter notebook used for this post is available on my [GitHub Repo](https://github.com/snowoflondon/machine_learning_projects/blob/main/Recall_Precision_SVM.ipynb). 

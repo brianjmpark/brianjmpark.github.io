@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.72.0" />
+
+  <title>Precision, recall, and decision functions in classifier models &middot; Brian Jungmin Park</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Precision, recall, and decision functions in classifier models">
+<meta itemprop="description" content="The problem of unbalanced datasets is persistent in many data science projects.">
+<meta itemprop="datePublished" content="2021-08-05T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2021-08-05T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1196">
+<meta itemprop="image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+
+
+<meta itemprop="keywords" content="python,ml," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+<meta name="twitter:title" content="Precision, recall, and decision functions in classifier models"/>
+<meta name="twitter:description" content="The problem of unbalanced datasets is persistent in many data science projects."/>
+
+
+<meta property="og:title" content="Precision, recall, and decision functions in classifier models" />
+<meta property="og:description" content="The problem of unbalanced datasets is persistent in many data science projects." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://brianjmpark.github.io/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models/" />
+<meta property="og:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+<meta property="article:published_time" content="2021-08-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-05T00:00:00+00:00" /><meta property="og:site_name" content="Brian Jungmin Park" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #dbc8ae;
+  }
+
+  .read-more-link a {
+    border-color: #dbc8ae;
+  }
+
+  .pagination li a {
+    color: #dbc8ae;
+    border: 1px solid #dbc8ae;
+  }
+
+  .pagination li.active a {
+    background-color: #dbc8ae;
+  }
+
+  .pagination li a:hover {
+    background-color: #dbc8ae;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #dbc8ae;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/picture1.jpg" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Brian Jungmin Park</h1>
+
+      
+      <p class="lead">A Computer Science &amp; Sports Blog</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://brianjmpark.github.io">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/contact/">Contact</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/categories/">Categories</a>
+        </li><li>
+          <a href="/tags/">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://linkedin.com/in/bjp" rel="me" title="LinkedIn" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/snowoflondon/" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/brianjmpark2" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>Precision, recall, and decision functions in classifier models</h1>
+
+  <div class="post-date">
+    <time datetime="2021-08-05T00:00:00Z">Aug 5, 2021</time> &middot; 6 min read
+  </div>
+
+  
+
+
+<p>The problem of unbalanced datasets is persistent in many data science projects. The most classic example of this issue - as repeatedly iterated in many data science books - is building a classifier model for fraud transaction detection. In such cases, the rate of occurrence for a <em>hit</em> (i.e., a fradulent case) in the entire dataset may be as small as &gt;1% of total cases. How do we deal with this?</p>
+<p>We could try under-sampling the over-represented sample group, though this is not advisable as we'd be throwing away precious data and unnecessarily limiting our resources. We could over-sample the under-represented group through bootstrapping or a more elegant algorithm such as SMOTE. Another choice is to add <em>class weights</em> to artificially balance the sample groups.</p>
+<p>What if we naively did nothing about it and simply trained a model on the unbalanced data?</p>
+<div id="the-problem-of-unbalanced-data" class="section level1">
+<h1>The Problem of Unbalanced Data</h1>
+<p>First, generate a synthetic dataset with unbalanced classes (labels):</p>
+<pre class="python"><code>import numpy as np
+from sklearn.datasets import make_classification
+
+x, y = make_classification(n_samples=10000, n_features=2, n_redundant=0,
+                           n_clusters_per_class=1, weights=[0.95], 
+                           random_state=42)
+                           
+label, counts = np.unique(y, return_counts=True)
+
+print(np.asarray((label, counts)).T)</code></pre>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.00.40%20PM.png" />
+
+</div>
+<p>As you can see, only around 5% of the target labels are encoded as '1', while the rest are '0's. Now we naively fit a classifier model to this data as-is:</p>
+<p>For this exercise I am using a linear support vector machine with a 30/70 training-testing split.</p>
+<pre class="python"><code>from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state = 42)
+
+svm_model = SVC(kernel = &#39;linear&#39;, C = 1)
+svm_model.fit(x_train, y_train)
+y_pred = svm_model.predict(x_test)</code></pre>
+<p>Now evaluate the model on the test data using a plain accuracy metric as well as a cross-validation with 10-folds:</p>
+<pre class="python"><code>from sklearn.model_selection import cross_val_score
+from sklearn.metrics import accuracy_score
+
+print(&#39;Accuracy:&#39;, accuracy_score(y_test, y_pred))
+scores = cross_val_score(svm_model, x, y, cv = 10)
+print(&quot;K-fold cross validation accuracy: %0.2f (+/- %0.2f)&quot; % (scores.mean(), scores.std() * 2))</code></pre>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.01.14%20PM.png" />
+
+</div>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.01.18%20PM.png" />
+
+</div>
+<p>99% model accuracy indicates this model is exceptional at predicting the correct class. But what if we had a 'model' that was so incompetent that it predicted nothing but 0s all the time - regardless of predictor variables?</p>
+<pre class="python"><code>y_pred_dummymodel = np.tile(0, 3000)
+print(&#39;Accuracy:&#39;, accuracy_score(y_test, y_pred_dummymodel))</code></pre>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.01.49%20PM.png" />
+
+</div>
+<p>The completely incompetent model achieves 94%, which rightfully exposes the faults of our ways. This is exactly the reason why we should consider something like SMOTE to balance our data. But what if we look at more robust ways to evaluate our model?</p>
+</div>
+<div id="precision-and-recall" class="section level1">
+<h1>Precision and Recall</h1>
+<p>The <strong>precision</strong> evaluates the percentage of correct classifications out of all positive hits. A model that results in zero false positive cases has a precision of 1.0.</p>
+<p>The <strong>recall</strong> evaluates the percentage of positive hits which were identified correctly. A model that results in zero false negative cases has a recall of 1.0.</p>
+<p>These two metrics coexist in a push-and-pull relationship. Consider the following: we are trying to build a model that distinguishes between circles and squares. Let's say this model has some sort of an internal threshold score such that when score &gt; threshold score, it classifies the object as the positive class (in this case, let's assign the positive class as a circle). If this hypothetical threshold score is denoted by the green vertical bar, the model predicts everything on the right side of the bar as a circle and everything else, a square. Our precision score would be <strong>3/(3+0) = 1.0</strong> and our recall score would be <strong>3/(3+1) == 0.75</strong>. If the threshold score was the red bar instead, our precision would be <strong>4/(4+1) = 0.8</strong> and recall <strong>4/(4+0) == 1.0</strong>. So at an attempt to increase one, we've decreased the other score. This behaviour is as known as the precision/recall trade-off.</p>
+<pre class="python"><code>from sklearn.metrics import precision_recall_curve
+from sklearn.model_selection import cross_val_predict
+
+y_scores = cross_val_predict(svm_model, x_train, y_train, cv=3,
+                             method=&quot;decision_function&quot;)
+precision, recall, thresholds = precision_recall_curve(y_train, y_scores)
+
+import matplotlib.pyplot as plt
+
+plt.style.use(&#39;fivethirtyeight&#39;)
+plt.plot(thresholds, precision[:-1], &quot;b--&quot;)
+plt.plot(thresholds, recall[:-1], &quot;g-&quot;)
+plt.show()</code></pre>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.02.12%20PM.png" />
+
+</div>
+<p>Plotting precision and recall across decision thresholds reflects this tug-of-war behavior. The ideal situation then, is to pick a decision threshold which maximizes one before a steep drop-off in the other.</p>
+<p>The F1 score is a metric which consolidates both precision and recall into a single value. The exact derivation of this score is not shown here, but it is essentially a harmonic mean of the precision and recall scores, which gives higher weights to low values.</p>
+<pre class="python"><code>from sklearn.metrics import f1_score
+
+f1_score(y_test, y_pred)</code></pre>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.02.34%20PM.png" />
+
+</div>
+</div>
+<div id="decision-functions-and-loss-functions" class="section level1">
+<h1>Decision Functions and Loss Functions</h1>
+<p>The hypothetical 'decision threshold' above is not hypothetical at all. In fact, the idea of the threshold is based on a concept as known as the <em>decision function</em> which is loosely defined as a function that outputs a decision based on input data. In classification problems, this decision is is a prediction into a class. This function shouldn't be confused with the <em>loss function</em>, which is taken into account by the decision function and describes an estimated cost associated with each decision. The most obvious loss function is the mean-squared-error in regression problems, or cross-entropy in binary classification models.</p>
+<p>In linear support vector machines, the decision boundary is defined as a line (or a 'hyperplane') which maximizes the distance from linearly separable classes (i.e., data points belonging to two distinct classes). The support vector machine model then reduces to an optimization problem which attempts to maximize the margins from the decision boundary (i.e., the hyperplane). This is summarized by a hinge loss function, which attempts to minimize the error associated with the margin.</p>
+<p>This hinge loss function can then be optimized by methods such as the gradient descent. In Scikit-Learn, we can do this by calling the stochastic gradient descent classifier:</p>
+<pre class="python"><code>from sklearn.linear_model import SGDClassifier
+
+SGD_model = SGDClassifier(loss=&quot;hinge&quot;, penalty=&quot;l2&quot;, max_iter=20)
+SGD_model.fit(x_train, y_train)
+y_pred2 = SGD_model.predict(x_test)
+f1_score(y_test, y_pred2)</code></pre>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.02.56%20PM.png" />
+
+</div>
+<p>Above code fits a linear support vector machine on our previous training data with L2 regularization. We can inspect our decision function as well:</p>
+<pre class="python"><code>x1 = x_test[0]
+x1 = x1.reshape(1, -1)
+
+SGD_model.decision_function(x1)</code></pre>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.03.18%20PM.png" />
+
+</div>
+<p>Since this is a binary classification problem, the output of decision function is simple. The output tells us which side of the hyperplane the data point is on. Based on this decision function output, the data point is classified as one label or the other.</p>
+</div>
+<div id="roc-curves" class="section level1">
+<h1>ROC Curves</h1>
+<p>Finally, the concept of the decision threshold, precision, and recall leads to the widely used ROC curves. ROC curves plot recall (true positive rate) versus the false posiive rate. Each metric is plotted across a range of decision thresholds.</p>
+<pre class="python"><code>from sklearn.metrics import roc_curve
+
+fpr, tpr, thresholds = roc_curve(y_train, y_scores)
+
+plt.plot(fpr, tpr, linewidth=3)
+plt.plot([0, 1], [0, 1], &#39;k--&#39;)
+plt.show()</code></pre>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.03.39%20PM.png" />
+
+</div>
+<p>The tpr = fpr diagonal line indicates a completely random classifier. An effective model's ROC curve hugs the upper left corner - which can be quantified by the area under the curve.</p>
+<pre class="python"><code>from sklearn.metrics import roc_auc_score
+
+roc_auc_score(y_train, y_scores)</code></pre>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen%20Shot%202021-08-05%20at%204.03.56%20PM.png" />
+
+</div>
+</div>
+<div id="concluding-remarks" class="section level1">
+<h1>Concluding Remarks</h1>
+<p>In summary:</p>
+<ul>
+<li><p>Unbalanced datasets require special care in model assessment</p></li>
+<li><p>Metrics such as precision, recall, and F1 score provide a more robust way to evaluate classifier model</p></li>
+<li><p>The decision threshold and associated decision functions affect the precision/recall trade-off</p></li>
+<li><p>Models such as support vector machines are optimized using a loss function, which in turn is used by the decision function</p></li>
+<li><p>ROC curves reflect the change in true- and false-positive rates across a range of decision thresholds</p></li>
+</ul>
+</div>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy; Brian Jungmin Park 2021
+
+    &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+    &middot; Build with <a href="https://gohugo.io/" target="_blank">Hugo</a> & <a href="https://themes.gohugo.io/soho/" target="_blank">Soho</a> theme
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>

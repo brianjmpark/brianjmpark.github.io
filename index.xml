@@ -6,10 +6,19 @@
     <description>Recent content in Soho Theme on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Precision, recall, and decision functions in classifier models</title>
+      <link>https://brianjmpark.github.io/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models/</link>
+      <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models/</guid>
+      <description>The problem of unbalanced datasets is persistent in many data science projects.</description>
+    </item>
     
     <item>
       <title>ANOVA and linear regression: same but different</title>

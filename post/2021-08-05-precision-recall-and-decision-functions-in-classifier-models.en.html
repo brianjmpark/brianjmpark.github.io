@@ -73,6 +73,10 @@ print(&#39;Accuracy:&#39;, accuracy_score(y_test, y_pred_dummymodel))</code></pr
 <p>The <strong>precision</strong> evaluates the percentage of correct classifications out of all positive hits. A model that results in zero false positive cases has a precision of 1.0.</p>
 <p>The <strong>recall</strong> evaluates the percentage of positive hits which were identified correctly. A model that results in zero false negative cases has a recall of 1.0.</p>
 <p>These two metrics coexist in a push-and-pull relationship. Consider the following: we are trying to build a model that distinguishes between circles and squares. Let's say this model has some sort of an internal threshold score such that when score &gt; threshold score, it classifies the object as the positive class (in this case, let's assign the positive class as a circle). If this hypothetical threshold score is denoted by the green vertical bar, the model predicts everything on the right side of the bar as a circle and everything else, a square. Our precision score would be <strong>3/(3+0) = 1.0</strong> and our recall score would be <strong>3/(3+1) == 0.75</strong>. If the threshold score was the red bar instead, our precision would be <strong>4/(4+1) = 0.8</strong> and recall <strong>4/(4+0) == 1.0</strong>. So at an attempt to increase one, we've decreased the other score. This behaviour is as known as the precision/recall trade-off.</p>
+<div class="figure">
+<img src="/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/circles.png" />
+
+</div>
 <pre class="python"><code>from sklearn.metrics import precision_recall_curve
 from sklearn.model_selection import cross_val_predict
 

@@ -17,8 +17,8 @@ categories:
 <p>The problem of unbalanced datasets is persistent in many data science projects. The most classic example of this issue - as repeatedly iterated in many data science books - is building a classifier model for fraud transaction detection. In such cases, the rate of occurrence for a <em>hit</em> (i.e., a fradulent case) in the entire dataset may be as small as &gt;1% of total cases. How do we deal with this?</p>
 <p>We could try under-sampling the over-represented sample group, though this is not advisable as we'd be throwing away precious data and unnecessarily limiting our resources. We could over-sample the under-represented group through bootstrapping or a more elegant algorithm such as SMOTE. Another choice is to add <em>class weights</em> to artificially balance the sample groups.</p>
 <p>What if we naively did nothing about it and simply trained a model on the unbalanced data?</p>
-<div id="the-problem-of-unbalanced-data" class="section level1">
-<h1>The Problem of Unbalanced Data</h1>
+<div id="the-problem-of-unbalanced-data" class="section level2">
+<h2>The Problem of Unbalanced Data</h2>
 <p>First, generate a synthetic dataset with unbalanced classes (labels):</p>
 <pre class="python"><code>import numpy as np
 from sklearn.datasets import make_classification
@@ -68,8 +68,8 @@ print(&#39;Accuracy:&#39;, accuracy_score(y_test, y_pred_dummymodel))</code></pr
 </div>
 <p>The completely incompetent model achieves 94%, which rightfully exposes the faults of our ways. This is exactly the reason why we should consider something like SMOTE to balance our data. But what if we look at more robust ways to evaluate our model?</p>
 </div>
-<div id="precision-and-recall" class="section level1">
-<h1>Precision and Recall</h1>
+<div id="precision-and-recall" class="section level2">
+<h2>Precision and Recall</h2>
 <p>The <strong>precision</strong> evaluates the percentage of correct classifications out of all positive hits. A model that results in zero false positive cases has a precision of 1.0.</p>
 <p>The <strong>recall</strong> evaluates the percentage of positive hits which were identified correctly. A model that results in zero false negative cases has a recall of 1.0.</p>
 <p>These two metrics coexist in a push-and-pull relationship. Consider the following: we are trying to build a model that distinguishes between circles and squares. Let's say this model has some sort of an internal threshold score such that when score &gt; threshold score, it classifies the object as the positive class (in this case, let's assign the positive class as a circle). If this hypothetical threshold score is denoted by the green vertical bar, the model predicts everything on the right side of the bar as a circle and everything else, a square. Our precision score would be <strong>3/(3+0) = 1.0</strong> and our recall score would be <strong>3/(3+1) == 0.75</strong>. If the threshold score was the red bar instead, our precision would be <strong>4/(4+1) = 0.8</strong> and recall <strong>4/(4+0) == 1.0</strong>. So at an attempt to increase one, we've decreased the other score. This behaviour is as known as the precision/recall trade-off.</p>
@@ -104,8 +104,8 @@ f1_score(y_test, y_pred)</code></pre>
 
 </div>
 </div>
-<div id="decision-functions-and-loss-functions" class="section level1">
-<h1>Decision Functions and Loss Functions</h1>
+<div id="decision-functions-and-loss-functions" class="section level2">
+<h2>Decision Functions and Loss Functions</h2>
 <p>The hypothetical 'decision threshold' above is not hypothetical at all. In fact, the idea of the threshold is based on a concept as known as the <em>decision function</em> which is loosely defined as a function that outputs a decision based on input data. In classification problems, this decision is is a prediction into a class. This function shouldn't be confused with the <em>loss function</em>, which is taken into account by the decision function and describes an estimated cost associated with each decision. The most obvious loss function is the mean-squared-error in regression problems, or cross-entropy in binary classification models.</p>
 <p>In linear support vector machines, the decision boundary is defined as a line (or a 'hyperplane') which maximizes the distance from linearly separable classes (i.e., data points belonging to two distinct classes). The support vector machine model then reduces to an optimization problem which attempts to maximize the margins from the decision boundary (i.e., the hyperplane). This is summarized by a hinge loss function, which attempts to minimize the error associated with the margin.</p>
 <p>This hinge loss function can then be optimized by methods such as the gradient descent. In Scikit-Learn, we can do this by calling the stochastic gradient descent classifier:</p>
@@ -130,8 +130,8 @@ SGD_model.decision_function(x1)</code></pre>
 </div>
 <p>Since this is a binary classification problem, the output of decision function is simple. The output tells us which side of the hyperplane the data point is on. Based on this decision function output, the data point is classified as one label or the other.</p>
 </div>
-<div id="roc-curves" class="section level1">
-<h1>ROC Curves</h1>
+<div id="roc-curves" class="section level2">
+<h2>ROC Curves</h2>
 <p>Finally, the concept of the decision threshold, precision, and recall leads to the widely used ROC curves. ROC curves plot recall (true positive rate) versus the false posiive rate. Each metric is plotted across a range of decision thresholds.</p>
 <pre class="python"><code>from sklearn.metrics import roc_curve
 
@@ -153,8 +153,8 @@ roc_auc_score(y_train, y_scores)</code></pre>
 
 </div>
 </div>
-<div id="concluding-remarks" class="section level1">
-<h1>Concluding Remarks</h1>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding Remarks</h2>
 <p>In summary:</p>
 <ul>
 <li><p>Unbalanced datasets require special care in model assessment</p></li>

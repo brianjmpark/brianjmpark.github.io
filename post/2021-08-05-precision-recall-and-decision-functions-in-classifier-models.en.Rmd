@@ -21,7 +21,7 @@ We could try under-sampling the over-represented sample group, though this is no
 What if we naively did nothing about it and simply trained a model on the unbalanced data?
 
 
-# The Problem of Unbalanced Data
+## The Problem of Unbalanced Data
 
 First, generate a synthetic dataset with unbalanced classes (labels):
 
@@ -94,7 +94,7 @@ print('Accuracy:', accuracy_score(y_test, y_pred_dummymodel))
 The completely incompetent model achieves 94%, which rightfully exposes the faults of our ways. This is exactly the reason why we should consider something like SMOTE to balance our data. But what if we look at more robust ways to evaluate our model?
 
 
-# Precision and Recall
+## Precision and Recall
 
 
 The **precision** evaluates the percentage of correct classifications out of all positive hits. A model that results in zero false positive cases has a precision of 1.0.
@@ -146,7 +146,7 @@ f1_score(y_test, y_pred)
 ![](/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen Shot 2021-08-05 at 4.02.34 PM.png)
 
 
-# Decision Functions and Loss Functions
+## Decision Functions and Loss Functions
 
 
 The hypothetical 'decision threshold' above is not hypothetical at all. In fact, the idea of the threshold is based on a concept as known as the *decision function* which is loosely defined as a function that outputs a decision based on input data. In classification problems, this decision is is a prediction into a class. This function shouldn't be confused with the *loss function*, which is taken into account by the decision function and describes an estimated cost associated with each decision. The most obvious loss function is the mean-squared-error in regression problems, or cross-entropy in binary classification models. 
@@ -188,7 +188,7 @@ SGD_model.decision_function(x1)
 Since this is a binary classification problem, the output of decision function is simple. The output tells us which side of the hyperplane the data point is on. Based on this decision function output, the data point is classified as one label or the other. 
 
 
-# ROC Curves
+## ROC Curves
 
 
 Finally, the concept of the decision threshold, precision, and recall leads to the widely used ROC curves. ROC curves plot recall (true positive rate) versus the false posiive rate. Each metric is plotted across a range of decision thresholds. 
@@ -221,7 +221,7 @@ roc_auc_score(y_train, y_scores)
 ![](/post/2021-08-05-precision-recall-and-decision-functions-in-classifier-models.en_files/Screen Shot 2021-08-05 at 4.03.56 PM.png)
 
 
-# Concluding Remarks
+## Concluding Remarks
 
 
 In summary:

@@ -84,15 +84,6 @@
     </item>
     
     <item>
-      <title>R Basics: piping in tidyverse</title>
-      <link>https://brianjmpark.github.io/post/r-basics-piping-in-tidy-verse/</link>
-      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://brianjmpark.github.io/post/r-basics-piping-in-tidy-verse/</guid>
-      <description>Working in R, oftentimes I find myself creating intermediate variables that serve no purpose other than to exist as a middle man.</description>
-    </item>
-    
-    <item>
       <title>Toolbox for frequently used UNIX commands</title>
       <link>https://brianjmpark.github.io/post/toolbox-for-frequently-used-unix-commands/</link>
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>

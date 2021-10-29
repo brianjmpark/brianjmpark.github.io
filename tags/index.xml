@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Brian Jungmin Park</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 29 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>ml</title>
       <link>https://brianjmpark.github.io/tags/ml/</link>
-      <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 29 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/tags/ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r</title>
+      <link>https://brianjmpark.github.io/tags/r/</link>
+      <pubDate>Fri, 29 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/tags/r/</guid>
       <description></description>
     </item>
     
@@ -53,15 +62,6 @@
       <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/tags/football/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>r</title>
-      <link>https://brianjmpark.github.io/tags/r/</link>
-      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://brianjmpark.github.io/tags/r/</guid>
       <description></description>
     </item>
     

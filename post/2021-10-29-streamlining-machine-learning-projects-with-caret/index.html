@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.72.0" />
+
+  <title>Streamlining machine learning projects with caret &middot; Brian Jungmin Park</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Streamlining machine learning projects with caret">
+<meta itemprop="description" content="A typical predictive learning workflow consists of five main facets.">
+<meta itemprop="datePublished" content="2021-10-29T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2021-10-29T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1430">
+<meta itemprop="image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+
+
+<meta itemprop="keywords" content="r,ML," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+<meta name="twitter:title" content="Streamlining machine learning projects with caret"/>
+<meta name="twitter:description" content="A typical predictive learning workflow consists of five main facets."/>
+
+
+<meta property="og:title" content="Streamlining machine learning projects with caret" />
+<meta property="og:description" content="A typical predictive learning workflow consists of five main facets." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://brianjmpark.github.io/post/2021-10-29-streamlining-machine-learning-projects-with-caret/" />
+<meta property="og:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+<meta property="article:published_time" content="2021-10-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-29T00:00:00+00:00" /><meta property="og:site_name" content="Brian Jungmin Park" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #dbc8ae;
+  }
+
+  .read-more-link a {
+    border-color: #dbc8ae;
+  }
+
+  .pagination li a {
+    color: #dbc8ae;
+    border: 1px solid #dbc8ae;
+  }
+
+  .pagination li.active a {
+    background-color: #dbc8ae;
+  }
+
+  .pagination li a:hover {
+    background-color: #dbc8ae;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #dbc8ae;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/picture1.jpg" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Brian Jungmin Park</h1>
+
+      
+      <p class="lead">A Computer Science &amp; Sports Blog</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://brianjmpark.github.io">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/contact/">Contact</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/categories/">Categories</a>
+        </li><li>
+          <a href="/tags/">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://linkedin.com/in/bjp" rel="me" title="LinkedIn" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/snowoflondon/" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/brianjmpark2" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>Streamlining machine learning projects with caret</h1>
+
+  <div class="post-date">
+    <time datetime="2021-10-29T00:00:00Z">Oct 29, 2021</time> &middot; 7 min read
+  </div>
+
+  
+
+
+<p>A typical predictive learning workflow consists of five main facets. These are:</p>
+<ul>
+<li>data splitting</li>
+<li>data pre-processing</li>
+<li>feature selection</li>
+<li>model training and tuning</li>
+<li>variable importance estimation</li>
+</ul>
+<p>The caret package in R streamlines this process by offering a set of function that executes the above and more (e.g., multiple model comparisons, sub-sampling, etc.). The R object containing the trained model from caret can also be used by other packages such as MLeval and MLmetrics, which digs deeper into predictive model evaluations.</p>
+<p>Say we were solely concerned with building an optimal predictive model for a Kaggle project. Where do we start? Here, I've downloaded a toy dataset from Kaggle (<a href="https://www.kaggle.com/kkhandekar/all-datasets-for-practicing-ml" class="uri">https://www.kaggle.com/kkhandekar/all-datasets-for-practicing-ml</a>) which contains properties of different wine (the predictors, <em>x</em>) and a wine quality rating (the class - also known as the ground truth, <em>Y</em>). The goal will be to build a predictive model based on this data using caret.</p>
+<p>In general, it's a good idea to convert the class column - here it's named 'quality' and it is an integer value - as a factor.</p>
+<pre class="r"><code>library(tidyverse)
+df &lt;- read_delim(&#39;Class_Winequality.csv&#39;, delim = &#39;;&#39;)
+df &lt;- df %&gt;% mutate(quality = factor(quality)) %&gt;% relocate(quality) 
+summary(df %&gt;% select(-quality))</code></pre>
+<p>Quick summary of the predictor variable shows the following:</p>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/summary1.png" />
+
+</div>
+<p>It's apparent that our set of predictors are heterogeneous in terms of their ranges. Usually, it's a good rule of thumb to have small predictor values, possibly centered and scaled to have a mean of zero and standard deviation of 1. The exact nuance of whether a predictor variable needs pre-processing depends on the analysis and problem at hand. Here, without pre-processing, this is what our predictors look like in terms of distribution:</p>
+<pre class="r"><code>df2 &lt;- df %&gt;% pivot_longer(-quality, names_to = &#39;Property&#39;, values_to = &#39;Values&#39;)
+
+ggplot(df2, aes(x = quality, y = Values)) + geom_boxplot(aes(fill = quality), alpha = .4) + facet_wrap(~Property, scales = &#39;free&#39;) + theme_classic() + theme(legend.position = &#39;none&#39;)</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/1.png" />
+
+</div>
+<p>Later, I will pre-process the data and compare the distribution.</p>
+<p>First, as caret does not like the class variable to start with a number, I am changing the variable values slightly to have a 'Class_' prefix. The data is then split into 80/20 partitions for model training.</p>
+<pre class="r"><code>library(caret)
+set.seed(12345)
+
+df &lt;- df %&gt;% mutate(quality = factor(str_c(&#39;Class_&#39;, quality))) 
+
+trainIdx &lt;- createDataPartition(df$quality, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+
+df_train &lt;- df[ trainIdx,]
+df_test  &lt;- df[-trainIdx,]</code></pre>
+<pre class="r"><code>dim(df_train)</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/dim1.png" />
+
+</div>
+<pre class="r"><code>dim(df_test)</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/dim2.png" />
+
+</div>
+<p>Now I pre-process the training and testing data. Here I define the pre-processing method as 'center' and 'scale' to do the following:</p>
+<ul>
+<li>Center: subtract the data by the overall mean</li>
+<li>Scale: divide the centered data by the overall standard deviation</li>
+</ul>
+<p>Note that I can pass every column into the preProcess function, as it will ignore columns which are factors. Thus we don't have to worry about whether it will mess with our class column values.</p>
+<pre class="r"><code>preProcValues &lt;- preProcess(df_train, method = c(&#39;center&#39;, &#39;scale&#39;))
+preProcValues</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/preproc.png" />
+
+</div>
+<p>Using the preProcess object, I transform the training and testing data:</p>
+<pre class="r"><code>df_train &lt;- predict(preProcValues, df_train)
+df_test &lt;- predict(preProcValues, df_test)</code></pre>
+<p>Now when I check the distribution of the predictors, the data are clearly centered around zero.</p>
+<pre class="r"><code>summary(df_train %&gt;% select(-quality))</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/summary2.png" />
+
+</div>
+<p>Training a model with the pre-processed data is simple: here, my model of choice is a Random Forest classifier, which is specified by the 'ranger' method within the train function. For the re-sampling of the training data, I am using a 5-fold cross validation. Note here I can specify different methods of re-sampling, such as out-of-bag or repeated k-fold.</p>
+<pre class="r"><code>tr &lt;- trainControl(method = &#39;cv&#39;, number = 5, classProbs = TRUE)
+
+model &lt;- train(quality ~., data = df_train, method = &#39;ranger&#39;, importance = &#39;impurity&#39;, trControl = tr)
+
+model</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/rfmodel.png" />
+
+</div>
+<p>Caret automatically runs model tuning to find the optimal set of hyperparameters. We can also directly specify a range of hyperparameters we'd like to test, which is shown later.</p>
+<pre class="r"><code>model$bestTune</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/besttune.png" />
+
+</div>
+<p>The tuned model is tested using the test data set, which was unseen by the model during the training and tuning process. The confusion matrix shows the proportion of corrected classified samples per class.</p>
+<pre class="r"><code>pred &lt;- predict(model, df_test)
+
+confusionMatrix(pred, df_test$quality)</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/confusion1.png" />
+
+</div>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/confusion2.png" />
+
+</div>
+<p>Extracting variable importance from the trained model is also straightforward:</p>
+<pre class="r"><code>df_imp &lt;- varImp(model)$importance %&gt;% rownames_to_column(var = &#39;Var&#39;) %&gt;%
+  as_tibble() %&gt;% arrange(desc(Overall))
+
+ggplot(df_imp, aes(x = reorder(Var, Overall), y = Overall)) + 
+  geom_point(stat = &#39;identity&#39;, color = &#39;red&#39;) + 
+  geom_segment(aes(x = reorder(Var, Overall), 
+                   xend = reorder(Var, Overall),
+                   y = 0,
+                   yend = Overall)) + 
+  theme_classic() + coord_flip() + xlab(&#39;&#39;) + ylab(&#39;Var. Imp.&#39;)</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/2.png" />
+
+</div>
+<p>Note the default values for variable importance are normalized such that the top variable is set to a value of 100. This behavior can be turned off by setting 'scale = FALSE' within the varImp function. As specified during the model training process, the variable importance here is defined by a decrease in Gini impurity following permutation of a given predictor variable <em>x</em>.</p>
+<p>In cases where our data set contains an enormous amount of predictor variables, feature selection may be considered. In our case, since we only had a dozen variables this was not an issue. Regardless, here I run a feature selection algorithm to demonstrate the central concept. Feature selection essentially boils down to selecting the top <em>n</em> predictor variables sorted by some measure of importance or value. This can involve using wrapper functions as in the case of recursive feature selection - which essentially fits a model such as the random forest and ranks variables by variable importance - as well as dimensionality reduction techniques such as PCA. Feature selection can improve the analysis by reducing the overall training time and computational load, reducing the risk of over-fitting, and improving overall model accuracy.</p>
+<p>Two of the simplest feature selection methods caret offers are anovaScores and gamScores. As the name implies, anovaScores fits a simple OLS model between the predictors and the class variable. Generalized additive models (GAMs) are used by gamScores instead. Both methods return a p-value indicating the likelihood of a relationship between a given predictor<br />
+<em>x</em> and the class variable <em>Y</em>. Here, I define a function using anovaScores and run feature selection on our training data.</p>
+<pre class="r"><code>fit_anova &lt;- function(x, y) {
+    anova_res &lt;- apply(x, 2, function(f) {anovaScores(f, y)})
+    return(anova_res)
+}
+
+anova_res &lt;- fit_anova(x = select(df_train, -quality), y = df_train$quality)
+
+anova_res &lt;- as.data.frame(anova_res)
+
+anova_res &lt;- anova_res %&gt;% rownames_to_column(var = &#39;Var&#39;) %&gt;% as_tibble() %&gt;% rename(anova_pVal = anova_res) %&gt;% arrange(anova_res)
+
+
+ggplot(anova_res, aes(x = reorder(Var, -anova_pVal), y = -anova_pVal)) + 
+  geom_point(stat = &#39;identity&#39;, color = &#39;red&#39;) + 
+  geom_segment(aes(x = reorder(Var, -anova_pVal), 
+                   xend = reorder(Var, -anova_pVal),
+                   y = 0,
+                   yend = -anova_pVal)) + 
+  theme_classic() + coord_flip() + xlab(&#39;&#39;) + ylab(&#39;ANOVA p-Val.&#39;)</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/3.png" />
+
+</div>
+<p>As seen, the top predictors from feature selection reflect the variable importance results from our predictive model. This is unsurprising, as our data is relatively simple and low dimensional.</p>
+<p>Caret also offers comparison of multiple predictive models. Here, using the same training set, I define three additional models:</p>
+<ul>
+<li>support vector machine using radial basis function ('svmRadial')</li>
+<li>gradient boosting machine ('gbm')</li>
+<li>k-nearest neighbors ('knn')</li>
+</ul>
+<p>Note that for each model training, caret tunes each model's respective hyperparameters to arrive at a final model (e.g., 'k' for the k-nearest neighbor model, 'C' (cost) for the support vector machine model).</p>
+<p>Collating the three new models with the previous random forest model is done using the 'resamples' function.</p>
+<pre class="r"><code>model2 &lt;- train(quality ~., data = df_train, method = &#39;svmRadial&#39;, trControl = tr)
+
+model3 &lt;- train(quality ~., data = df_train, method = &#39;gbm&#39;, trControl = tr, verbose = FALSE)
+
+model4 &lt;- train(quality ~., data = df_train, method = &#39;knn&#39;, trControl = tr)
+
+comps &lt;- resamples(list(RF = model, SVM = model2, GBM = model3, KNN = model4))</code></pre>
+<p>The model performances are summarized as such:</p>
+<pre class="r"><code>summary(comps)</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/modelcomp.png" />
+
+</div>
+<p>This is visualized by the following:</p>
+<pre class="r"><code>dotplot(comps)</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/4.png" />
+
+</div>
+<p>Finally, in order to fine-tune the model parameters ourselves, I can provide a range for each hyperparameter myself. Providing this information to the model training step is also straightforward:</p>
+<pre class="r"><code>ranger_grid &lt;- expand.grid(mtry = c(2, 4, 8, 10), splitrule = c(&quot;gini&quot;, &quot;extratrees&quot;), min.node.size = c(1, 3, 5))
+
+model5 &lt;- train(quality ~., data = df_train, method = &#39;ranger&#39;, importance = &#39;impurity&#39;, trControl = tr, tuneGrid = ranger_grid)
+
+model5</code></pre>
+<div class="figure">
+<img src="/post/2021-10-29-streamlining-machine-learning-projects-with-caret.en_files/newmodel.png" />
+
+</div>
+<p>In summary, caret allows an easy access to a streamlined workflow. Despite the simple nature of automation, however, user must take necessary caution at each step to guide each piece of input and output. Feature engineering, for instance, is a vital chunk of data preparation and <em>a priori</em> knowledge of input data can guide model preparation. Real life data often requires imputation, which can have a great impact on model interpretation as well as performance. Considerations in correlating variables and co-linearity must also be considered. Regardless, the five aforementioned facets of every machine learning problem remains vital and at the forefront of a typical workflow.</p>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy; Brian Jungmin Park 2021
+
+    &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+    &middot; Build with <a href="https://gohugo.io/" target="_blank">Hugo</a> & <a href="https://themes.gohugo.io/soho/" target="_blank">Soho</a> theme
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>

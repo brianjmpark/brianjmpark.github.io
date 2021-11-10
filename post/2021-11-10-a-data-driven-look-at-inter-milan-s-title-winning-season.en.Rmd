@@ -1,0 +1,105 @@
+---
+title: "A data-driven look at Inter Milan’s title-winning season"
+author: ''
+date: '2021-11-10'
+description: ''
+slug: []
+tags:
+- sports
+- football
+categories:
+- sports
+- football
+---
+
+Last season, Italy's top tier football league saw Juventus' reign of consecutive titles end. Internazionale - colloquially as known as Inter Milan - blitzed through Serie A, finishing at the top of the table to claim the Scudetto. Inter's manager at the time, Antonio Conte, recently took charge of the Premier League side Tottenham Hotspur. Residing firmly mid-table at the time of writing, Spurs are hoping to climb the league table under their new Italian head coach. This post reviews Inter's title-winning '20-'21 season to catch a glimpse of how Spurs will hope to play for the remainder of the season.
+
+
+Inter frequently played a formation of 3-5-2, employing traditional wingbacks moving vertically up and down the pitch and a two-striker tandem up front. Both Nicolo Barella and Christian Eriksen played a box-to-box role while Mario Brozovic was employed as a holding midfielder just in front of the three centerbacks. 
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/lineup.png)
+
+
+In terms of expected goal involvement (xG + xA), all three center-forwards (Alexis Sanchez often came off the bench as an attacking sub) performed better than expected. This reflects the reality where Inter had one of the highest goal-tally in Serie A (2.21 goals per 90, only trailing Atalanta) despite a lower shot volume than teams such as Juventus, Napoli, and Atalanta. Combined with Inter's counter-attacking style of play with an emphasis of midfielders progressing the ball to the wide wingbacks - this certainly paints a picture of Inter's deadly, efficient goal execution. 
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/1.png)
+
+
+In terms of pass attempt classification, Inter's defenders notably did not resort to passing the ball long. This is quite obviously biased in a sense that Inter's wingbacks essentially played as wingers in Conte's system. Another takeaway here is that Inter's workhorse midfield trio showed a good balance of short- and mid-range passing. 
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/2.png)
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/3.png)
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/4.png)
+
+
+When looking at pass completion into the final third of the pitch, the role of Inter's midfielders bridging the defense to the offense is apparent. The regular wingback duo of Hakimi and Perisic showed lower pass completion into final third, indicating they may be receiving the ball when they're already in the final third. Centerbacks Alessandro Bastoni and Milan Skriniar completed more than 4 successful passes into the final third per 90 minutes, which suggests playing a back-three in this system allows one or two of the centerbacks to have the positional and creative freedom to move up and down the pitch.
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/5.png)
+
+
+What happens when we split pass completion into progressive passes? Again, this data shows the role of Inter's midfielders in progressing the ball to the center forwards. Brozovic, Barella, Eriksen, Sensi, and Vidal all showed relatively high proportion of progressive pass completion per 90 minutes. 
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/6.png)
+
+
+When considering crosses, as expected, the wingbacks in Inter's system showed the highest cross completion per 90. However, none of Inter's defenders completed more than 1.0 crosses per 90 minutes, suggesting Inter did not have to rely on crosses into the final third as their main mode of offense. 
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/7.png)
+
+
+The role of Inter's defenders become clearer when looking at their proportion of touches. In particular, the wingbacks - Hakimi, Perisic, Young, Darmian - all had the highest proportion of ball touches in the attacking third. This reiterates the importance of attacking wingbacks in Conte's 3-5-2 (or 3-1-4-2) system (think back to the roles of Marcos Alonso and Victor Moses in Conte's Premier League winning Chelsea squad). Of Inter's 3 centerbacks with highest minutes played, it is also apparent that Stefan de Vrij played a more of a true defender's role while Skriniar and Bastoni wandered further up the pitch into the middle third more often.
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/8.png)
+
+
+In terms of midfielders, the contrast of Eriksen/Barella's box-to-box role to Brozovic's traditional defensive midfielder role is obvious. For center forwards, none of the three forwards played exclusively in the opposition's penalty box as a target man, and often resided between the middle- and attacking third.
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/9.png)
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/10.png)
+
+
+Distance per Carry, as shown below, is calculated as the ratio between total distance carrying the ball and the number of ball touches. This measures the distance the ball is carried per each time a player receives the ball. This metric shows that Inter's defenders played a big role in carrying the ball before releasing a pass. Centerbacks Stefan de Vrij and Alessandro Bastoni often carried the ball, suggesting Inter's likelihood of starting the attack from the back. Both wingbacks expectedly carried the ball frequently as expected. 
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/11.png)
+
+
+Above observation is also reflected in a scatterplot of pass reception vs. distance covered per 90 minutes. Data points above the blue line indicates players who progressively carried the ball farther per each pass reception. 
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/12.png)
+
+
+Now, how do Inter's stats compare to the rest of the league? Below shows xG per 90 versus actual goals per 90. As discussed earlier, Inter achieved above expectation in terms of goal scoring. As expected as well, the top 5 teams in Serie A in the '20-'21 season (Inter, Juventus, AC Milan, Atalanta, and Napoli) all outperformed their xG. 
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/13.png)
+
+
+When comparing distance per carry metric in Serie A, it is apparent that this metric is not indicative of team performace over the course of the season. Inter had the 6th lowest value in Serie A, suggesting that Inter - as well as other top teams such as Juventus, Napoli, and Atalanta - do not rely on high-distance ball carrying per pass reception for their mode of offense. It is likely their tactics require a series of pass completion instead to progress into the final third.
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/14.png)
+
+
+Indeed, when considering progressive distance covered, Inter are placed well above the league median. This suggest Inter's tactics involve a high volume of pass completion in combination with progressive distance covered. 
+
+
+![](/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season.en_files/15.png)
+
+
+In summary, Inter played a three-centerback system where the two centerbacks were allowed more creative freedom to start attacking sequences. Both wingbacks moved far up the pitch, having the highest ball touch proportions in the final third without having to resort to crossing the ball into the box. Inter's midfielder trio were tasked with progressive passes, linking the middle of the pitch to the center forwards. Inter were then efficient in the final third, vastly outperforming their expected goals to finish at the top of the league. If recent history were predictive of future style-of-play, then it is safe to assume that Conte's Tottenham this season will employ similar tactics. 

@@ -3,8 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://brianjmpark.github.io/post/2021-11-10-a-data-driven-look-at-inter-milan-s-title-winning-season/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://brianjmpark.github.io/categories/</loc>
-    <lastmod>2021-10-29T00:00:00+00:00</lastmod>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/football/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/categories/football/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/post/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/sports/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/categories/sports/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://brianjmpark.github.io/tags/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -14,11 +54,6 @@
   
   <url>
     <loc>https://brianjmpark.github.io/tags/ml/</loc>
-    <lastmod>2021-10-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/post/</loc>
     <lastmod>2021-10-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -33,17 +68,7 @@
   </url>
   
   <url>
-    <loc>https://brianjmpark.github.io/</loc>
-    <lastmod>2021-10-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://brianjmpark.github.io/post/2021-10-29-streamlining-machine-learning-projects-with-caret/</loc>
-    <lastmod>2021-10-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/</loc>
     <lastmod>2021-10-29T00:00:00+00:00</lastmod>
   </url>
   
@@ -89,26 +114,6 @@
   
   <url>
     <loc>https://brianjmpark.github.io/post/2021-05-27-a-brief-look-into-the-2020-2021-premier-league-season/</loc>
-    <lastmod>2021-05-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/football/</loc>
-    <lastmod>2021-05-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/categories/football/</loc>
-    <lastmod>2021-05-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/tags/sports/</loc>
-    <lastmod>2021-05-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://brianjmpark.github.io/categories/sports/</loc>
     <lastmod>2021-05-27T00:00:00+00:00</lastmod>
   </url>
   

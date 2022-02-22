@@ -198,23 +198,23 @@
 <p>MSE is described by a quadratic function; this means that the further away you are from the minimum point, the steeper the slope. The concept of the gradient descent is to tweak the tangent line (which is described by the slope and the intercept) by some value (also known as the 'learning rate') until we've hit the inflection point of the parabola, that is, the minimum value of the loss function. A classic visualizer for the above problem is the ball rolling down the parabolic curve until it settles at the foot of the hill.</p>
 <p>The gradient descent algorithm requires the function to be both differentiable and convex. The MSE function satisfies both criteria. The mathematical derivation of the gradient descent is described below:</p>
 <div class="figure">
-<img src="/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/1.png" />
+<img src="/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/eq1.png" />
 
 </div>
 <p>The response variable <span class="math inline">\(y\)</span> is a function of some predictor <span class="math inline">\(x_{i}\)</span>. <span class="math inline">\(\theta_i\)</span> describes the slope and <span class="math inline">\(\theta_0\)</span> describes the y-intercept. The loss function is the MSE.</p>
 <div class="figure">
-<img src="/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/2.png" />
+<img src="/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/eq2.png" />
 
 </div>
 <p>Firstly, the partial derivatives with respect to the slope and the intercept must be solved. The general solution for the partial derivative w.r.t both the slope and the intercept is shown above.</p>
 <p>The result so far is the sum of residuals and a partial derivative term. The partial derivative term itself can be solved trivially for both the slope and the intercept as follows:</p>
 <div class="figure">
-<img src="/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/3.png" />
+<img src="/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/eq3.png" />
 
 </div>
 <p>Substituting the values for the respective partial derivatives, the equation we arrive at is:</p>
 <div class="figure">
-<img src="/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/4.png" />
+<img src="/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/eq4.png" />
 
 </div>
 <p>In other words, the derivative w.r.t the intercept term is simply the sum of residuals multiplied by a constant. The derivative w.r.t the slope term is the same, with an extra <span class="math inline">\(x_i\)</span> term. The partial derivatives then must be multiplied by the learning rate (i.e., the increment to which the parameters will be changed) to arrive at new values for the slope and the intercept. Once the calculated loss for the new set of parameters converge, the iterative process can terminate.</p>

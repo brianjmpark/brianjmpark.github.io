@@ -21,13 +21,13 @@ MSE is described by a quadratic function; this means that the further away you a
 The gradient descent algorithm requires the function to be both differentiable and convex. The MSE function satisfies both criteria. The mathematical derivation of the gradient descent is described below:
 
 
-![](/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/1.png)
+![](/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/eq1.png)
 
 
 The response variable $y$ is a function of some predictor $x_{i}$. $\theta_i$ describes the slope and $\theta_0$ describes the y-intercept. The loss function is the MSE.
 
 
-![](/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/2.png)
+![](/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/eq2.png)
 
 
 Firstly, the partial derivatives with respect to the slope and the intercept must be solved. The general solution for the partial derivative w.r.t both the slope and the intercept is shown above. 
@@ -35,13 +35,13 @@ Firstly, the partial derivatives with respect to the slope and the intercept mus
 The result so far is the sum of residuals and a partial derivative term. The partial derivative term itself can be solved trivially for both the slope and the intercept as follows:
 
 
-![](/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/3.png)
+![](/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/eq3.png)
 
 
 Substituting the values for the respective partial derivatives, the equation we arrive at is:
 
 
-![](/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/4.png)
+![](/post/2022-02-22-visualizing-the-gradient-descent-in-r-index.en_files/eq4.png)
 
 
 In other words, the derivative w.r.t the intercept term is simply the sum of residuals multiplied by a constant. The derivative w.r.t the slope term is the same, with an extra $x_i$ term. The partial derivatives then must be multiplied by the learning rate (i.e., the increment to which the parameters will be changed) to arrive at new values for the slope and the intercept. Once the calculated loss for the new set of parameters converge, the iterative process can terminate.

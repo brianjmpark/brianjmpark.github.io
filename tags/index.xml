@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Snow of London</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Mar 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>ml</title>
       <link>https://brianjmpark.github.io/tags/ml/</link>
-      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/tags/ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://brianjmpark.github.io/tags/python/</link>
+      <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/tags/python/</guid>
       <description></description>
     </item>
     
@@ -53,15 +62,6 @@
       <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/tags/sports/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://brianjmpark.github.io/tags/python/</link>
-      <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://brianjmpark.github.io/tags/python/</guid>
       <description></description>
     </item>
     

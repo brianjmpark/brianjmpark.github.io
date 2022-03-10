@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.72.0" />
+
+  <title>Feature selection using recursive feature elimination in Python &middot; Snow of London</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Feature selection using recursive feature elimination in Python">
+<meta itemprop="description" content="Prior to constructing a machine learning model, several things need to be considered.">
+<meta itemprop="datePublished" content="2022-03-10T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2022-03-10T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1027">
+<meta itemprop="image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+
+
+<meta itemprop="keywords" content="python,ml," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+
+<meta name="twitter:title" content="Feature selection using recursive feature elimination in Python"/>
+<meta name="twitter:description" content="Prior to constructing a machine learning model, several things need to be considered."/>
+
+
+<meta property="og:title" content="Feature selection using recursive feature elimination in Python" />
+<meta property="og:description" content="Prior to constructing a machine learning model, several things need to be considered." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://brianjmpark.github.io/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index/" />
+<meta property="og:image" content="https://brianjmpark.github.io/images/picture.jpg"/>
+<meta property="article:published_time" content="2022-03-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-10T00:00:00+00:00" /><meta property="og:site_name" content="Snow of London" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #b2c69c;
+  }
+
+  .read-more-link a {
+    border-color: #b2c69c;
+  }
+
+  .pagination li a {
+    color: #b2c69c;
+    border: 1px solid #b2c69c;
+  }
+
+  .pagination li.active a {
+    background-color: #b2c69c;
+  }
+
+  .pagination li a:hover {
+    background-color: #b2c69c;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #b2c69c;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/picture1.jpg" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Snow of London</h1>
+
+      
+      <p class="lead">Data, ML, and Sports Blog by Brian Jungmin Park</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://brianjmpark.github.io">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/contact/">Contact</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/categories/">Categories</a>
+        </li><li>
+          <a href="/tags/">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://linkedin.com/in/bjp" rel="me" title="LinkedIn" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/snowoflondon/" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/brianjmpark2" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>Feature selection using recursive feature elimination in Python</h1>
+
+  <div class="post-date">
+    <time datetime="2022-03-10T00:00:00Z">Mar 10, 2022</time> &middot; 5 min read
+  </div>
+
+  
+
+
+<p>Prior to constructing a machine learning model, several things need to be considered. In a typical ML dataset for classification or regression problems, rows comprise of samples and columns of predictors. These predictor columns are collectively called 'features', which describe some measurements that describe the sample in the problem domain. In real life problems, it is sometimes not feasible to train a ML model on the dataset as-is.</p>
+<p>In some cases, an important predictor variable is excluded in the dataset. This excluded variable is termed a <em>confounding variable</em> and its exclusion may result in uninterpretable results. In other cases, several predictors have similar predictive relationship with the variable we're trying to predict - this is the issue of <em>collinearity</em> or <em>multicollinearity</em>. A perfect multicollinearity occurs when two predictor variables are linear combinations of one another.</p>
+<p>In other cases, a particular dataset may consist of <em>m</em> rows and <em>n</em> columns where <em>n</em> is much larger than <em>m</em>. Some models handle this problem of high-dimensionality better than others, but it might still be a good idea to reduce the number of features. The technique used to select a subset of features from the dataset for subsequent data modeling is called <em>feature selection</em>.</p>
+<p>Feature selection can broadly be divided into two main facets - supervised and unsupervised methods. Unsupervised methods do not take the target variable (i.e., the response we're trying to predict) into consideration. An example of such method is removing correlated variables. Supervised methods do take the target variable into consideration, and aims to remove irrelevant predictors. Among supervised feature selection methods, wrapper methods are commonly used to make selections.</p>
+<p>Wrapper methods deploy a ML algorithm in order to select features. The learning algorithm used in the feature selection wrapper does not need to be the same model that is to be used in downstream analysis.</p>
+<p>Recursive feature elimination (RFE) is a popular wrapper feature selection method and as the name suggests, recursively removes less important features until a specified number of features remain. The final number of features need to be specified by the user. This process is summarized below.</p>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig1.png" />
+
+</div>
+<p>The feature importance used to rank the input features depends on which model was deployed within the RFE algorithm. Tree methods such as decision trees and random forests have built-in methods to deduce variable importance (e.g., node impurity) but other methods can use a more general approach not specific to the model.</p>
+<p>Implementation of RFE is intuitive with sklearn in Python:</p>
+<pre class="python"><code>from sklearn.feature_selection import RFE
+from sklearn.datasets import make_classification
+from sklearn.tree import DecisionTreeClassifier</code></pre>
+<p>For the sake of this exercise, we will use a synthetic ML dataset.</p>
+<pre class="python"><code>x, y = make_classification(n_samples=1000, n_features=10, n_informative=5, n_redundant=5, random_state=42)
+
+print(x.shape, &#39;\n&#39;, y.shape)</code></pre>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig2.png" />
+
+</div>
+<p>The user must select the number of features to select when initializing the RFE algorithm. This can be specified with the <em>n_features_to_select</em> argument. Here we pick 5.</p>
+<pre class="python"><code>rfe = RFE(estimator=DecisionTreeClassifier(), n_features_to_select=5)</code></pre>
+<p>In this case, we are using a decision tree classifier as the model to wrap around the RFE algorithm. The decision tree model will be fit to our synthetic data and compute feature importance internally.</p>
+<p>The procedures to fit the RFE wrapper to our ML dataset is similar to fitting a ML model for classification or regression. A cross-validation method is to be used for model fitting and calculate how well the decision tree model fits to our data.</p>
+<pre class="python"><code>from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import RepeatedStratifiedKFold
+from sklearn.pipeline import Pipeline
+import numpy as np</code></pre>
+<pre class="python"><code>model = DecisionTreeClassifier()
+cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=3, random_state=42)
+pl = Pipeline(steps=[(&#39;fs&#39;,rfe),(&#39;m&#39;,model)])
+n_scores = cross_val_score(pl, x, y, scoring=&#39;accuracy&#39;, cv=cv)
+
+print(&#39;Cross-Validation Accuracy: %.2f (%.2f)&#39; % (np.mean(n_scores), np.std(n_scores)))</code></pre>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig3.png" />
+
+</div>
+<p>Our RFE (using a decision tree) achieves on average 87% classification accuracy on our data. Fitting the model to our data and then making predictions based on brand new data can be done by fitting the pipeline to the data using <em>fit()</em> and using <em>predict()</em>.</p>
+<p>However, the point of running RFE was to select <em>n</em> features based on feature importance. This information can be extracted by calling the <em>ranking_</em> attribute of the fitted RFE model. Calling this attribute returns an array of the same shape as the initial number of features, ranking the features based on importance. Selected features (based on pre-defined number of features to select) are given rank 1.</p>
+<p>Additionally, the <em>support_</em> attribute returns a boolean array based on whether the <em>i</em>th feature was selected.</p>
+<pre class="python"><code>pl.fit(x, y)
+
+rfe.support_
+
+rfe.ranking_</code></pre>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig4.1.png" />
+
+</div>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig4.2.png" />
+
+</div>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig4.3.png" />
+
+</div>
+<p>Based on the <em>ranking_</em> array, we can see that the model has selected 5 features, as we previously defined.</p>
+<p>Alternatively, sklearn offers a method to determine the optimal number of features using RFE. This can be done with the class <em>RFECV</em>. It should be noted that while RFECV method finds the optimal number of features, RFE method selects a predefined number of features. These two methods do two different things.</p>
+<p>Therefore, initializing the RFECV does not require the user to specify the number of features to select.</p>
+<pre class="python"><code>from sklearn.feature_selection import RFECV
+rfecv = RFECV(estimator=DecisionTreeClassifier())
+pl = Pipeline(steps=[(&#39;fs&#39;,rfecv),(&#39;m&#39;,model)])
+n_scores = cross_val_score(pl, x, y, scoring=&#39;accuracy&#39;, cv=cv)
+
+print(&#39;Cross-Validation Accuracy: %.2f (%.2f)&#39; % (np.mean(n_scores), np.std(n_scores)))</code></pre>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig5.png" />
+
+</div>
+<p>The attribute <em>n_features_</em> can be called to identify the number of optimal features as per the RFECV algorithm. In this case, using the decision tree model the RFECV algorithm has deemed the number of features to be used as 7.</p>
+<pre class="python"><code>pl.fit(x, y)
+
+rfecv.n_features_</code></pre>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig6.1.png" />
+
+</div>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig6.2.png" />
+
+</div>
+<p>The attribute <em>grid_scores_</em> allows us to visualize the cross-validation scores based on the number of features used. As we can see, the lineplot hits its maximum at <em>n_features</em> = 7.</p>
+<pre class="python"><code>rfecv.grid_scores_
+
+import seaborn as sns
+import pandas as pd
+
+grid_df = pd.DataFrame({&#39;Score&#39;: rfecv.grid_scores_, &#39;n_features&#39;: np.arange(1, len(rfecv.grid_scores_) + 1, dtype = int)})
+
+sns.lineplot(data=grid_df, x=&quot;n_features&quot;, y=&quot;Score&quot;)</code></pre>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig7.1.png" />
+
+</div>
+<div class="figure">
+<img src="/post/2022-03-10-feature-selection-using-recursive-feature-elimination-in-python-index.en_files/fig7.2.png" />
+
+</div>
+<p>In summary, recursive feature elimination is a supervised feature selection method that wraps around a ML model. This allows user to select <em>n</em> number of features to keep based on a recursive model fitting and feature importance calculation. The <em>RFECV</em> algorithm can be used to determine the optimal number of features based on model cross-validation accuracy. This allows user to use a much more manageable number of features for downstream classification or regression problems.</p>
+<p>The Jupyter notebook for the code in this post is available on my GitHub repository: <a href="https://github.com/snowoflondon/machine_learning_projects" class="uri">https://github.com/snowoflondon/machine_learning_projects</a></p>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy; Brian Jungmin Park 2022
+
+    &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+    &middot; Build with <a href="https://gohugo.io/" target="_blank">Hugo</a> & <a href="https://themes.gohugo.io/soho/" target="_blank">Soho</a> theme
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>

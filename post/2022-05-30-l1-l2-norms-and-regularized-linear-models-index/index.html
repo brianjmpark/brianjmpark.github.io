@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.72.0" />
+
+  <title>L1, L2 norms and regularized linear models &middot; Snow of London</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="L1, L2 norms and regularized linear models">
+<meta itemprop="description" content="Bias and variance The bias-variance tradeoff describes the problem in balancing the two types of errors in supervised learning models.">
+<meta itemprop="datePublished" content="2022-05-30T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2022-05-30T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1116">
+<meta itemprop="image" content="https://brianjmpark.github.io/images/mont.jpg"/>
+
+
+
+<meta itemprop="keywords" content="stats,ml,python," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://brianjmpark.github.io/images/mont.jpg"/>
+
+<meta name="twitter:title" content="L1, L2 norms and regularized linear models"/>
+<meta name="twitter:description" content="Bias and variance The bias-variance tradeoff describes the problem in balancing the two types of errors in supervised learning models."/>
+
+
+<meta property="og:title" content="L1, L2 norms and regularized linear models" />
+<meta property="og:description" content="Bias and variance The bias-variance tradeoff describes the problem in balancing the two types of errors in supervised learning models." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://brianjmpark.github.io/post/2022-05-30-l1-l2-norms-and-regularized-linear-models-index/" />
+<meta property="og:image" content="https://brianjmpark.github.io/images/mont.jpg"/>
+<meta property="article:published_time" content="2022-05-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-30T00:00:00+00:00" /><meta property="og:site_name" content="Snow of London" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #b2c69c;
+  }
+
+  .read-more-link a {
+    border-color: #b2c69c;
+  }
+
+  .pagination li a {
+    color: #b2c69c;
+    border: 1px solid #b2c69c;
+  }
+
+  .pagination li.active a {
+    background-color: #b2c69c;
+  }
+
+  .pagination li a:hover {
+    background-color: #b2c69c;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #b2c69c;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/mont.jpg" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Snow of London</h1>
+
+      
+      <p class="lead">Data, ML, and Sports Blog by Brian Jungmin Park</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://brianjmpark.github.io">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/contact/">Contact</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/categories/">Categories</a>
+        </li><li>
+          <a href="/tags/">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://linkedin.com/in/bjp" rel="me" title="LinkedIn" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/snowoflondon/" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/brianjmpark2" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>L1, L2 norms and regularized linear models</h1>
+
+  <div class="post-date">
+    <time datetime="2022-05-30T00:00:00Z">May 30, 2022</time> &middot; 6 min read
+  </div>
+
+  
+
+
+<div id="bias-and-variance" class="section level2">
+<h2>Bias and variance</h2>
+<p>The bias-variance tradeoff describes the problem in balancing the two types of errors in supervised learning models. This conflict arises from the model's estimated parameters learned from the training data and its ability to generalize beyond this data. In short, <em>bias</em> describes the assumptions made by the model in regards to the target function; a low-bias model makes less assumptions while a high-bias one makes more. High-bias models are generally less flexible for this reason. Examples of such models include linear models and logistic regression.</p>
+<p>On the other hand, <em>variance</em> describes the extent of influence the changes in training dataset has on the estimate of the target function. A high-variance model can produce large changes to the estimate due to changes to the training data. These models are more flexible but are prone to poor generalization to unseen data. Examples of high-variance models include support vector machines and decision trees.</p>
+<p>A high-variance model performing poorly after model training is said to be <em>overfitting</em> to the training data. This can happen due to the model learning the inherent noise in the data which leads to poor generalization to unseen data. Reducing the model complexity or introducing weight contraints can help combat overfitting. For example, increasing the cost (C) parameter in support vector machines can help reduce variance.</p>
+</div>
+<div id="regularization-using-l1-and-l2-norms" class="section level2">
+<h2>Regularization using L1 and L2 norms</h2>
+<p>In linear models, <em>regularization</em> introduces penalty terms to the model's cost function. This encourages the model weights - in the case of linear regression, the coefficients - to take on smaller values to reduce overall cost (i.e., the error). The exact nature of this penalty term introduces the following terminology: <em>L1</em> and <em>L2</em> regularization. These are named after whether the penalty term take on the appearance of the L1 or L2 vector norms. Intuitively:</p>
+<ul>
+<li>The L1 norm describes the sum of the absolute values of a vector</li>
+<li>The L2 norm describes the squared root of the squared values of a vector</li>
+</ul>
+<p>Clearly the above two norms describe the Manhattan and the Euclidean distances, respectively. Indeed, the L1 and the L2 norms of a given vector describe the Manhattan and the Euclidean distances from the origin. How do these vector norms related to regularization? Writing out the algebraic notations for the two norms yields:</p>
+<p><span class="math display">\[
+\mathbf{||j||_{1}} = |j_{1}| + |j_{2}| + |j_{3}| + ... + |j_{N}|
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{||j||_{2}} =  (|j_{1}|^{2} + |j_{2}|^{2} + |j_{3}|^{2} + ... + |j_{N}|^{2})^{\frac{1}{2}}
+\]</span></p>
+<p>Above two equations denote the L1 and L2 norms of a given vector <strong>j</strong>. For L1 and L2 regularized linear models, the norms of the weight vector <strong><span class="math inline">\(\theta\)</span></strong> are added to the cost function. This increases the error according to the magnitude (L1) or the square (L2) of the model weight. As such, for mean-squared-error (MSE) in linear models:</p>
+<p><span class="math display">\[
+J(\theta) = MSE(\theta) + \alpha\frac{1}{2}\sum_{i = 1}^{n} |\theta_{i}|
+\]</span></p>
+<p><span class="math display">\[
+J(\theta) = MSE(\theta) + \alpha\frac{1}{2}\sum_{i = 1}^{n} \theta_{i}^{2}
+\]</span></p>
+<p>These constraints to the cost function means that the model must not only learn to fit the training data, but also try to keep the coefficient <span class="math inline">\(\theta\)</span> as small as possible. This reduced model complexity means the model is less prone to overfitting the noise inherent to the training data. The term <span class="math inline">\(\alpha\)</span> is a hyperparameter that controls the extent of regularization. This term equals to zero when the model is a simple linear regression with no regularization.</p>
+</div>
+<div id="ridge-regression" class="section level2">
+<h2>Ridge regression</h2>
+<p>Ridge regression is linear regression with L2 regularization. This means that for a weight vector <strong>j</strong>, the cost function (MSE) includes the regularization term <span class="math inline">\(\frac{1}{2}(||\mathbf{j}||_{2})^{2}\)</span>, where the term inside the brackets denote the L2 norm of the weight vector <strong>j</strong>.</p>
+<p>Fitting a ridge regression model in Python is trivial using sklearn:</p>
+<pre class="python"><code>import numpy as np
+from sklearn.linear_model import Ridge
+X = np.random.randn(12, 6)
+y = np.random.randn(12)
+model = Ridge(alpha = 1, solver=&#39;cholesky&#39;)
+model.fit(X, y)</code></pre>
+<p>For hyperparameter tuning, a typical grid search with cross-validation can be used as such:</p>
+<pre class="python"><code>from sklearn.model_selection import GridSearchCV
+params = {&#39;alpha&#39;:[1, 10]}
+model = Ridge()
+model = GridSearchCV(model, params, scoring=&#39;neg_mean_squared_error&#39;, cv=10)
+model.fit(X, y)</code></pre>
+<p>The <em>best_estimator_</em> attribute of the fitted model returns the best estimator that was chosen by the grid search.</p>
+</div>
+<div id="lasso-regression" class="section level2">
+<h2>Lasso regression</h2>
+<p>Lasso regression is the equivalent of linear regression with L1 regularization. As such for a given weight vector <strong>j</strong>, the cost function (MSE) includes the regularization term <span class="math inline">\(||\mathbf{j}||_{1}\)</span> - the L1 norm of <strong>j</strong>.</p>
+<pre class="python"><code>import numpy as np
+from sklearn.linear_model import Lasso
+X = np.random.randn(12, 6)
+y = np.random.randn(12)
+model = Ridge(alpha = .1)
+model.fit(X, y)</code></pre>
+<p>Lasso regression is also referred to as Selection Operator or Least Absolute Shrinkage regression. Interestingly, Lasso regression tends to set the values of the least important features to zero; this results in a sparse model and thus is akin to a feature selection algorithm.</p>
+</div>
+<div id="geometric-interpretation-of-ridge-and-lasso-regression" class="section level2">
+<h2>Geometric interpretation of Ridge and Lasso regression</h2>
+<p>Typically, the estimate of the ordinary least squares (OLS) regression and the Ridge or Lasso regression are plotted as a function of the model weights in order to explain L1 and L2 regularization.</p>
+<p>Consider the following: there exists a function <em>f</em> that describes the non-penalized form to a linear model (i.e., the MSE). The minimum of this function describes the solution to the linear regression. This function is represented as an elliptical contour. As these contours expand, the residual sum of squares (RSS) increases. Now say there is the penalized form of this model described by another function <em>g</em>. This <em>g</em> as a function of (i.e., the model weights) equals to either the L1 norm of the sum of weights (Lasso) or the L2 norm of the sum of squared weights (Ridge) multiplied by the parameter . This function is drawn in the shape of a diamond (Lasso) or a ball (Ridge). At higher values of - that is, the harsher penalty term - the contour plot described by <em>g</em> gets narrower and narrower. The point at which the two contours <em>f</em> and <em>g</em> meet is the regularized solution to the model.</p>
+<p>Evidently, there exists a balance between increasing the RSS or decreasing the penalty. If we decrease the penalty more and more, the two contours will meet closer to the center of the contour <em>f</em> - the non-penalized solution. At the extreme level, setting the penalty to zero will lead to non-penalized OLS. If we increase the penalty on the other hand, eventually the solution will reach zero.</p>
+<p>Furthermore, due to the shape of the contour plot described by the L1 norm, it is such that the intersection between <em>f</em> and <em>g</em> is likely to occur at the corners of the diamond - where either <span class="math inline">\(\beta_{1}\)</span> or <span class="math inline">\(\beta_{2}\)</span> is equal to zero. This leads to a sparse solution where a feature is set to zero, as described earlier.</p>
+<div class="figure">
+<img src="/post/2022-05-30-l1-l2-norms-and-regularized-linear-models-index.en_files/lasso.jpeg" />
+
+</div>
+<div class="figure">
+<img src="/post/2022-05-30-l1-l2-norms-and-regularized-linear-models-index.en_files/ridge.jpeg" />
+
+</div>
+</div>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy; Brian Jungmin Park 2022
+
+    &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+    &middot; Build with <a href="https://gohugo.io/" target="_blank">Hugo</a> & <a href="https://themes.gohugo.io/soho/" target="_blank">Soho</a> theme
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>

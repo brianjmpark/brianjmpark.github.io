@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Snow of London</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 10 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 May 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>ML</title>
       <link>https://brianjmpark.github.io/categories/ml/</link>
-      <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 30 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/categories/ml/</guid>
       <description></description>
@@ -23,9 +23,18 @@
     <item>
       <title>Python</title>
       <link>https://brianjmpark.github.io/categories/python/</link>
-      <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 30 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>stats</title>
+      <link>https://brianjmpark.github.io/categories/stats/</link>
+      <pubDate>Mon, 30 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/categories/stats/</guid>
       <description></description>
     </item>
     
@@ -35,15 +44,6 @@
       <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
       
       <guid>https://brianjmpark.github.io/categories/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>stats</title>
-      <link>https://brianjmpark.github.io/categories/stats/</link>
-      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://brianjmpark.github.io/categories/stats/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,19 @@
     <description>Recent content in Soho Theme on Snow of London</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 10 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 May 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>L1, L2 norms and regularized linear models</title>
+      <link>https://brianjmpark.github.io/post/2022-05-30-l1-l2-norms-and-regularized-linear-models-index/</link>
+      <pubDate>Mon, 30 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2022-05-30-l1-l2-norms-and-regularized-linear-models-index/</guid>
+      <description>Bias and variance The bias-variance tradeoff describes the problem in balancing the two types of errors in supervised learning models.</description>
+    </item>
     
     <item>
       <title>Feature selection using recursive feature elimination in Python</title>

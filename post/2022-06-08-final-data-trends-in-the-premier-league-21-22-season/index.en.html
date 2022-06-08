@@ -1,0 +1,120 @@
+---
+title: Final data trends in the Premier League (’21-’22 season)
+author: ''
+date: '2022-06-08'
+slug: []
+categories:
+  - stats
+  - football
+tags:
+  - stats
+description: ''
+---
+
+
+
+<p>The '21-'22 Premier League season featured high stakes until the very last matchday. At its conclusion, this year's campaign saw Manchester City continue their dominance and claim their fourth title in five years. Liverpool's Mohamed Salah and Tottenham's Son Heung-Min shared the Golden Boot with 23 goals each. Hapless Norwich City, now-manager-less Watford, and Turf Moor's very own Burnley punched their tickets to the Championship after difficult seasons. Tottenham Hotspur scored 5 goals on matchday 38 to finish above their North London neighbors for yet another season. This post looks back at the league's top (and worst) performers and highlights key individual and squad performances. All data were obtained from FBref and for player performance stats, a minimum of 25x90 minute performances was used. For goalkeepers, a threshold of 20 starts was used.</p>
+<p>Everyone's favorite metric in expected goals (xG) allows us to see how teams performed relative to their expectation. As expected, the champions and the runner-up both exceeded their xG by scoring more goals than expected. Both their xG and actual goals scored suggest Liverpool and City continued their yearly dominance throughout the season, scoring and creating more chances than any other team. 3rd placed Chelsea and 4th placed Spurs were distant 3rd and 4th in xG and both outscored their expectation as well. Southampton, Leeds, and Brighton avoided relegation but managed to under-perform their xG. Other teams who scored below their expectation were subsequently relegated to the Championship. Wolves had the lowest xG and goals scored out of any non-relegated teams but still somehow managed to outperform their expectations.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig1.png" />
+
+</div>
+<p>Generally it is no surprise that the teams near the bottom of the table tend to concede more goals and more shots. Inclusion of teams such as Norwich, Leeds, Watford, and Everton - all relegated teams or relegation candidates - in the 'leaky defense, busy GK' group is not surprising. They conceded more shots and more goals relative to the league median. Perhaps it is more surprising to see teams such as Man United and Leicester in this group as well. On the other end of the spectrum, the top 4 teams managed to perform well here. Crystal Palace and Brighton both conceded less goals and less shots relative to the league average as well.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig2.png" />
+
+</div>
+<p>Post shot expected goals (PSxG) is a metric that measures the likelihood of a shot leading to a goal. Comparing this stat to the actual goals conceded allows us to see whether teams' goalkeepers performed well relative to their expectations. Again, the top 4 teams rank at the bottom when it comes to both PSxG and goals conceded. Teams who deviate further up from the diagonal suggest poor goalkeeping and it is again the usual candidates here; Norwich, Leeds, and Watford were akin to a sieve in between the sticks. Villa and Arsenal, despite their goalkeepers' reputations, seemed to perform poorly here.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig3.png" />
+
+</div>
+<p>Moving up further up the pitch - which teams took the best quality shots and which teams took the most shots? Liverpool and Man City are again in a league of their own when it comes to shot quality and shot volume. Chelsea, Spurs, and Man United performed well in this regard relative to the league average. Leiceser, Palace, Brentford, and West Ham seemingly were quite selective in their shots while the bottom of the table saw very little of anything in the final third.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig4.png" />
+
+</div>
+<p>Conversion rate can be calculated by referring to the number of goals generated per shot. Leicester and Norwich were situated on the either ends of the spectrum when it comes to conversion rate; the Canaries seemingly had no one up front who were clinical to battle against relegation. The top 4 placed teams and Man United all showed higher conversion rate relative to the league mean as well as higher number of shots taken. Considering their offensive threats up front, perhaps this isn't a surprising result.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig5.png" />
+
+</div>
+<p>Now looking at the general offensive performance of all teams - normalized to the league maximum values for each metric - Liverpool and Man City's radar charts look predictably similar. The old adage is that a stellar defense wins championships but perhaps a stellar offense correlates to success as well.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig6.png" />
+
+</div>
+<p>Switching gears to player stats now - it was referred earlier that Wolves showed a great defensive performance throughout the season. Then it is no surprise that their goalkeeper ranked the highest in PSxG minus goals conceded as well as save percentage. Jose Sa prevented the most goals relative to PSxG and had the highest proportion of shots saved in the league. Nick Pope tried his best to keep his side in the Premier League to no avail. Golden Glove winner Alisson performed well and so did Brentford's David Raya, Brighton's Robert Sanchez, and Man United's David de Gea. Leed's Illan Meslier had a poor sophomore season in the premier league, which saw his team struggle. Arsenal's Ramsdale had a poor second half of the season, ranking below the league mean in terms of PSxG-GA.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig7.png" />
+
+</div>
+<p>A simple barplot of PSxG-GA per 90 reflects the goalkeepers' performance throughout the season in their goal preventative performances.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig8.png" />
+
+</div>
+<p>On the other side of the pitch, how did the forwards perform in terms of putting away their chances? Comparing total shots taken and goals per shot allows us to look at each player with respect to their shot frequency and conversion rate. The upper right quadrant essentially reflects the forwards who are clinical with their chances and take more chances. The outlier in this regard is the joint golden boot winner Son Heung-Min; Son's conversion rate completely dwarfs anyone else's at 0.27 goals per shot. In context, the other golden boot winner Salah's conversion rate was 0.13. Both players shot more frequently relative to the league mean, as well as the other Liverpool forwards. The Liverpool front 3 were certainly a big factor in their title chasing efforts.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig9.png" />
+
+</div>
+<p>Looking at the npxG minus non-penalty goals shows a strange observation; Tottenham's Harry Kane - last year's top scorer - did not have his best year in terms of shot conversion. He took more shots compared to the league average, but his ability to put away his chances were not quite there this season. Of course, Spurs achieved a top 4 finish thanks in big part to Kane and Son's brilliance so it will be interesting to see how they do when both forwards are putting away their chances as well as they normally should.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig10.png" />
+
+</div>
+<p>Keeping the theme strictly Tottenham, just how clinical was Son this season for Spurs? Looking at his offensive performance relative to other players in his position, he ranked in the 99th percentile in non-penalty goals and in the 98th percentile in npxG as well as npxG+xA. His world-class shot conversion will no doubt play a big factor in Spurs' performance in the Champions League next season.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig11.png" />
+
+</div>
+<p>It wouldn't be fair to only look at one of the joint top scorers. Liverpool's quadruple hopes vanished into the thin air but their star in Mohamed Salah had a stellar year which should put him in the conversation for the best player in the world. He was prolific in almost all offensive categories - he ranked in the 97th percentile for non-penalty goals, 99th for npxG, 99th for total shots, 93th for xA and 99th for touches in the attacking penalty area.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig12.png" />
+
+</div>
+<p>Next up is a look at the league's best performing midfielders in terms of passing ability. As a bit of an unsung hero at times, Man City's Rodri ranked the highest in terms of pass completion percentage and pass attempts per 90. His teammate Bernado Silva also had a good year in this metric, transitioning into a deeper midfield role from his role as a winger last year. Jordan Henderson continues to patrol the Liverpool midfield effectively while Spurs' Hojbjerg was Tottenham's perhaps surprising creative force.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig13.png" />
+
+</div>
+<p>What happened to these midfielder's creative efforts? Subtracting assists from xA allows us to see the proportion of chances that were finished by their teammates. Chelsea's Mason Mount ranked the highest in this category amongst the midfielders, while representatives from the bottom of the table ranked near the bottom here.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig14.png" />
+
+</div>
+<p>Is it fair to say Rodri has been the best midfielder in the league? Comparing against other midfielders, he ranks in the 99th percentile for passes attempted, 98th in pass completion rate, and 91th in aerials won. His ability to progressively carry and pass the ball has been demonstrated as well. His contributions made him one of the best players for the league champions this season.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig15.png" />
+
+</div>
+<p>Finally - we look at defenders. Here, we compare their number of attempted passes to the number of clearances. This should separate the traditional 'no-nonsense defenders' from defenders who are tasked to build out from the back. Then it is no surprise that fullbacks such as Cancelo, Robertson, and Alexander-Arnold rank the highest in pass attempts per 90 and lowest in clearances per 90. Man City's centerback duo of Ruben Dias and Aymeric Laporte seem to contribute to their build-up as well. Defenders who tend to hoof the ball more frequently and attempt less passes are typically the ones playing for teams playing a low block.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig16.png" />
+
+</div>
+<p>Counting fullbacks such as Cancelo and Alexander-Arnold as traditional defenders is rather counter-intuitive. Databases such as FBref categorize these players as defenders, but in modern football the players' roles are much more nuanced which make simple categorization difficult. Cancelo in Man City's system effectively play in the midfield. Alexander-Arnold is able to play high up the pitch thanks to Liverpool's mobile midfield. Looking at these two players' stats certainly supports this notion.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig17.png" />
+
+</div>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig18.png" />
+
+</div>
+<p>How about the traditional centerbacks then? Again, the player roles are more nuanced than simply labeling central defenders as centerbacks. Players such as Antonio Rudiger and Aymeric Laporte are tasked with initiating the build-up. Liverpool's centerbacks do this exceptionally well. Virgil van Dijk for example ranks in the 93rd percentile in passes attempted and in the 89th percentile in pass completion rate compared to other centerbacks. Ruben Dias for Man City ranks in the 97th and 98th percentile in those categories as well. His progressive carries also rank in the 99th percentile, which describe his role in Man City's system well.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig19.png" />
+
+</div>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig20.png" />
+
+</div>
+<p>A clear example of a centerback with a different role is Tottenham's Cristian Romero; I picked Romero as he's been touted as one of the best new signings in the league and his style of play aligns well with the traditional concept of a centerback. His stats in the attacking category are nowhere near at the level of the previous centerbacks highlighted. However, he ranks in the 99th percentile for tackles made, 97th for pressures, 90th for interceptions, and 94th for blocks. If anyone has seen him play in Spurs' back three, none of these findings should be a surprise.</p>
+<div class="figure">
+<img src="/2022-06-08-final-data-trends-in-the-premier-league-21-22-season/index.en_files/fig21.png" />
+
+</div>
+<p>The conclusion is clear - Manchester City and Liverpool are very good. In fact, they are essentially in a league of their own in most categories. Their forwards are clinical, their defenders contribute effectively from the back, and their fullbacks create chances like no other. Other standout performances in an individual basis were also highlighted - namely Son Heung-Min's incredible offensive performance and Jose Sa's hands keeping Wolves safe from any sort of a relegation battle. Next year likely will continue to be the story of Man City and Liverpool's dominance, but the underlying data will shed further light on their respective dynasties.</p>

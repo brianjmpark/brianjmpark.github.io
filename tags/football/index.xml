@@ -6,10 +6,19 @@
     <description>Recent content in football on Snow of London</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/tags/football/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Final data trends in the Premier League (’21-’22)</title>
+      <link>https://brianjmpark.github.io/post/2022-06-08-final-data-trends-in-the-premier-league-21-22-index/</link>
+      <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2022-06-08-final-data-trends-in-the-premier-league-21-22-index/</guid>
+      <description>The &#39;21-&#39;22 Premier League season featured high stakes until the very last matchday.</description>
+    </item>
     
     <item>
       <title>A data-driven look at Inter Milan’s title-winning season</title>

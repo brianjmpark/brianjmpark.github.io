@@ -15,6 +15,8 @@ categories:
 ---
 ---
 
+The code included here is available on my [GitHub repo](https://github.com/snowoflondon/machine_learning_projects/blob/main/text_generation_lstm.ipynb). 
+
 ## Introduction to language models
 
 Natural language processing (NLP) is a sub-field of artificial intelligence. In short, NLP processes the human language; it learns the behaviour and patterns within the human language in order to process, understand, and even generate text. Considering the complexity of linguistics, it is not hard to see why this would be a very difficult task for a computer. The spoken and written language not only depends on the order but the context of individual words and characters that make up the corpus. Consider the following excerpt:

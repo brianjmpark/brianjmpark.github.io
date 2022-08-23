@@ -15,7 +15,7 @@ categories:
 ---
 ---
 
-# Introduction to language models
+## Introduction to language models
 
 Natural language processing (NLP) is a sub-field of artificial intelligence. In short, NLP processes the human language; it learns the behaviour and patterns within the human language in order to process, understand, and even generate text. Considering the complexity of linguistics, it is not hard to see why this would be a very difficult task for a computer. The spoken and written language not only depends on the order but the context of individual words and characters that make up the corpus. Consider the following excerpt:
 
@@ -27,7 +27,7 @@ Text generation falls under the umbrella of NLP; it involves a model providing a
 
 ![](/post/2022-08-23-language-models-and-text-generation-using-lstms-index.en_files/fig1.png)
 
-# Tokens, indices, and the probability mass function
+## Tokens, indices, and the probability mass function
 
 Several terms are defined as follows:
 
@@ -66,7 +66,7 @@ X = pad_sequences(X, padding='post', maxlen=max_len)
 
 Note we've ensured that our sequences are all of the same length using the *pad_sequences* function, which will concatenate a string of zeros to our contiguous sequences.
 
-# N-grams and the Markov assumption
+## N-grams and the Markov assumption
 
 N-grams are generalized tokens of length *n* and are analogous to the concept of *k-mers* in computational biology. In a language model with some hyperparameter *n*, the Markov assumption can be made to simplify the probability distribution of each token in a vocabulary. The Markov assumption states that *the future state depends only on the previous state*. Therefore, in a bi-gram model (*n* = 2):
 
@@ -74,7 +74,7 @@ $p(w) = \prod_{i = 1}^{k + 1} p(w_{i}|w_{i - 1})$
 
 In other words, the probability of each word in a given sequence depends on its previous state. Generalizing to any *n*, this means that the next event in a sequence depends only on its immediate past. Using this assumption as the conditional probability mass function, the text generation model can output a word or a character based on the input seed sequence. 
 
-# Recurrent neural networks (RNN)
+## Recurrent neural networks (RNN)
 
 In contrast to the assumption of the Markov chain, recurrent neural networks (RNNs) deploy a memory state. The defining characteristic of an RNN versus a simple stacked dense layer network is the concept of memory; it iterates through the data and maintains an internal loop, maintaining a state containing information relative to the past information. This characteristic allows RNNs to be suitable for handling sequence data. A bidirectional long short term memory (LSTM) RNN was used in my previous post on NLP classification. 
 
@@ -96,7 +96,7 @@ The BPTT algorithm attempts to adjust the weights by minimizing some loss functi
  
 An algorithm such as an LSTM which carries information across many time steps allow it to be generalizable rather than learn specific patterns. This is pertinent in the case of text generation and tackles the problem of the vanishing gradient problem. LSTM achieves this by storing long term memory called the cell state on top of the working memory that is the hidden state. This increases the complexity of the model (which comes with its own problems, such as the variance and bias trade-off) but significantly enhances the ability to deal with long-term dependencies.
 
-# Text generation using LSTMs
+## Text generation using LSTMs
 
 Text generation with LSTMs can be implemented in Python using TensorFlow and Keras. Here, I am using Google Colab to execute the following code.
 
@@ -217,6 +217,6 @@ generate_chars(seed=new, length=50, model=model, maxlen=max_len)
 ```
 
 
-# Summary
+## Summary
 
 Human linguistics are complex and next-generation models have continued to decipher the character-to-character relationships. Language models deploy memory states in order to store long- and short-term memory in order to carry information forward. Text generation is a component of language models and is an iterative process where the predicted character/word is concatenated to the input in order to predict the next character/word. As one can imagine, this algorithm is ubiquitous in today's technology and even relatively simple models have the ability to generate text.

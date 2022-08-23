@@ -6,10 +6,19 @@
     <description>Recent content in ml on Snow of London</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 May 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Aug 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/tags/ml/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Language models and text generation using LSTMs</title>
+      <link>https://brianjmpark.github.io/post/2022-08-23-language-models-and-text-generation-using-lstms-index/</link>
+      <pubDate>Tue, 23 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2022-08-23-language-models-and-text-generation-using-lstms-index/</guid>
+      <description>Introduction to language models Natural language processing (NLP) is a sub-field of artificial intelligence.</description>
+    </item>
     
     <item>
       <title>L1, L2 norms and regularized linear models</title>

@@ -82,15 +82,15 @@ Training an RNN involves a process called back propagation through time (BPTT). 
 
 ![](/post/2022-08-23-language-models-and-text-generation-using-lstms-index.en_files/fig2.png)
 
-Above is an example RNN in a many-to-many prediction task, such that the input and the output sequence length is both greater than one. The input sequence is tokenized into length *k* (in above case, *k* = 4) and each token is input sequentially with the hidden state *a* to output *y*. The initial hidden state *a_{0}* is random while the subsequent hidden states *a_{k}* carries past information through time learned from the previous layer by applying a linear transformation over the previous step and the current input *x_{k}*. In other words, for the *k*th layer:
+Above is an example RNN in a many-to-many prediction task, such that the input and the output sequence length is both greater than one. The input sequence is tokenized into length *k* (in above case, *k* = 4) and each token is input sequentially with the hidden state *a* to output *y*. The initial hidden state $a_{0}$ is random while the subsequent hidden states $a_{k}$ carries past information through time learned from the previous layer by applying a linear transformation over the previous step and the current input $x_{k}$. In other words, for the *k*th layer:
 
 $a_{k} = f_{1}(W_{aa}a_{k-1} + W_{ax}x_{k} + b_{a})$
 
-The output *y* is then a transformation of the hidden state *a_{k}* and the weight:
+The output *y* is then a transformation of the hidden state $a_{k}$ and the weight:
 
 $y_{k} = g_{2}(W_{ya}a_{k} + b_{y})$
 
-Common activation functions (i.e., g_{1}, g_{2}) used in RNNs include tanh, sigmoid, and relu functions. 
+Common activation functions (i.e., $g_{1}$, $g_{2}$) used in RNNs include tanh, sigmoid, and relu functions. 
 
 The BPTT algorithm attempts to adjust the weights by minimizing some loss function. Instead of propagating through the densely stacked layers as in typical deep neural networks, the gradient is calculated through the sequence layers in an RNN. This means that the gradient $\nabla$ passes through usually very deep networks. This can cause a typical problem in RNNs called the vanishing gradient problem, which minimizes the contribution of earlier sequence tokens (i.e., as the gradient becomes smaller and smaller the further we propagate backwards in time). In other words, the model has short-term memory. 
  

@@ -1,0 +1,78 @@
+---
+title: Fundamentals of Kullback-Leibler divergence
+author: ''
+date: '2022-11-10'
+slug: []
+categories:
+  - r
+  - stats
+tags:
+  - r
+  - stats
+description: ''
+---
+
+
+
+<div id="distance-and-divergence" class="section level2">
+<h2>Distance and divergence</h2>
+<p>In unsupervised learning, the concept of statistical distance is often used. For instance, multi-dimensional scaling (MDS) reduces the dimensionality of original data while trying to preserve the distances between the instances. In hierarchical clustering, distances between data points are computed using a variety of metrics such as Euclidean, Manhattan, and Minkowski distances. Distance metrics are especially useful when trying to preserve local relationships while projecting data into a lower dimension.</p>
+<p>A statistical distance can also be calculated between a pair of distributions, such as the probability distributions of random variables. This however may not be as intuitive as interpreting the distance between a pair of instances. What if, for example. we are trying to calculate the statistical distance between a true, theoretical distribution <em>P(x)</em> and a distribution which attempts to model - or approximate - that distribution as <em>Q(x)</em>? It turns out that this thought exercise originates from information theory, which extends into the discipline of machine learning.</p>
+<p>In cases like this, divergence metrics are calculated - which is defined as <em>a function which establishes the separation from one probability distribution to another on a statistical manifold</em>.</p>
+</div>
+<div id="information-theory-and-shannon-entropy" class="section level2">
+<h2>Information theory and Shannon entropy</h2>
+<p>Information theory is formally defined as the study of the quantification of information. In context of statistical divergence, the foundation can be found in the concept of Shannon entropy.</p>
+<p>The Shannon entropy describes the amount of information contained in a signal <span class="math inline">\(x \in {x_{1}, x_{2}, ..., x_{N}}\)</span> such that:</p>
+<p><span class="math inline">\(I(X) = - \sum_{i = 1}^{N} P(x_{i})\log(P(x_{i}))\)</span></p>
+<p>The base of the logarithm tends to vary from base 2, base <em>e</em>, or base 10, which depends on the application. Logarithm base 2 yields the unit of <em>bits</em> which is typically used in information theory. The <em><span class="math inline">\(P(x_{i})\)</span></em> describes the probability distribution for some <em>i</em>.</p>
+<p>Intuitively, when the event is a <em>certain event</em> (i.e., the result is unsurprising and information yield is low), the probability distribution would equal to 1. Looking at the equation for <em>I(X)</em>, since the logarithm of 1 equals to zero, it satisfies that <em>I(X) = 0</em> in the case of a certain event.</p>
+<p>In R, in a hypothetical situation where we flipped an unfair coin where it lands heads every time:</p>
+<pre class="r"><code>calc_entropy &lt;- function(data){
+  freq &lt;- table(data)/length(data)
+  p &lt;- as.data.frame(freq)[,2]
+  I &lt;- -sum(p * log2(p))
+  return(I)
+}
+
+x &lt;- rep(&#39;heads&#39;, 5)
+
+calc_entropy(x) # outputs 0</code></pre>
+<p>Instead if we flipped a completely fair coin <em>N</em> times (or rolled a completelyt fair die <em>N</em> times) such that the any value of <em><span class="math inline">\(x_{i}\)</span></em> is likely, <em>I(X)</em> would be at its maximum value. In other words, we would expect more surprise or a larger amount of information.</p>
+<p>Essentially, Shannon entropy describes the amount of information carried as a function of some event <em>X</em> and low probability events denote higher information.</p>
+</div>
+<div id="kullback-leibler-divergence-and-relative-entropy" class="section level2">
+<h2>Kullback-Leibler divergence and relative entropy</h2>
+<p>The concept of cross-entropy is introduced when we consider the equation for Shannon entropy with two probability distributions instead of one. What if, instead of some theoretical distribution <em><span class="math inline">\(P(x_{i})\)</span></em>, we model <em>X</em> with an approximation of the true distribution - <em><span class="math inline">\(Q(x_{i})\)</span></em>? How much information will be carried then?</p>
+<p><span class="math inline">\(H(P, Q) = - \sum_{i = 1}^{N} P(x_{i})\log(Q(x_{i}))\)</span></p>
+<p>Turning the attention back to the concept of divergence then, recall that divergence is defined as the separation between two probability distributions. We can then define the Kullback-Leibler (KL) divergence formally using the context of entropy:</p>
+<p><span class="math inline">\(D_{KL}(P||Q) = - H(P, Q) - I(X)\)</span></p>
+<p>That is, KL divergence is the difference in information carried between the scenarios where we use the approximate distribution <em>Q</em> versus the true distribution <em>P</em> to represent some signal. Therefore,</p>
+<p><span class="math inline">\(D_{KL}(P||Q) = - \sum_{i = 1}^{N} P(x_{i})\log(Q(x_{i})) + \sum_{i = 1}^{N} P(x_{i})\log(P(x_{i}))\)</span></p>
+<p>Using properties of logarithms:</p>
+<p><span class="math inline">\(D_{KL}(P||Q) = - \sum_{i = 1}^{N} P(x_{i})\log(Q(x_{i})) - \log(P(x_{i}))\)</span></p>
+<p><span class="math inline">\(D_{KL}(P||Q) = - \sum_{i = 1}^{N} P(x_{i})\log(\frac{Q(x_{i})} {P(x_{i})})\)</span></p>
+<p>KL divergence is a non-symmetric measure of the difference between two probability functions. Specifically, it measures the loss of information when <em>Q</em> is used to approximate <em>P</em>. This measure is non-symmetric, meaning <span class="math inline">\(D_{KL}(P||Q) \neq D_{KL}(Q||P)\)</span>. This is difference from distance metrics such as Euclidean distance, where distance between <em>x</em> and <em>y</em> is symmetric.</p>
+<p>For completeness, the continuous version of KL divergence is the summation over <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(\infty\)</span>:</p>
+<p><span class="math inline">\(D_{KL}(P||Q) = \int_{-\infty}^{\infty} P(x) \log(\frac{P(x)}{Q(x)})dx\)</span></p>
+<p>Such that:</p>
+<p><span class="math inline">\(D_{KL}(P||Q) \ge 0\)</span> and <span class="math inline">\(D_{KL}(P||Q) = 0\)</span> only if <span class="math inline">\(P = Q\)</span>.</p>
+</div>
+<div id="kl-divergence-and-t-sne" class="section level2">
+<h2>KL divergence and t-sne</h2>
+<p>As mentioned earlier, distance and divergence are commonly referenced in unsupervised learning. It turns out that in t-sne (t-distributed stochastic neighbor embedding) the metric we are trying to minimize is the KL divergence.</p>
+<p>Briefly, given a distribution of instances <span class="math inline">\(x_{1}\)</span>, <span class="math inline">\(x_{2}\)</span>, ... <span class="math inline">\(x_{n}\)</span> in <em>D</em> dimensional space (i.e., <span class="math inline">\(x_{1}...x_{n} \in \mathbb{R}^{D})\)</span>), the goal in t-sne is to find an embedding <span class="math inline">\(y_{1}...y_{n} \in \mathbb{R}^{d}\)</span>) where <em>D &gt; d</em>. This can be done by defining a distribution <em>P</em> for <em><span class="math inline">\(x_{i}\)</span></em> and <em>Q</em> for <em><span class="math inline">\(y_{i}\)</span></em> and minimizing <em>KL(P||Q)</em>.</p>
+<p>Interestingly, recall that the equation for <em>KL(P||Q)</em> is broken down into the difference between the cross-entropy <em>H(P, Q)</em> and the entropy of <em>P</em>. In the context of the optimization task in t-sne, <em>P</em> is held constant and thus minimizing the KL divergence and the cross-entropy is equivalent, such that:</p>
+<p><span class="math inline">\(D_{KL}(P||Q) = - \sum_{i,j} P(x_{i,j})\log(Q(x_{i,j})) + constant\)</span></p>
+<p>The minimization of the KL divergence with respect to <em><span class="math inline">\(y_{i}\)</span></em> in t-sne can then be done with gradient descent.</p>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<ul>
+<li><p>Divergence and statistical distance are not equivalent, as divergence is non-symmetric.</p></li>
+<li><p>KL divergence measures the separation of one probability distribution from another.</p></li>
+<li><p>In information theory, entropy is the measure of information contained in a signal.</p></li>
+<li><p>In context of information theory, KL divergence measures the the loss of information when <em>Q</em> is used to approximate <em>P</em>.</p></li>
+<li><p>Both cross-entropy and KL divergence are used in machine learning algorithms.</p></li>
+</ul>
+</div>

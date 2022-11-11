@@ -6,10 +6,19 @@
     <description>Recent content in stats on Snow of London</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Nov 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/tags/stats/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fundamentals of Kullback-Leibler divergence</title>
+      <link>https://brianjmpark.github.io/post/2022-11-10-fundamentals-of-kullback-leibler-divergence-index/</link>
+      <pubDate>Thu, 10 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2022-11-10-fundamentals-of-kullback-leibler-divergence-index/</guid>
+      <description>Distance and divergence In unsupervised learning, the concept of statistical distance is often used.</description>
+    </item>
     
     <item>
       <title>Final data trends in the Premier League (’21-’22)</title>

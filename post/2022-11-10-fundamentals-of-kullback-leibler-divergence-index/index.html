@@ -197,7 +197,7 @@
 <div id="distance-and-divergence" class="section level2">
 <h2>Distance and divergence</h2>
 <p>In unsupervised learning, the concept of statistical distance is often used. For instance, multi-dimensional scaling (MDS) reduces the dimensionality of original data while trying to preserve the distances between the instances. In hierarchical clustering, distances between data points are computed using a variety of metrics such as Euclidean, Manhattan, and Minkowski distances. Distance metrics are especially useful when trying to preserve local relationships while projecting data into a lower dimension.</p>
-<p>A statistical distance can also be calculated between a pair of distributions, such as the probability distributions of random variables. This however may not be as intuitive as interpreting the distance between a pair of instances. What if, for example. we are trying to calculate the statistical distance between a true, theoretical distribution <em>P(x)</em> and a distribution which attempts to model - or approximate - that distribution as <em>Q(x)</em>? It turns out that this thought exercise originates from information theory, which extends into the discipline of machine learning.</p>
+<p>A statistical distance can also be calculated between a pair of distributions, such as the probability distributions of random variables. This however may not be as intuitive as interpreting the distance between a pair of instances. What if, for example, we are trying to calculate the statistical distance between a true, theoretical distribution <em>P(x)</em> and a distribution which attempts to model - or approximate - that distribution as <em>Q(x)</em>? It turns out that this thought exercise originates from information theory, which extends into the discipline of machine learning.</p>
 <p>In cases like this, divergence metrics are calculated - which is defined as <em>a function which establishes the separation from one probability distribution to another on a statistical manifold</em>.</p>
 </div>
 <div id="information-theory-and-shannon-entropy" class="section level2">
@@ -218,7 +218,7 @@
 x &lt;- rep(&#39;heads&#39;, 5)
 
 calc_entropy(x) # outputs 0</code></pre>
-<p>Instead if we flipped a completely fair coin <em>N</em> times (or rolled a completelyt fair die <em>N</em> times) such that the any value of <em><span class="math inline">\(x_{i}\)</span></em> is likely, <em>I(X)</em> would be at its maximum value. In other words, we would expect more surprise or a larger amount of information.</p>
+<p>Instead if we flipped a completely fair coin <em>N</em> times (or rolled a completely fair die <em>N</em> times) such that the any value of <em><span class="math inline">\(x_{i}\)</span></em> is likely, <em>I(X)</em> would be at its maximum value. In other words, we would expect more surprise or a larger amount of information.</p>
 <p>Essentially, Shannon entropy describes the amount of information carried as a function of some event <em>X</em> and low probability events denote higher information.</p>
 </div>
 <div id="kullback-leibler-divergence-and-relative-entropy" class="section level2">

@@ -16,7 +16,7 @@ description: ''
 
 In unsupervised learning, the concept of statistical distance is often used. For instance, multi-dimensional scaling (MDS) reduces the dimensionality of original data while trying to preserve the distances between the instances. In hierarchical clustering, distances between data points are computed using a variety of metrics such as Euclidean, Manhattan, and Minkowski distances. Distance metrics are especially useful when trying to preserve local relationships while projecting data into a lower dimension. 
 
-A statistical distance can also be calculated between a pair of distributions, such as the probability distributions of random variables. This however may not be as intuitive as interpreting the distance between a pair of instances. What if, for example. we are trying to calculate the statistical distance between a true, theoretical distribution *P(x)* and a distribution which attempts to model - or approximate - that distribution as *Q(x)*? It turns out that this thought exercise originates from information theory, which extends into the discipline of machine learning. 
+A statistical distance can also be calculated between a pair of distributions, such as the probability distributions of random variables. This however may not be as intuitive as interpreting the distance between a pair of instances. What if, for example, we are trying to calculate the statistical distance between a true, theoretical distribution *P(x)* and a distribution which attempts to model - or approximate - that distribution as *Q(x)*? It turns out that this thought exercise originates from information theory, which extends into the discipline of machine learning. 
 
 In cases like this, divergence metrics are calculated - which is defined as *a function which establishes the separation from one probability distribution to another on a statistical manifold*. 
 
@@ -47,7 +47,7 @@ x <- rep('heads', 5)
 calc_entropy(x) # outputs 0
 ```
 
-Instead if we flipped a completely fair coin *N* times (or rolled a completelyt fair die *N* times) such that the any value of *$x_{i}$* is likely, *I(X)* would be at its maximum value. In other words, we would expect more surprise or a larger amount of information. 
+Instead if we flipped a completely fair coin *N* times (or rolled a completely fair die *N* times) such that the any value of *$x_{i}$* is likely, *I(X)* would be at its maximum value. In other words, we would expect more surprise or a larger amount of information. 
 
 Essentially, Shannon entropy describes the amount of information carried as a function of some event *X* and low probability events denote higher information. 
 

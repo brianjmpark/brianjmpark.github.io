@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.72.0" />
+
+  <title>Principles of singular value decomposition &middot; Snow of London</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Principles of singular value decomposition">
+<meta itemprop="description" content="Linear algebra background In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, sheering, or rotating by tracking basis vector movements.">
+<meta itemprop="datePublished" content="2023-03-31T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2023-03-31T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1400">
+<meta itemprop="image" content="https://brianjmpark.github.io/images/mont.jpg"/>
+
+
+
+<meta itemprop="keywords" content="stats,math," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://brianjmpark.github.io/images/mont.jpg"/>
+
+<meta name="twitter:title" content="Principles of singular value decomposition"/>
+<meta name="twitter:description" content="Linear algebra background In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, sheering, or rotating by tracking basis vector movements."/>
+
+
+<meta property="og:title" content="Principles of singular value decomposition" />
+<meta property="og:description" content="Linear algebra background In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, sheering, or rotating by tracking basis vector movements." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://brianjmpark.github.io/post/2023-03-31-principles-of-singular-value-decomposition-index/" />
+<meta property="og:image" content="https://brianjmpark.github.io/images/mont.jpg"/>
+<meta property="article:published_time" content="2023-03-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-31T00:00:00+00:00" /><meta property="og:site_name" content="Snow of London" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #b2c69c;
+  }
+
+  .read-more-link a {
+    border-color: #b2c69c;
+  }
+
+  .pagination li a {
+    color: #b2c69c;
+    border: 1px solid #b2c69c;
+  }
+
+  .pagination li.active a {
+    background-color: #b2c69c;
+  }
+
+  .pagination li a:hover {
+    background-color: #b2c69c;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #b2c69c;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/mont.jpg" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Snow of London</h1>
+
+      
+      <p class="lead">Data, ML, and Sports Blog by Brian Jungmin Park</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://brianjmpark.github.io">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/contact/">Contact</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/categories/">Categories</a>
+        </li><li>
+          <a href="/tags/">Tags</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://linkedin.com/in/bjp" rel="me" title="LinkedIn" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/snowoflondon/" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/brianjmpark2" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>Principles of singular value decomposition</h1>
+
+  <div class="post-date">
+    <time datetime="2023-03-31T00:00:00Z">Mar 31, 2023</time> &middot; 7 min read
+  </div>
+
+  
+
+
+<div id="linear-algebra-background" class="section level1">
+<h1>Linear algebra background</h1>
+<p>In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, sheering, or rotating by tracking basis vector movements.</p>
+<div class="figure">
+<img src="/post/2023-03-31-principles-of-singular-value-decomposition-index.en_files/Screen%20Shot%202023-03-31%20at%203.50.29%20PM.png" />
+
+</div>
+<p>This transformation of a given vector by the application of basis vectors is the concept of vector matrix multiplication. This is easily seen when we think of the basis vectors as packaged into a matrix. Think of this simple example where we transform a given vector <span class="math inline">\(v_{i}\)</span> by the transformation of basis vector <span class="math inline">\(\hat{i}\)</span> by a factor of 2 and <span class="math inline">\(\hat{j}\)</span> by a factor of 4:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc} 
+2 &amp; 0\\
+0 &amp; 4
+\end{array}\right)
+\left(\begin{array}{cc} 
+x_{i}\\ 
+y_{i}
+\end{array}\right)
+\]</span></p>
+<p>This is the most simplest case where the vector <span class="math inline">\(v_{i}\)</span> is elongated by the scaled basis vectors <span class="math inline">\(\hat{i}\)</span> and <span class="math inline">\(\hat{j}\)</span>. That is, this constitutes a single linear transformation. But what if we were to chain multiple linear combinations together? The consolidation of multiple linear transformations constitute a matrix multiplication task.</p>
+<p><span class="math display">\[
+AB =
+\left(\begin{array}{cc} 
+a &amp; b\\
+c &amp; d
+\end{array}\right)
+\left(\begin{array}{cc} 
+e &amp; f\\
+g &amp; h
+\end{array}\right) 
+=
+\left(\begin{array}{cc} 
+ae + bg &amp; af + bh\\
+ce + dy &amp; cf + dh
+\end{array}\right)
+\]</span></p>
+<p>Above, two matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, each representing a linear transformation (whether that's elongation, inversion, rotation...) were consolidated by a matrix dot product. Multiplying this 2x2 matrix <span class="math inline">\(AB\)</span> to a given vector <span class="math inline">\(v_{i}\)</span> via vector-matrix multiplication would result a new transformed vector. An important note here is that matrix dot product is not commutative - that is, the order of the linear transformations matters. Regardless, it is clear that matrices represent some combinations of linear transformations.</p>
+<div id="principles-of-svd" class="section level2">
+<h2>Principles of SVD</h2>
+<p>Given an <span class="math inline">\(m\)</span> by <span class="math inline">\(n\)</span> matrix <span class="math inline">\(A\)</span>, let's say there exists a pair of orthogonal vectors that remain orthogonal after transformation by <span class="math inline">\(A\)</span>. In two dimensions, this is saying:</p>
+<p><span class="math inline">\(Av_{1} = y_{1}\)</span> and <span class="math inline">\(Av_{2} = y_{2}\)</span></p>
+<p>Of course, a vector constitutes a magnitude and a direction. This is analogous to the concept of stretching a basis vector of unit 1 (direction) by a scalar factor (magnitude). This means that the above expressions can be written as:</p>
+<p><span class="math inline">\(Av_{1} = \sigma u_{1}\)</span> and <span class="math inline">\(Av_{2} = \sigma u_{2}\)</span></p>
+<p>In matrix form:</p>
+<p><span class="math inline">\(A[v_{1}, v_{2}] = [\sigma u_{1}, \sigma u_{2}]\)</span> <span class="math inline">\(A[v_{1}, v_{2}] = [u_{1}, u_{2}] \left(\begin{array}{cc}\sigma_{1} &amp; 0\\0&amp; \sigma_{2}\end{array}\right)\)</span></p>
+<p>Which, using matrix notation equals to:</p>
+<p><span class="math inline">\(AV = U\Sigma\)</span></p>
+<p>The fact that for every <span class="math inline">\(m\)</span> by <span class="math inline">\(n\)</span> matrix <span class="math inline">\(A\)</span> the above equation is satisfied is the core basis of singular value decomposition (SVD). In context of SVD, it's helpful to rearrange the equation in context of deconstructing <span class="math inline">\(A\)</span> into three parts:</p>
+<p><span class="math inline">\(A = U\Sigma V^{T}\)</span></p>
+<p>Since we've made it clear that a matrix can be thought of a composition of linear transformations, the above expression dictates that the linear transformations can be decomposed into its constituent parts. The three parts are:</p>
+<ul>
+<li><span class="math inline">\(V\)</span> = a <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrix describing a rotation in the input space.</li>
+<li><span class="math inline">\(\Sigma\)</span> = a <span class="math inline">\(m\)</span> by <span class="math inline">\(n\)</span> diagonal matrix describing a scaling factor that takes the vector into output space.</li>
+<li><span class="math inline">\(U\)</span> = a <span class="math inline">\(m\)</span> by <span class="math inline">\(m\)</span> matrix describing a rotation in the output space.</li>
+</ul>
+<p>The following are then true:</p>
+<ul>
+<li>Both <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span> are orthogonal, as stated before.</li>
+<li><span class="math inline">\(V^{T}V = I\)</span> and <span class="math inline">\(U^{T}U = I\)</span> must be true since they are orthogonal and this indicates these are rotation matrices.</li>
+<li><span class="math inline">\(\Sigma = diag(\sigma)\)</span>.</li>
+<li>The trace of the diagonal matrix <span class="math inline">\(\Sigma\)</span> is the sum of the values in the diagonal <span class="math inline">\(\sigma\)</span>.</li>
+<li><span class="math inline">\(\sigma_{1} \ge \sigma_{2} \ge ... \ge \sigma_{r} \ge 0\)</span> where <span class="math inline">\(r\)</span> is the rank of <span class="math inline">\(A\)</span>.</li>
+</ul>
+<p>The diagram below visually shows the decomposition of the transformation given by <em>A</em> on a vector into its constituent parts:</p>
+<div class="figure">
+<img src="/post/2023-03-31-principles-of-singular-value-decomposition-index.en_files/Screen%20Shot%202023-03-31%20at%203.48.57%20PM.png" />
+
+</div>
+<p>The diagonal values <span class="math inline">\(\sigma\)</span>, which describe the extent of stretching of the transformation, are called the singular values of <em>A</em>. Largest values of <span class="math inline">\(\sigma_{i}\)</span> indicate the largest scaling factor in the dimension <span class="math inline">\(i\)</span>. The vectors <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span> are called left and right singular vectors, respectively.</p>
+<p>Why is this important? The decomposition of matrices can be used in principal component analysis (PCA), which I will cover shortly. However, SVD can also be used for low-rank approximation. This means that we can use SVD to use a truncated version of the original data matrix <span class="math inline">\(A\)</span> by some matrix <span class="math inline">\(B\)</span>.</p>
+<p>Remember that according to SVD, <span class="math inline">\(A = U\Sigma V^{T}\)</span> and <span class="math inline">\(\Sigma\)</span> contains singular values <span class="math inline">\([\sigma_{1}, ..., \sigma_{r}]\)</span> where <span class="math inline">\(r\)</span> is the rank of <em>A</em>. However, since <span class="math inline">\(\sigma_{1} \ge \sigma_{2} \ge ... \ge \sigma_{r} \ge 0\)</span> is true (that is, the magnitude of the singular values decay), there exists a set of singular values <span class="math inline">\([\sigma_{1}, ..., \sigma_{k}]\)</span> where <span class="math inline">\(k &lt; r\)</span> that provides a good approximation of the original matrix.</p>
+<p>This means that we can set the smallest <span class="math inline">\(\sigma\)</span> values to zero in <span class="math inline">\(\Sigma\)</span> to obtain the truncated version <span class="math inline">\(\tilde{\Sigma}\)</span>. This means:</p>
+<p><span class="math inline">\(\tilde{\Sigma} = diag(\sigma_{i})\)</span> where <span class="math inline">\(i = 1, ..., k\)</span></p>
+<p>And:</p>
+<p><span class="math inline">\(B = U\tilde{\Sigma} V^{T}\)</span>.</p>
+<p>The truncated matrix <span class="math inline">\(B\)</span> that best approximates <span class="math inline">\(A\)</span> is said to be the best rank <span class="math inline">\(k\)</span> approximation of <span class="math inline">\(A\)</span> given that the Frobenius norm of the difference between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is minimized. That is:</p>
+<p><span class="math inline">\(min_{B} ||A-B||_{F}\)</span> where <span class="math inline">\(rank(B) = k\)</span></p>
+</div>
+<div id="svd-and-eigendecomposition" class="section level2">
+<h2>SVD and eigendecomposition</h2>
+<p>The eigendecomposition of a <em>square matrix</em> <span class="math inline">\(A\)</span> is defined as:</p>
+<p><span class="math inline">\(Av_{i} = \lambda_{i}v_{i}\)</span>, where:</p>
+<ul>
+<li><span class="math inline">\(\lambda_{i}\)</span> are real numbers and are called the eigenvalues and</li>
+<li><span class="math inline">\(v_{i}\)</span> are orthogonal vectors and are called the eigenvectors.</li>
+</ul>
+<p>Remember that in context of SVD, we were considering non-square matrices of shape <span class="math inline">\(m\)</span> by <span class="math inline">\(n\)</span> and thus the eigendecomposition does not satisfy. However, it turns out that the matrix multiplication between an <span class="math inline">\(m\)</span> by <span class="math inline">\(n\)</span> matrix and its transpose yields a square matrix. What is the importance of this?</p>
+<p>Let's go back to the SVD expression:</p>
+<p><span class="math inline">\(A = U\Sigma V^{T}\)</span></p>
+<p>Let's multiply each side by the transpose of <span class="math inline">\(A\)</span> from the left side to get:</p>
+<p><span class="math inline">\(A^{T}A = (V \Sigma^{T} U^{T} ) (U \Sigma V^{T})\)</span></p>
+<p>We know that <span class="math inline">\(U\)</span> is an orthogonal matrix and thus <span class="math inline">\(U^{T}U = I\)</span>. This means:</p>
+<p><span class="math inline">\(A^{T}A = V \Sigma^{T} \Sigma V^{T}\)</span></p>
+<p>Remember that <span class="math inline">\(\Sigma\)</span> is a square diagonal matrix. This means that <span class="math inline">\(\Sigma \Sigma^{T}\)</span> contains simply the square of the individual diagonal values, that is, <span class="math inline">\(diag(\sigma^{2})\)</span>.</p>
+<p>The above equation may look familiar because it's just the eigendecomposition of <span class="math inline">\(A^{T}A\)</span>; the eigenvalues are the squared singular values <span class="math inline">\(\sigma\)</span> of <span class="math inline">\(A\)</span> and the eigenvectors are vectors in <span class="math inline">\(V\)</span>.</p>
+<p>Since we know matrix multiplication is not commutative, we also need to check out what happens when we multiply by the transpose of A from the right side:</p>
+<p><span class="math inline">\(AA^{T} = (U \Sigma V^{T}) ( V \Sigma^{T} U^{T})\)</span></p>
+<p>Similarly, since <span class="math inline">\(V\)</span> is an orthogonal matrix:</p>
+<p><span class="math inline">\(AA^{T} = U \Sigma \Sigma^{T} U^{T}\)</span></p>
+<p>Therefore, the eigenvalues of <span class="math inline">\(AA^{T}\)</span> are once again the squared singular values <span class="math inline">\(\sigma\)</span> of <span class="math inline">\(A\)</span> but this time the eigenvectors are vectors in <span class="math inline">\(U\)</span>.</p>
+</div>
+<div id="svd-and-pca" class="section level2">
+<h2>SVD and PCA</h2>
+<p>So far we've concluded that an <span class="math inline">\(m\)</span> by <span class="math inline">\(n\)</span> matrix <span class="math inline">\(A\)</span> can be decomposed into <span class="math inline">\(U\Sigma V^{T}\)</span> and that the square matrices <span class="math inline">\(A^{T}A\)</span> and <span class="math inline">\(AA^{T}\)</span> have the corresponding eigenvectors <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span>, respectively. We've also seen that the squared diagonal elements <span class="math inline">\(\sigma\)</span> of <span class="math inline">\(\Sigma\)</span> are the corresponding eigenvalues.</p>
+<p>Interestingly, it turns out that for a matrix <span class="math inline">\(A\)</span> - if and only if <span class="math inline">\(A\)</span> is centered - its covariance matrix can be expressed as such:</p>
+<p><span class="math inline">\(C = \frac{1}{n-1} AA^{T}\)</span></p>
+<p>This means that the covariance matrix <span class="math inline">\(C\)</span> can be estimated using the matrix <span class="math inline">\(AA^{T}\)</span>. The covariance matrix by definition is symmetric and diagonalizable, such that eigendecomposition can be applied.</p>
+<p>We saw above that the eigenvectors of <span class="math inline">\(AA^{T}\)</span> - that is, the estimation of covariance matrix <span class="math inline">\(C\)</span> - are contained in <span class="math inline">\(U\)</span>. The eigenvalues are described by the square of <span class="math inline">\(\sigma_{i}\)</span>. Since instead of a data matrix we're working with a covariance matrix, it must be then:</p>
+<ul>
+<li>The eigenvalues <span class="math inline">\(\sigma_{i}^{2}\)</span> describes the extent of variance in <span class="math inline">\(i\)</span></li>
+<li>The eigenvectors <span class="math inline">\(u_{i}\)</span> in <span class="math inline">\(U\)</span> describes the dimension in which the variance is projected on</li>
+</ul>
+<p>Therefore, if we're interested in selecting the first <span class="math inline">\(k\)</span> dimensions that describe the most variance in our original data matrix <span class="math inline">\(A\)</span>, we'd select the first <span class="math inline">\(k\)</span> eigenvectors and the sum of <span class="math inline">\([\sigma_{1}^{2}, .... \sigma_{k}^{2}]\)</span> describe the total variance explained. This is the core concept of dimensionality reduction by PCA - projecting high-dimensional data into a lower set of dimensions while maximizing variance explained in the data.</p>
+<hr />
+<p>Image credits: 1. 'Essential Math for Data Science' by Thomas Nield (published by O'Reilly Media Inc.) 2. 'Singular value decomposiiton (SVD)' by Gilbert Strang (posted by MITOpenCourseWare on their YouTube channel)</p>
+</div>
+</div>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy; Brian Jungmin Park 2023
+
+    &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+    &middot; Build with <a href="https://gohugo.io/" target="_blank">Hugo</a> & <a href="https://themes.gohugo.io/soho/" target="_blank">Soho</a> theme
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>

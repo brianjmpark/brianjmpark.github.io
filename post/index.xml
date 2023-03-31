@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Snow of London</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 10 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Mar 2023 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://brianjmpark.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Principles of singular value decomposition</title>
+      <link>https://brianjmpark.github.io/post/2023-03-31-principles-of-singular-value-decomposition-index/</link>
+      <pubDate>Fri, 31 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://brianjmpark.github.io/post/2023-03-31-principles-of-singular-value-decomposition-index/</guid>
+      <description>Linear algebra background In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, sheering, or rotating by tracking basis vector movements.</description>
+    </item>
     
     <item>
       <title>Fundamentals of Kullback-Leibler divergence</title>

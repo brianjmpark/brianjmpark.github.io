@@ -12,7 +12,7 @@ tags:
 description: ''
 ---
 
-# Linear algebra background
+## Linear algebra background
 
 In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, sheering, or rotating by tracking basis vector movements. 
 

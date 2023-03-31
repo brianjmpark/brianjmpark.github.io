@@ -14,7 +14,7 @@ description: ''
 
 
 
-<div id="linear-algebra-background" class="section level1">
+<div id="linear-algebra-background" class="section level2">
 <h2>Linear algebra background</h2>
 <p>In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, sheering, or rotating by tracking basis vector movements.</p>
 <div class="figure">
@@ -50,6 +50,7 @@ ce + dy &amp; cf + dh
 \end{array}\right)
 \]</span></p>
 <p>Above, two matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, each representing a linear transformation (whether that's elongation, inversion, rotation...) were consolidated by a matrix dot product. Multiplying this 2x2 matrix <span class="math inline">\(AB\)</span> to a given vector <span class="math inline">\(v_{i}\)</span> via vector-matrix multiplication would result a new transformed vector. An important note here is that matrix dot product is not commutative - that is, the order of the linear transformations matters. Regardless, it is clear that matrices represent some combinations of linear transformations.</p>
+</div>
 <div id="principles-of-svd" class="section level2">
 <h2>Principles of SVD</h2>
 <p>Given an <span class="math inline">\(m\)</span> by <span class="math inline">\(n\)</span> matrix <span class="math inline">\(A\)</span>, let's say there exists a pair of orthogonal vectors that remain orthogonal after transformation by <span class="math inline">\(A\)</span>. In two dimensions, this is saying:</p>
@@ -128,5 +129,4 @@ ce + dy &amp; cf + dh
 <p>Therefore, if we're interested in selecting the first <span class="math inline">\(k\)</span> dimensions that describe the most variance in our original data matrix <span class="math inline">\(A\)</span>, we'd select the first <span class="math inline">\(k\)</span> eigenvectors and the sum of <span class="math inline">\([\sigma_{1}^{2}, .... \sigma_{k}^{2}]\)</span> describe the total variance explained. This is the core concept of dimensionality reduction by PCA - projecting high-dimensional data into a lower set of dimensions while maximizing variance explained in the data.</p>
 <hr />
 <p>Image credits: 1. 'Essential Math for Data Science' by Thomas Nield (published by O'Reilly Media Inc.) 2. 'Singular value decomposiiton (SVD)' by Gilbert Strang (posted by MITOpenCourseWare on their YouTube channel)</p>
-</div>
 </div>

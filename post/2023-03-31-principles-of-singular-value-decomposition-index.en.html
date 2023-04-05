@@ -16,7 +16,7 @@ description: ''
 
 <div id="linear-algebra-background" class="section level2">
 <h2>Linear algebra background</h2>
-<p>In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, sheering, or rotating by tracking basis vector movements.</p>
+<p>In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, shearing, or rotating by tracking basis vector movements.</p>
 <div class="figure">
 <img src="/post/2023-03-31-principles-of-singular-value-decomposition-index.en_files/Screen%20Shot%202023-03-31%20at%203.50.29%20PM.png" />
 
@@ -58,7 +58,8 @@ ce + dy &amp; cf + dh
 <p>Of course, a vector constitutes a magnitude and a direction. This is analogous to the concept of stretching a basis vector of unit 1 (direction) by a scalar factor (magnitude). This means that the above expressions can be written as:</p>
 <p><span class="math inline">\(Av_{1} = \sigma u_{1}\)</span> and <span class="math inline">\(Av_{2} = \sigma u_{2}\)</span></p>
 <p>In matrix form:</p>
-<p><span class="math inline">\(A[v_{1}, v_{2}] = [\sigma u_{1}, \sigma u_{2}]\)</span> <span class="math inline">\(A[v_{1}, v_{2}] = [u_{1}, u_{2}] \left(\begin{array}{cc}\sigma_{1} &amp; 0\\0&amp; \sigma_{2}\end{array}\right)\)</span></p>
+<p><span class="math inline">\(A[v_{1}, v_{2}] = [\sigma u_{1}, \sigma u_{2}]\)</span></p>
+<p><span class="math inline">\(A[v_{1}, v_{2}] = [u_{1}, u_{2}] \left(\begin{array}{cc}\sigma_{1} &amp; 0\\0&amp; \sigma_{2}\end{array}\right)\)</span></p>
 <p>Which, using matrix notation equals to:</p>
 <p><span class="math inline">\(AV = U\Sigma\)</span></p>
 <p>The fact that for every <span class="math inline">\(m\)</span> by <span class="math inline">\(n\)</span> matrix <span class="math inline">\(A\)</span> the above equation is satisfied is the core basis of singular value decomposition (SVD). In context of SVD, it's helpful to rearrange the equation in context of deconstructing <span class="math inline">\(A\)</span> into three parts:</p>

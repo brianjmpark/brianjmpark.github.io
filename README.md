@@ -7,5 +7,3 @@ All written content is under the supervision of the author [Brian Jungmin Park](
 
 Author's main GitHub profile and all open-source projects are provided here: https://github.com/snowoflondon.
 
-Companion code examples (e.g., R code and Jupyter Notebooks) are available [here](https://github.com/brianjmpark/brianjmpark.github.io/tree/master/code_examples).
-

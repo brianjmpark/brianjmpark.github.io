@@ -12,9 +12,9 @@ tags:
 description: ''
 ---
 
-# Linear algebra background
+## Linear algebra background
 
-In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, sheering, or rotating by tracking basis vector movements. 
+In vector algebra, linear transformations are defined as the transformation of a vector with stretching, squishing, shearing, or rotating by tracking basis vector movements. 
 
 ![](/post/2023-03-31-principles-of-singular-value-decomposition-index.en_files/Screen Shot 2023-03-31 at 3.50.29 PM.png)
 
@@ -65,6 +65,8 @@ $Av_{1} = \sigma u_{1}$ and $Av_{2} = \sigma u_{2}$
 In matrix form:
 
 $A[v_{1}, v_{2}] = [\sigma u_{1}, \sigma u_{2}]$
+
+
 $A[v_{1}, v_{2}] = [u_{1}, u_{2}] \left(\begin{array}{cc}\sigma_{1} & 0\\0& \sigma_{2}\end{array}\right)$
 
 Which, using matrix notation equals to:
